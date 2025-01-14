@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.BiConsumer;
 
 @MethodsReturnNonnullByDefault
-public class RedstoneLanternBlock extends DirectionalBlock
+public class RedstoneLanternBlock extends HorizontalDirectionalBlock
 {
     public static final MapCodec<RedstoneLanternBlock> CODEC = simpleCodec(RedstoneLanternBlock::new);
     public static final BooleanProperty REDSTONE_STATE = BooleanProperty.create("redstone_state");
@@ -46,7 +46,7 @@ public class RedstoneLanternBlock extends DirectionalBlock
     protected void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource)
     {
         if (blockState.getValue(REDSTONE_STATE) && !serverLevel.hasNeighborSignal(blockPos))
-            serverLevel.setBlock(blockPos, blockState.cycle(REDSTONE_STATE), 2);
+            serverLevel.setBlock(blockPos, blockState.cycle(REDSTONE_STATE), Block.UPDATE_CLIENTS);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class RedstoneLanternBlock extends DirectionalBlock
                 if (redstoneState)
                     level.scheduleTick(blockPos, this, 4);
                 else
-                    level.setBlock(blockPos, blockState.cycle(REDSTONE_STATE), 2);
+                    level.setBlock(blockPos, blockState.cycle(REDSTONE_STATE), Block.UPDATE_CLIENTS);
             }
         }
     }
@@ -71,7 +71,7 @@ public class RedstoneLanternBlock extends DirectionalBlock
         if (!level.isClientSide)
         {
             if (player.isShiftKeyDown())
-                level.setBlock(pos, state.cycle(FACING), 2);
+                level.setBlock(pos, state.cycle(FACING), Block.UPDATE_CLIENTS);
             else
                 toggleManualState(state, level, pos);
         }
@@ -91,14 +91,14 @@ public class RedstoneLanternBlock extends DirectionalBlock
     public void toggleManualState(BlockState state, Level level, BlockPos pos)
     {
         state = state.cycle(MANUAL_STATE);
-        level.setBlock(pos, state, 2);
+        level.setBlock(pos, state, Block.UPDATE_CLIENTS);
         var manualPower = state.getValue(MANUAL_STATE);
         level.playSound(null, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3f, manualPower ? 0.6f : 0.5f);
         level.gameEvent(null, (manualPower ^ state.getValue(REDSTONE_STATE)) ? GameEvent.BLOCK_ACTIVATE : GameEvent.BLOCK_DEACTIVATE, pos);
     }
 
     @Override
-    protected MapCodec<? extends DirectionalBlock> codec()
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec()
     {
         return CODEC;
     }

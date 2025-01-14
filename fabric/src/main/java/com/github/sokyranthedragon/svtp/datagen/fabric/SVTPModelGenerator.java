@@ -144,7 +144,7 @@ class SVTPModelGenerator extends FabricModelProvider
                 .select(true, true, unlitVariant)
                 .select(true, false, litVariant)
                 .select(false, true, litVariant))
-            .with(BlockModelGenerators.createFacingDispatch()));
+            .with(BlockModelGenerators.createHorizontalFacingDispatch()));
     }
 
     private void createPlantWithDefaultItem(BlockModelGenerators generator, RegistrySupplier<Block> flowerSupplier, RegistrySupplier<Block> pottedFlowerSupplier)
