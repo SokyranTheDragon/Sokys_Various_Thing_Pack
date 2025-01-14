@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_glass_pane_noside",
+  "render_type": "cutout",
+  "textures": {
+    "pane": "sokys_various_things_pack:block/armored_glass"
+  }
+}

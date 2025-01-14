@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "sokys_various_things_pack:block/wall_golden_torch_0"
+    },
+    "facing=north": {
+      "model": "sokys_various_things_pack:block/wall_golden_torch_0",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "sokys_various_things_pack:block/wall_golden_torch_0",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "sokys_various_things_pack:block/wall_golden_torch_0",
+      "y": 180
+    }
+  }
+}

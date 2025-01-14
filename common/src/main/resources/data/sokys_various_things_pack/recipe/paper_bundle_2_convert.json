@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "paper_bundle_0_conversion",
+  "key": {
+    "#": "sokys_various_things_pack:paper_bundle_1"
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "id": "sokys_various_things_pack:paper_bundle_2"
+  }
+}

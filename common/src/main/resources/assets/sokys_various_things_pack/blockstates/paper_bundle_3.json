@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "sokys_various_things_pack:block/paper_bundle_3",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "sokys_various_things_pack:block/paper_bundle_3"
+    },
+    "facing=south": {
+      "model": "sokys_various_things_pack:block/paper_bundle_3",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "sokys_various_things_pack:block/paper_bundle_3",
+      "y": 270
+    }
+  }
+}

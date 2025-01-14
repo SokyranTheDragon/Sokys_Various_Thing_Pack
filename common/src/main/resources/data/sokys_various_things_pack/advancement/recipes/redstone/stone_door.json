@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_stone": {
+      "conditions": {
+        "items": [
+          {
+            "count": {
+              "min": 6
+            },
+            "items": "minecraft:stone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "sokys_various_things_pack:stone_door"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_stone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "sokys_various_things_pack:stone_door"
+    ]
+  }
+}

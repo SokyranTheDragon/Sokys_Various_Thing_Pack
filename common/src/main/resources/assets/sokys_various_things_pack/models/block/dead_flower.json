@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "sokys_various_things_pack:block/dead_flower"
+  }
+}

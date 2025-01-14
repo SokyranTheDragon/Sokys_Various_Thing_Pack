@@ -1,0 +1,38 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+#issueTrackerURL = ""
+license = "Insert License Here"
+
+[[mods]]
+modId = "sokys_various_things_pack"
+version = "${version}"
+displayName = "Soky's Various Things Pack"
+authors = "Me!"
+description = '''
+This is an example description! Tell everyone what your mod is about!
+'''
+#logoFile = ""
+
+[[dependencies.sokys_various_things_pack]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.4,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.sokys_various_things_pack]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.4,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.sokys_various_things_pack]]
+modId = "architectury"
+type = "required"
+versionRange = "[15.0.1,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[mixins]]
+config = "sokys_various_things_pack.mixins.json"

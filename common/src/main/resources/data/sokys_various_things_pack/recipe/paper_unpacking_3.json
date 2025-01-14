@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "paper",
+  "ingredients": [
+    "sokys_various_things_pack:paper_bundle_3"
+  ],
+  "result": {
+    "count": 9,
+    "id": "minecraft:paper"
+  }
+}

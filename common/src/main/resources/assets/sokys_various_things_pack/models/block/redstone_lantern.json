@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "sokys_various_things_pack:block/redstone_lantern_default",
+    "east": "sokys_various_things_pack:block/redstone_lantern_default",
+    "north": "sokys_various_things_pack:block/redstone_lantern_on_front",
+    "particle": "sokys_various_things_pack:block/redstone_lantern_default",
+    "south": "sokys_various_things_pack:block/redstone_lantern_on_back",
+    "up": "sokys_various_things_pack:block/redstone_lantern_default",
+    "west": "sokys_various_things_pack:block/redstone_lantern_on_side"
+  }
+}

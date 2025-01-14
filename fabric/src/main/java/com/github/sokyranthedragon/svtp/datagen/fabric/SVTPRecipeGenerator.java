@@ -1,0 +1,178 @@
+package com.github.sokyranthedragon.svtp.datagen.fabric;
+
+import com.github.sokyranthedragon.svtp.SVTPMod;
+import com.github.sokyranthedragon.svtp.items.SVTPItems;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.advancements.critereon.MinMaxBounds;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.SuspiciousEffectHolder;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.concurrent.CompletableFuture;
+
+class SVTPRecipeGenerator extends RecipeProvider
+{
+    protected SVTPRecipeGenerator(HolderLookup.Provider provider, RecipeOutput recipeOutput)
+    {
+        super(provider, recipeOutput);
+    }
+
+    @Override
+    public void buildRecipes()
+    {
+        shaped(RecipeCategory.REDSTONE, SVTPItems.STONE_DOOR.get(), 3)
+            .define('s', Items.STONE)
+            .pattern("ss")
+            .pattern("ss")
+            .pattern("ss")
+            .unlockedBy(getHasName(Items.STONE), has(MinMaxBounds.Ints.atLeast(6), Items.STONE))
+            .save(output);
+
+        shaped(RecipeCategory.DECORATIONS, SVTPItems.ARMORED_GLASS.get(), 16)
+            .define('g', Items.GLASS)
+            .define('o', Items.OBSIDIAN)
+            .pattern("ogo")
+            .pattern("ggg")
+            .pattern("ogo")
+            .unlockedBy(getHasName(Items.OBSIDIAN), has(MinMaxBounds.Ints.atLeast(4), Items.OBSIDIAN))
+            .save(output);
+
+        shaped(RecipeCategory.DECORATIONS, SVTPItems.ARMORED_GLASS_PANE.get(), 16)
+            .define('a', SVTPItems.ARMORED_GLASS.get())
+            .pattern("aaa")
+            .pattern("aaa")
+            .unlockedBy(getHasName(SVTPItems.ARMORED_GLASS.get()), has(MinMaxBounds.Ints.atLeast(6), SVTPItems.ARMORED_GLASS.get()))
+            .save(output);
+
+        shaped(RecipeCategory.REDSTONE, SVTPItems.REDSTONE_LANTERN.get(), 1)
+            .define('c', Items.COBBLESTONE)
+            .define('r', ConventionalItemTags.REDSTONE_DUSTS)
+            .define('g', Items.GLOWSTONE)
+            .define('l', Items.LEVER)
+            .pattern("crc")
+            .pattern("rgl")
+            .pattern("crc")
+            .unlockedBy(getHasName(Items.GLOWSTONE), has(Items.GLOWSTONE))
+            .save(output);
+
+        // Torch recipes
+        shaped(RecipeCategory.DECORATIONS, SVTPItems.GOLDEN_TORCH_0.get(), 4)
+            .define('c', ItemTags.COALS)
+            .define('g', ConventionalItemTags.GOLD_INGOTS)
+            .pattern("c")
+            .pattern("g")
+            .unlockedBy(getHasName(Items.GOLD_INGOT), has(ConventionalItemTags.GOLD_INGOTS))
+            .save(output);
+        conversionRecipe(RecipeCategory.DECORATIONS, SVTPItems.GOLDEN_TORCH_0.get(), SVTPItems.GOLDEN_TORCH_1.get());
+
+        // Paper bundle recipes
+        nineBlockStorageRecipesWithExtraVariants(RecipeCategory.MISC, Items.PAPER, "paper", RecipeCategory.DECORATIONS,
+            SVTPItems.PAPER_BUNDLE_0.get(), SVTPItems.PAPER_BUNDLE_1.get(), SVTPItems.PAPER_BUNDLE_2.get(), SVTPItems.PAPER_BUNDLE_3.get());
+        twoByTwoConversionRecipe(RecipeCategory.MISC, SVTPItems.PAPER_BUNDLE_0.get(), SVTPItems.PAPER_BUNDLE_1.get(), SVTPItems.PAPER_BUNDLE_2.get(), SVTPItems.PAPER_BUNDLE_3.get());
+
+        // Suspicious stew
+        // Probably an overkill, as there likely won't be more.
+        // Still, why not I guess?
+        BuiltInRegistries.ITEM.entrySet().forEach((entry) ->
+        {
+            if (entry.getKey().location().getNamespace().equals(SVTPMod.MOD_ID))
+            {
+                var item = entry.getValue();
+
+                var suspiciousEffectHolder = SuspiciousEffectHolder.tryGet(item);
+                if (suspiciousEffectHolder != null)
+                    suspiciousStew(item, suspiciousEffectHolder);
+            }
+        });
+    }
+
+    private void nineBlockStorageRecipesWithExtraVariants(RecipeCategory unpackingCategory, ItemLike unpackedItem, @Nullable String unpackingGroupName, RecipeCategory packingCategory, ItemLike... packedItems)
+    {
+        if (packedItems == null || packedItems.length == 0)
+            return;
+
+        var unpackingRecipeName = getSimpleRecipeName(unpackedItem) + "_unpacking";
+        nineBlockStorageRecipes(unpackingCategory, unpackedItem, packingCategory, packedItems[0], getSimpleRecipeName(packedItems[0]), null, unpackingRecipeName + "_0", unpackingGroupName);
+
+        for (var i = 1; i < packedItems.length; i++)
+        {
+            shapeless(unpackingCategory, unpackedItem, 9)
+                .requires(packedItems[i])
+                .group(unpackingGroupName)
+                .unlockedBy(getHasName(packedItems[i]), this.has(packedItems[i]))
+                .save(this.output, ResourceKey.create(Registries.RECIPE, ResourceLocation.parse(unpackingRecipeName + "_" + i)));
+        }
+    }
+
+    private void conversionRecipe(RecipeCategory category, ItemLike... items)
+    {
+        if (items == null || items.length <= 1)
+            throw new RuntimeException("Expected items to have at least 2 items, but it " + (items == null ? "is null." : "has only 1 element."));
+
+        var groupName = getItemName(items[0]) + "_conversion";
+        for (var current = 0; current < items.length; current++)
+        {
+            var next = (current + 1) % items.length;
+
+            shapeless(category, items[next])
+                .requires(items[current])
+                .group(groupName)
+                .unlockedBy(getHasName(items[current]), has(items[current]))
+                .save(output, ResourceKey.create(Registries.RECIPE, ResourceLocation.parse(getSimpleRecipeName(items[next]) + "_convert")));
+        }
+    }
+
+    private void twoByTwoConversionRecipe(RecipeCategory category, ItemLike... items)
+    {
+        if (items == null || items.length <= 1)
+            throw new RuntimeException("Expected items to have at least 2 items, but it " + (items == null ? "is null." : "has only 1 element."));
+
+        var groupName = getItemName(items[0]) + "_conversion";
+        for (var current = 0; current < items.length; current++)
+        {
+            var next = (current + 1) % items.length;
+
+            shaped(category, items[next], 4)
+                .define('#', items[current])
+                .pattern("##")
+                .pattern("##")
+                .group(groupName)
+                .unlockedBy(getHasName(items[current]), has(MinMaxBounds.Ints.atLeast(4), items[current]))
+                .save(output, ResourceKey.create(Registries.RECIPE, ResourceLocation.parse(getSimpleRecipeName(items[next]) + "_convert")));
+        }
+    }
+
+    @MethodsReturnNonnullByDefault
+    public static class SVTPRecipeRunner extends FabricRecipeProvider
+    {
+        public SVTPRecipeRunner(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture)
+        {
+            super(output, registriesFuture);
+        }
+
+        @Override
+        protected RecipeProvider createRecipeProvider(HolderLookup.Provider provider, RecipeOutput recipeOutput)
+        {
+            return new SVTPRecipeGenerator(provider, recipeOutput);
+        }
+
+        @Override
+        public String getName()
+        {
+            return "Recipe Generator";
+        }
+    }
+}

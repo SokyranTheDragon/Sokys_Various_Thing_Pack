@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "c": "minecraft:cobblestone",
+    "g": "minecraft:glowstone",
+    "l": "minecraft:lever",
+    "r": "#c:dusts/redstone"
+  },
+  "pattern": [
+    "crc",
+    "rgl",
+    "crc"
+  ],
+  "result": {
+    "count": 1,
+    "id": "sokys_various_things_pack:redstone_lantern"
+  }
+}

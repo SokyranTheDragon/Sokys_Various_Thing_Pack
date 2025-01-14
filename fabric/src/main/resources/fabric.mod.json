@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "sokys_various_things_pack",
+  "version": "${version}",
+  "name": "Soky's Various Things Pack",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "Me!"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/sokys_various_things_pack/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.github.sokyranthedragon.svtp.fabric.SVTPModFabric"
+    ],
+    "client": [
+      "com.github.sokyranthedragon.svtp.fabric.client.SVTPModFabricClient"
+    ],
+    "fabric-datagen": [
+      "com.github.sokyranthedragon.svtp.datagen.fabric.SVTPDatagen"
+    ]
+  },
+  "mixins": [
+    "sokys_various_things_pack.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.9",
+    "minecraft": "~1.21.4",
+    "java": ">=21",
+    "architectury": ">=15.0.1",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

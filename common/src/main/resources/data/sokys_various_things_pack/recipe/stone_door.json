@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "s": "minecraft:stone"
+  },
+  "pattern": [
+    "ss",
+    "ss",
+    "ss"
+  ],
+  "result": {
+    "count": 3,
+    "id": "sokys_various_things_pack:stone_door"
+  }
+}

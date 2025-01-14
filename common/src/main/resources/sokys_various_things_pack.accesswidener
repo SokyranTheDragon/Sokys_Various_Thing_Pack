@@ -1,0 +1,5 @@
+accessWidener v2 named
+# Entries generated with https://linkie.shedaniel.dev
+
+# Datagen only
+accessible method net/minecraft/client/data/models/model/TexturedModel createDefault (Ljava/util/function/Function;Lnet/minecraft/client/data/models/model/ModelTemplate;)Lnet/minecraft/client/data/models/model/TexturedModel$Provider;

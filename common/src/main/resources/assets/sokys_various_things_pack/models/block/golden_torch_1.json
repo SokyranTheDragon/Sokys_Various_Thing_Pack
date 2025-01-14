@@ -1,0 +1,7 @@
+{
+  "parent": "sokys_various_things_pack:block/template_torch_wide",
+  "render_type": "cutout",
+  "textures": {
+    "torch": "sokys_various_things_pack:block/golden_torch_1"
+  }
+}
