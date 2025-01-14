@@ -50,6 +50,12 @@ class SVTPModelTemplates
     public static final ModelTemplate WALL_TORCH_WIDE_TRANSPARENT = createModded("template_wall_torch_wide",
         SVTPNeoForgeModelTemplate.RENDER_TYPE_CUTOUT, TextureSlot.TORCH);
 
+    // Flowers
+    public static final ModelTemplate CROSS_TRANSPARENT = create("cross",
+        SVTPNeoForgeModelTemplate.RENDER_TYPE_CUTOUT, TextureSlot.CROSS);
+    public static final ModelTemplate FLOWER_POT_CROSS_TRANSPARENT = create("flower_pot_cross",
+        SVTPNeoForgeModelTemplate.RENDER_TYPE_CUTOUT, TextureSlot.PLANT);
+
     private static ModelTemplate create(String id, String renderType, TextureSlot... textureSlots)
     {
         return create(id, null, renderType, textureSlots);

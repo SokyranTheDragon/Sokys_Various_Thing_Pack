@@ -27,7 +27,7 @@ class SVTPModelGenerator extends FabricModelProvider
         createGlassBlocks(generator, SVTPBlocks.ARMORED_GLASS, SVTPBlocks.ARMORED_GLASS_PANE);
         createDoor(generator, SVTPBlocks.STONE_DOOR);
         createRedstoneLantern(generator, SVTPBlocks.REDSTONE_LANTERN);
-        generator.createPlantWithDefaultItem(SVTPBlocks.DEAD_FLOWER.get(), SVTPBlocks.POTTED_DEAD_FLOWER.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        createPlantWithDefaultItem(generator, SVTPBlocks.DEAD_FLOWER, SVTPBlocks.POTTED_DEAD_FLOWER);
 
         // Torches
         createSvtpSizedTorch(generator, SVTPBlocks.GOLDEN_TORCH_0, SVTPBlocks.WALL_GOLDEN_TORCH_0);
@@ -145,6 +145,25 @@ class SVTPModelGenerator extends FabricModelProvider
                 .select(true, false, litVariant)
                 .select(false, true, litVariant))
             .with(BlockModelGenerators.createFacingDispatch()));
+    }
+
+    private void createPlantWithDefaultItem(BlockModelGenerators generator, RegistrySupplier<Block> flowerSupplier, RegistrySupplier<Block> pottedFlowerSupplier)
+    {
+        var flower = flowerSupplier.get();
+        var pottedFlower = pottedFlowerSupplier.get();
+
+        // Plant item model
+        generator.registerSimpleItemModel(flower.asItem(), BlockModelGenerators.PlantType.NOT_TINTED.createItemModel(generator, flower));
+
+        // Plant
+        var plantMapping = TextureMapping.cross(flower);
+        var plantModel = SVTPModelTemplates.CROSS_TRANSPARENT.create(flower, plantMapping, generator.modelOutput);
+        generator.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(flower, plantModel));
+
+        // Potted plant
+        var pottedPlantMapping = TextureMapping.plant(flower);
+        var pottedPlantModel = SVTPModelTemplates.FLOWER_POT_CROSS_TRANSPARENT.create(pottedFlower, pottedPlantMapping, generator.modelOutput);
+        generator.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(pottedFlower, pottedPlantModel));
     }
 
     private static final class PaperModelGenerator
