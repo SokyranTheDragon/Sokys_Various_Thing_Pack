@@ -38,7 +38,7 @@ dependencies {
     modImplementation "dev.architectury:architectury-neoforge:$rootProject.architectury_api_version"
 
     // Fusion, used by connected textures
-    modRuntimeOnly "maven.modrinth:fusion-connected-textures:$rootProject.fusion_version-neoforge-mc$rootProject.minecraft_version"
+    // modRuntimeOnly "maven.modrinth:fusion-connected-textures:$rootProject.fusion_version-neoforge-mc$rootProject.minecraft_version"
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')

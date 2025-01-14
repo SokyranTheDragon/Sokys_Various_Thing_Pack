@@ -34,7 +34,7 @@ dependencies {
     modImplementation "dev.architectury:architectury-fabric:$rootProject.architectury_api_version"
 
     // Fusion, used by connected textures (also used in connected textures datagen)
-    modRuntimeOnly "maven.modrinth:fusion-connected-textures:$rootProject.fusion_version-fabric-mc$rootProject.minecraft_version"
+    // modRuntimeOnly "maven.modrinth:fusion-connected-textures:$rootProject.fusion_version-fabric-mc$rootProject.minecraft_version"
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
