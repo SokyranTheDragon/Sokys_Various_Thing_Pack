@@ -108,7 +108,7 @@ public class SVTPBlocks
             .sound(SoundType.GRASS)
             .ignitedByLava()
             .pushReaction(PushReaction.DESTROY));
-    public static final RegistrySupplier<Block> POTTED_DEAD_FLOWER = register("potted_dead_flower", (props) -> getFlowerPotBlock(DEAD_FLOWER, props),
+    public static final RegistrySupplier<Block> POTTED_DEAD_FLOWER = register("potted_dead_flower", (props) -> new FlowerPotBlock(DEAD_FLOWER.get(), props),
         BlockBehaviour.Properties
             .of()
             .instabreak()
@@ -154,11 +154,5 @@ public class SVTPBlocks
         // Can't access the block itself at this moment yet, need a workaround.
         var parentId = parent.getId();
         return "block." + parentId.getNamespace() + "." + parentId.getPath();
-    }
-
-    @ExpectPlatform
-    private static FlowerPotBlock getFlowerPotBlock(RegistrySupplier<Block> block, BlockBehaviour.Properties properties)
-    {
-        throw new AssertionError("This method should have been replaced by architectury.");
     }
 }
