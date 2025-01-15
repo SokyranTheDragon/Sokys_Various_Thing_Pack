@@ -32,6 +32,18 @@ class SVTPBlockTagGenerator extends FabricTagProvider.BlockTagProvider
         getOrCreateTagBuilder(BlockTags.IMPERMEABLE)
             .add(SVTPBlocks.ARMORED_GLASS.get());
 
+        getOrCreateTagBuilder(BlockTags.ENDERMAN_HOLDABLE)
+            .add(SVTPBlocks.DEAD_FLOWER.get());
+
+        getOrCreateTagBuilder(BlockTags.REPLACEABLE_BY_TREES)
+            .add(SVTPBlocks.DEAD_FLOWER.get());
+
+        getOrCreateTagBuilder(BlockTags.ENCHANTMENT_POWER_TRANSMITTER)
+            .add(SVTPBlocks.DEAD_FLOWER.get());
+
+        getOrCreateTagBuilder(BlockTags.FLOWER_POTS)
+            .add(SVTPBlocks.POTTED_DEAD_FLOWER.get());
+
         // Conventional tags
         getOrCreateTagBuilder(ConventionalBlockTags.GLASS_BLOCKS_COLORLESS)
             .add(SVTPBlocks.ARMORED_GLASS.get());
