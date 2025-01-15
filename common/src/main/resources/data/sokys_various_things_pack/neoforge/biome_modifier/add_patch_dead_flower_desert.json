@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "minecraft:desert",
+  "features": "sokys_various_things_pack:patch_dead_flower_desert",
+  "step": "vegetal_decoration"
+}

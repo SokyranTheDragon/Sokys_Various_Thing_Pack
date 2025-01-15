@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [ "minecraft:old_growth_pine_taiga", "minecraft:old_growth_spruce_taiga" ],
+  "features": "sokys_various_things_pack:patch_dead_flower_old_growth_taiga",
+  "step": "vegetal_decoration"
+}
