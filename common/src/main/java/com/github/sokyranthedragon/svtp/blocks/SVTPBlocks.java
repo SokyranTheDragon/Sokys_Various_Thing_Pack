@@ -1,7 +1,6 @@
 package com.github.sokyranthedragon.svtp.blocks;
 
 import com.github.sokyranthedragon.svtp.SVTPMod;
-import dev.architectury.injectables.annotations.ExpectPlatform;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -9,14 +8,11 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
@@ -118,6 +114,20 @@ public class SVTPBlocks
     public static void init()
     {
         BLOCKS.register();
+    }
+
+    public static void registerFlammableBlocks()
+    {
+        var fire = (FireBlock)Blocks.FIRE;
+
+        // Match wool I guess?
+        fire.setFlammable(PAPER_BUNDLE_0.get(), 30, 60);
+        fire.setFlammable(PAPER_BUNDLE_1.get(), 30, 60);
+        fire.setFlammable(PAPER_BUNDLE_2.get(), 30, 60);
+        fire.setFlammable(PAPER_BUNDLE_3.get(), 30, 60);
+
+        // Match dead bush
+        fire.setFlammable(DEAD_FLOWER.get(), 60, 100);
     }
 
     private static RegistrySupplier<Block> register(String id, Function<BlockBehaviour.Properties, Block> function, BlockBehaviour.Properties properties)

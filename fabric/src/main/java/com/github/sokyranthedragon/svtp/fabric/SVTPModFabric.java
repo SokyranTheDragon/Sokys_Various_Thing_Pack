@@ -1,5 +1,6 @@
 package com.github.sokyranthedragon.svtp.fabric;
 
+import com.github.sokyranthedragon.svtp.blocks.SVTPBlocks;
 import net.fabricmc.api.ModInitializer;
 
 import com.github.sokyranthedragon.svtp.SVTPMod;
@@ -15,5 +16,7 @@ public final class SVTPModFabric implements ModInitializer
 
         // Run our common setup.
         SVTPMod.init();
+
+        SVTPBlocks.registerFlammableBlocks();
     }
 }
