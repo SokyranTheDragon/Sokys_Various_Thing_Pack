@@ -52,12 +52,12 @@ public class SVTPBlocks
             .pushReaction(PushReaction.DESTROY)
     );
 
-    public static final RegistrySupplier<Block> GOLDEN_TORCH_0 = register("golden_torch_0", (props) -> new TorchBlock(ParticleTypes.FLAME, props),
+    public static final RegistrySupplier<Block> GOLDEN_TORCH_0 = register("golden_torch_0", (props) -> new GoldenTorchBlock(ParticleTypes.FLAME, props),
         BlockBehaviour.Properties
             .ofFullCopy(Blocks.TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
             .sound(SoundType.METAL));
-    public static final RegistrySupplier<Block> WALL_GOLDEN_TORCH_0 = register("wall_golden_torch_0", (props) -> new WallTorchBlock(ParticleTypes.FLAME, props),
+    public static final RegistrySupplier<Block> WALL_GOLDEN_TORCH_0 = register("wall_golden_torch_0", (props) -> new GoldenWallTorchBlock(ParticleTypes.FLAME, props),
         BlockBehaviour.Properties
             .ofFullCopy(Blocks.WALL_TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
@@ -65,13 +65,13 @@ public class SVTPBlocks
             .overrideDescription(descriptionIdFrom(GOLDEN_TORCH_0))
             .overrideLootTable(lootTableFrom(GOLDEN_TORCH_0)));
 
-    public static final RegistrySupplier<Block> GOLDEN_TORCH_1 = register("golden_torch_1", (props) -> new TorchBlock(ParticleTypes.FLAME, props),
+    public static final RegistrySupplier<Block> GOLDEN_TORCH_1 = register("golden_torch_1", (props) -> new GoldenTorchBlock(ParticleTypes.FLAME, props),
         BlockBehaviour.Properties
             .ofFullCopy(Blocks.TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
             .sound(SoundType.METAL)
             .overrideDescription(descriptionIdFrom(GOLDEN_TORCH_0)));
-    public static final RegistrySupplier<Block> WALL_GOLDEN_TORCH_1 = register("wall_golden_torch_1", (props) -> new WallTorchBlock(ParticleTypes.FLAME, props),
+    public static final RegistrySupplier<Block> WALL_GOLDEN_TORCH_1 = register("wall_golden_torch_1", (props) -> new GoldenWallTorchBlock(ParticleTypes.FLAME, props),
         BlockBehaviour.Properties
             .ofFullCopy(Blocks.WALL_TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
