@@ -1,6 +1,7 @@
 package com.github.sokyranthedragon.svtp.fabric;
 
 import com.github.sokyranthedragon.svtp.blocks.SVTPBlocks;
+import com.github.sokyranthedragon.svtp.worldgen.fabric.SVTPFabricWorldGen;
 import net.fabricmc.api.ModInitializer;
 
 import com.github.sokyranthedragon.svtp.SVTPMod;
@@ -18,5 +19,7 @@ public final class SVTPModFabric implements ModInitializer
         SVTPMod.init();
 
         SVTPBlocks.registerFlammableBlocks();
+
+        SVTPFabricWorldGen.initWorldGen();
     }
 }
