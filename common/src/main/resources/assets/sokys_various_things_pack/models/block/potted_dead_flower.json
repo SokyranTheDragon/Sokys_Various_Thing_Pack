@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/flower_pot_cross",
+  "render_type": "cutout",
   "textures": {
     "plant": "sokys_various_things_pack:block/dead_flower"
   }
