@@ -21,6 +21,10 @@ public final class SVTPModFabricClient implements ClientModInitializer
             SVTPBlocks.GOLDEN_TORCH_1.get(),
             SVTPBlocks.WALL_GOLDEN_TORCH_0.get(),
             SVTPBlocks.WALL_GOLDEN_TORCH_1.get(),
+            SVTPBlocks.GOLDEN_SOUL_TORCH_0.get(),
+            SVTPBlocks.GOLDEN_SOUL_TORCH_1.get(),
+            SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_0.get(),
+            SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_1.get(),
             SVTPBlocks.DEAD_FLOWER.get(),
             SVTPBlocks.POTTED_DEAD_FLOWER.get()
         );
