@@ -1,15 +1,34 @@
 package com.github.sokyranthedragon.svtp.blocks;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.Map;
+
+@MethodsReturnNonnullByDefault
 public class GoldenWallTorchBlock extends WallTorchBlock
 {
+    // Slightly higher than vanilla
+    public static final Map<Direction, VoxelShape> AABBS_GOLDEN_TORCH = Maps.newEnumMap(ImmutableMap.of(
+        Direction.NORTH, Block.box(5.5, 3.0, 11.0, 10.5, 14.0, 16.0),
+        Direction.SOUTH, Block.box(5.5, 3.0, 0.0, 10.5, 14.0, 5.0),
+        Direction.WEST, Block.box(11.0, 3.0, 5.5, 16.0, 14.0, 10.5),
+        Direction.EAST, Block.box(0.0, 3.0, 5.5, 5.0, 14.0, 10.5)
+    ));
+
     public GoldenWallTorchBlock(SimpleParticleType simpleParticleType, Properties properties)
     {
         super(simpleParticleType, properties);
@@ -27,5 +46,11 @@ public class GoldenWallTorchBlock extends WallTorchBlock
 
         level.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0, 0.0, 0.0);
         level.addParticle(this.flameParticle, x, y, z, 0.0, 0.0, 0.0);
+    }
+
+    @Override
+    protected VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+    {
+        return AABBS_GOLDEN_TORCH.get(blockState.getValue(FACING));
     }
 }
