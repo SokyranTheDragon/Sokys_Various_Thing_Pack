@@ -32,6 +32,8 @@ class SVTPModelGenerator extends FabricModelProvider
         // Torches
         createSvtpSizedTorch(generator, SVTPBlocks.GOLDEN_TORCH_0, SVTPBlocks.WALL_GOLDEN_TORCH_0);
         createSvtpSizedTorch(generator, SVTPBlocks.GOLDEN_TORCH_1, SVTPBlocks.WALL_GOLDEN_TORCH_1);
+        createSvtpSizedTorch(generator, SVTPBlocks.GOLDEN_SOUL_TORCH_0, SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_0);
+        createSvtpSizedTorch(generator, SVTPBlocks.GOLDEN_SOUL_TORCH_1, SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_1);
 
         // Paper
         PaperModelGenerator.create(generator, SVTPBlocks.PAPER_BUNDLE_0)

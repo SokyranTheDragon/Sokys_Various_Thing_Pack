@@ -78,6 +78,17 @@ class SVTPRecipeGenerator extends RecipeProvider
             .save(output);
         conversionRecipe(RecipeCategory.DECORATIONS, SVTPItems.GOLDEN_TORCH_0.get(), SVTPItems.GOLDEN_TORCH_1.get());
 
+        shaped(RecipeCategory.DECORATIONS, SVTPItems.GOLDEN_SOUL_TORCH_0.get(), 4)
+            .define('c', ItemTags.COALS)
+            .define('g', ConventionalItemTags.GOLD_INGOTS)
+            .define('s', ItemTags.SOUL_FIRE_BASE_BLOCKS)
+            .pattern("c")
+            .pattern("g")
+            .pattern("s")
+            .unlockedBy(getHasName(Items.SOUL_SAND), has(ItemTags.SOUL_FIRE_BASE_BLOCKS))
+            .save(output);
+        conversionRecipe(RecipeCategory.DECORATIONS, SVTPItems.GOLDEN_SOUL_TORCH_0.get(), SVTPItems.GOLDEN_SOUL_TORCH_1.get());
+
         // Paper bundle recipes
         nineBlockStorageRecipesWithExtraVariants(RecipeCategory.MISC, Items.PAPER, "paper", RecipeCategory.DECORATIONS,
             SVTPItems.PAPER_BUNDLE_0.get(), SVTPItems.PAPER_BUNDLE_1.get(), SVTPItems.PAPER_BUNDLE_2.get(), SVTPItems.PAPER_BUNDLE_3.get());

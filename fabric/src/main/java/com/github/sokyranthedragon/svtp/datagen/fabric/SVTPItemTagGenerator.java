@@ -25,7 +25,9 @@ public class SVTPItemTagGenerator extends FabricTagProvider.ItemTagProvider
         // Vanilla tags
         getOrCreateTagBuilder(ItemTags.PIGLIN_LOVED)
             .add(SVTPItems.GOLDEN_TORCH_0.get())
-            .add(SVTPItems.GOLDEN_TORCH_1.get());
+            .add(SVTPItems.GOLDEN_TORCH_1.get())
+            .add(SVTPItems.GOLDEN_SOUL_TORCH_0.get())
+            .add(SVTPItems.GOLDEN_SOUL_TORCH_1.get());
 
         getOrCreateTagBuilder(ItemTags.DOORS)
             .add(SVTPItems.STONE_DOOR.get());

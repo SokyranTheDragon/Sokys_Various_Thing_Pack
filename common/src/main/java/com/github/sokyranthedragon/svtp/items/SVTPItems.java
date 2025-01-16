@@ -35,6 +35,13 @@ public class SVTPItems
         (block, properties) -> new StandingAndWallBlockItem(block, SVTPBlocks.WALL_GOLDEN_TORCH_1.get(), Direction.DOWN, properties),
         CreativeModeTabs.BUILDING_BLOCKS, SVTPBlocks.GOLDEN_TORCH_0);
 
+    public static final RegistrySupplier<Item> GOLDEN_SOUL_TORCH_0 = registerBlock(SVTPBlocks.GOLDEN_SOUL_TORCH_0,
+        (block, properties) -> new StandingAndWallBlockItem(block, SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_0.get(), Direction.DOWN, properties),
+        CreativeModeTabs.BUILDING_BLOCKS);
+    public static final RegistrySupplier<Item> GOLDEN_SOUL_TORCH_1 = registerBlock(SVTPBlocks.GOLDEN_SOUL_TORCH_1,
+        (block, properties) -> new StandingAndWallBlockItem(block, SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_1.get(), Direction.DOWN, properties),
+        CreativeModeTabs.BUILDING_BLOCKS, SVTPBlocks.GOLDEN_SOUL_TORCH_0);
+
     public static final RegistrySupplier<Item> PAPER_BUNDLE_0 = registerBlock(SVTPBlocks.PAPER_BUNDLE_0, CreativeModeTabs.BUILDING_BLOCKS);
     public static final RegistrySupplier<Item> PAPER_BUNDLE_1 = registerBlock(SVTPBlocks.PAPER_BUNDLE_1, CreativeModeTabs.BUILDING_BLOCKS, SVTPBlocks.PAPER_BUNDLE_0);
     public static final RegistrySupplier<Item> PAPER_BUNDLE_2 = registerBlock(SVTPBlocks.PAPER_BUNDLE_2, CreativeModeTabs.BUILDING_BLOCKS, SVTPBlocks.PAPER_BUNDLE_0);
