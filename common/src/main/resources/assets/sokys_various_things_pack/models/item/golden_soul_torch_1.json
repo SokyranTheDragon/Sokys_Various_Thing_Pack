@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "sokys_various_things_pack:block/golden_soul_torch_1"
+  }
+}

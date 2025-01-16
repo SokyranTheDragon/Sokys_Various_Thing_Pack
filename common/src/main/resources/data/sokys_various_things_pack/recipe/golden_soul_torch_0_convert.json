@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "golden_soul_torch_0_conversion",
+  "ingredients": [
+    "sokys_various_things_pack:golden_soul_torch_1"
+  ],
+  "result": {
+    "count": 1,
+    "id": "sokys_various_things_pack:golden_soul_torch_0"
+  }
+}

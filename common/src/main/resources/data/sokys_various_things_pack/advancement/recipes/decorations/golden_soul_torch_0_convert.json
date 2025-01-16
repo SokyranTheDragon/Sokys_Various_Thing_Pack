@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_golden_soul_torch_1": {
+      "conditions": {
+        "items": [
+          {
+            "items": "sokys_various_things_pack:golden_soul_torch_1"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:golden_soul_torch_0_convert"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_golden_soul_torch_1"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:golden_soul_torch_0_convert"
+    ]
+  }
+}
