@@ -24,6 +24,7 @@ class SVTPLanguageGenerator extends FabricLanguageProvider
         builder.add(SVTPItems.ARMORED_GLASS.get(), "Armored Glass");
         builder.add(SVTPItems.ARMORED_GLASS_PANE.get(), "Armored Glass Pane");
         builder.add(SVTPItems.GOLDEN_TORCH_0.get(), "Golden Torch");
+        builder.add(SVTPItems.GOLDEN_SOUL_TORCH_0.get(), "Golden Soul Torch");
         builder.add(SVTPItems.PAPER_BUNDLE_0.get(), "Paper Bundle");
         builder.add(SVTPItems.REDSTONE_LANTERN.get(), "Redstone Lantern");
         builder.add(SVTPItems.DEAD_FLOWER.get(), "Dead Flower");
