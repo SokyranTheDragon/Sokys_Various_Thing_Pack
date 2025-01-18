@@ -7,11 +7,11 @@
   },
   "pattern": [
     "ogo",
-    "ggg",
+    "g g",
     "ogo"
   ],
   "result": {
-    "count": 16,
+    "count": 4,
     "id": "sokys_various_things_pack:armored_glass"
   }
 }

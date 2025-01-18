@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "render_type": "translucent",
+  "textures": {
+    "all": "sokys_various_things_pack:block/armored_white_stained_glass"
+  }
+}

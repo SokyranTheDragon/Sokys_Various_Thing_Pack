@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "render_type": "translucent",
+  "textures": {
+    "layer0": "sokys_various_things_pack:block/armored_lime_stained_glass"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "g": "minecraft:orange_stained_glass",
+    "o": "minecraft:obsidian"
+  },
+  "pattern": [
+    "ogo",
+    "g g",
+    "ogo"
+  ],
+  "result": {
+    "count": 4,
+    "id": "sokys_various_things_pack:armored_orange_stained_glass"
+  }
+}
