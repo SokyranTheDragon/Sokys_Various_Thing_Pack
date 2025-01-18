@@ -1,5 +1,6 @@
 package com.github.sokyranthedragon.svtp.datagen.fabric;
 
+import com.github.sokyranthedragon.svtp.blocks.SVTPBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.data.models.model.TextureMapping;
@@ -33,6 +34,14 @@ class SVTPTextureMappings
             .put(TextureSlot.WEST, TextureMapping.getBlockTexture(block, suffix + "_side"))
             .put(TextureSlot.NORTH, TextureMapping.getBlockTexture(block, suffix + "_front"))
             .put(TextureSlot.SOUTH, TextureMapping.getBlockTexture(block, suffix + "_back"));
+    }
+
+    public static TextureMapping armoredPane(Block block)
+    {
+        // Normal pane mapping, but since all will use the same edge texture we use the base pane rather than current one.
+        return new TextureMapping()
+            .put(TextureSlot.PANE, TextureMapping.getBlockTexture(block))
+            .put(TextureSlot.EDGE, TextureMapping.getBlockTexture(SVTPBlocks.ARMORED_GLASS_PANE.get(), "_top"));
     }
 
     private SVTPTextureMappings()

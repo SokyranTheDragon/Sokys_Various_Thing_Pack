@@ -1,6 +1,7 @@
 package com.github.sokyranthedragon.svtp.datagen.fabric;
 
 import com.github.sokyranthedragon.svtp.SVTPMod;
+import com.github.sokyranthedragon.svtp.blocks.SVTPBlocks;
 import com.github.sokyranthedragon.svtp.items.SVTPItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -18,6 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.StainedGlassBlock;
 import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,22 +41,6 @@ class SVTPRecipeGenerator extends RecipeProvider
             .pattern("ss")
             .pattern("ss")
             .unlockedBy(getHasName(Items.STONE), has(MinMaxBounds.Ints.atLeast(6), Items.STONE))
-            .save(output);
-
-        shaped(RecipeCategory.DECORATIONS, SVTPItems.ARMORED_GLASS.get(), 16)
-            .define('g', Items.GLASS)
-            .define('o', Items.OBSIDIAN)
-            .pattern("ogo")
-            .pattern("ggg")
-            .pattern("ogo")
-            .unlockedBy(getHasName(Items.OBSIDIAN), has(MinMaxBounds.Ints.atLeast(4), Items.OBSIDIAN))
-            .save(output);
-
-        shaped(RecipeCategory.DECORATIONS, SVTPItems.ARMORED_GLASS_PANE.get(), 16)
-            .define('a', SVTPItems.ARMORED_GLASS.get())
-            .pattern("aaa")
-            .pattern("aaa")
-            .unlockedBy(getHasName(SVTPItems.ARMORED_GLASS.get()), has(MinMaxBounds.Ints.atLeast(6), SVTPItems.ARMORED_GLASS.get()))
             .save(output);
 
         shaped(RecipeCategory.REDSTONE, SVTPItems.REDSTONE_LANTERN.get(), 1)
@@ -108,6 +94,23 @@ class SVTPRecipeGenerator extends RecipeProvider
                     suspiciousStew(item, suspiciousEffectHolder);
             }
         });
+
+        // Glass
+        armoredGlassAndPaneRecipe(Items.GLASS, SVTPItems.ARMORED_GLASS.get(), SVTPItems.ARMORED_GLASS_PANE.get());
+        armoredGlassRecipe(Items.TINTED_GLASS, SVTPItems.ARMORED_TINTED_GLASS.get());
+
+        var stainedGlassBlocks = SVTPBlocks.getStainedGlassBlocks();
+        var stainedGlassPanes = SVTPBlocks.getStainedGlassPaneBlocks();
+        for (var i = 0; i < stainedGlassBlocks.length; i++)
+        {
+            var targetColor = ((StainedGlassBlock)stainedGlassBlocks[i]).getColor();
+            var targetBlock = BuiltInRegistries.BLOCK.entrySet().stream().filter((set) ->
+                set.getKey().location().getNamespace().equals("minecraft") &&
+                    set.getValue() instanceof StainedGlassBlock glass &&
+                    glass.getColor() == targetColor)
+                .findFirst().orElseThrow().getValue();
+            armoredGlassAndPaneRecipe(targetBlock, stainedGlassBlocks[i], stainedGlassPanes[i]);
+        }
     }
 
     private void nineBlockStorageRecipesWithExtraVariants(RecipeCategory unpackingCategory, ItemLike unpackedItem, @Nullable String unpackingGroupName, RecipeCategory packingCategory, ItemLike... packedItems)
@@ -164,6 +167,31 @@ class SVTPRecipeGenerator extends RecipeProvider
                 .unlockedBy(getHasName(items[current]), has(MinMaxBounds.Ints.atLeast(4), items[current]))
                 .save(output, ResourceKey.create(Registries.RECIPE, ResourceLocation.parse(getSimpleRecipeName(items[next]) + "_convert")));
         }
+    }
+
+    private void armoredGlassAndPaneRecipe(ItemLike baseGlass, ItemLike targetGlass, ItemLike targetPane)
+    {
+        armoredGlassRecipe(baseGlass, targetGlass);
+
+        shaped(RecipeCategory.DECORATIONS, targetPane, 16)
+            .define('a', targetGlass)
+            .pattern("aaa")
+            .pattern("aaa")
+            .unlockedBy(getHasName(targetGlass), has(MinMaxBounds.Ints.atLeast(6), targetGlass))
+            .save(output);
+    }
+
+    // Separate recipe for tinted glass, since there's no pane
+    private void armoredGlassRecipe(ItemLike baseGlass, ItemLike targetGlass)
+    {
+        shaped(RecipeCategory.DECORATIONS, targetGlass, 4)
+            .define('g', baseGlass)
+            .define('o', Items.OBSIDIAN)
+            .pattern("ogo")
+            .pattern("g g")
+            .pattern("ogo")
+            .unlockedBy(getHasName(Items.OBSIDIAN), has(MinMaxBounds.Ints.atLeast(4), Items.OBSIDIAN))
+            .save(output);
     }
 
     @MethodsReturnNonnullByDefault

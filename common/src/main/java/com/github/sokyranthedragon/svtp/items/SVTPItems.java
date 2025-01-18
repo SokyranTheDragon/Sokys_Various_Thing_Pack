@@ -9,10 +9,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.StringUtil;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import org.jetbrains.annotations.Contract;
 
 import java.util.function.BiFunction;
 
@@ -22,9 +21,45 @@ public class SVTPItems
 {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(SVTPMod.MOD_ID, Registries.ITEM);
 
+    // Normal and pane
     public static final RegistrySupplier<Item> ARMORED_GLASS = registerBlock(SVTPBlocks.ARMORED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
-
     public static final RegistrySupplier<Item> ARMORED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
+    // Tinted
+    public static final RegistrySupplier<Item> ARMORED_TINTED_GLASS = registerBlock(SVTPBlocks.ARMORED_TINTED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    // Stained
+    public static final RegistrySupplier<Item> ARMORED_WHITE_STAINED_GLASS = registerBlock(SVTPBlocks.ARMORED_WHITE_STAINED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_ORANGE_STAINED_GLASS = registerBlock(SVTPBlocks.ARMORED_ORANGE_STAINED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_MAGENTA_STAINED_GLASS = registerBlock(SVTPBlocks.ARMORED_MAGENTA_STAINED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_LIGHT_BLUE_STAINED_GLASS = registerBlock(SVTPBlocks.ARMORED_LIGHT_BLUE_STAINED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_YELLOW_STAINED_GLASS = registerBlock(SVTPBlocks.ARMORED_YELLOW_STAINED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_LIME_STAINED_GLASS = registerBlock(SVTPBlocks.ARMORED_LIME_STAINED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_PINK_STAINED_GLASS = registerBlock(SVTPBlocks.ARMORED_PINK_STAINED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_GRAY_STAINED_GLASS = registerBlock(SVTPBlocks.ARMORED_GRAY_STAINED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_LIGHT_GRAY_STAINED_GLASS = registerBlock(SVTPBlocks.ARMORED_LIGHT_GRAY_STAINED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_CYAN_STAINED_GLASS = registerBlock(SVTPBlocks.ARMORED_CYAN_STAINED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_PURPLE_STAINED_GLASS = registerBlock(SVTPBlocks.ARMORED_PURPLE_STAINED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_BLUE_STAINED_GLASS = registerBlock(SVTPBlocks.ARMORED_BLUE_STAINED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_BROWN_STAINED_GLASS = registerBlock(SVTPBlocks.ARMORED_BROWN_STAINED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_GREEN_STAINED_GLASS = registerBlock(SVTPBlocks.ARMORED_GREEN_STAINED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_RED_STAINED_GLASS = registerBlock(SVTPBlocks.ARMORED_RED_STAINED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_BLACK_STAINED_GLASS = registerBlock(SVTPBlocks.ARMORED_BLACK_STAINED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
+    // Stained pane
+    public static final RegistrySupplier<Item> ARMORED_WHITE_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_WHITE_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_ORANGE_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_ORANGE_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_MAGENTA_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_MAGENTA_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_LIGHT_BLUE_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_LIGHT_BLUE_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_YELLOW_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_YELLOW_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_LIME_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_LIME_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_PINK_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_PINK_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_GRAY_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_GRAY_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_LIGHT_GRAY_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_LIGHT_GRAY_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_CYAN_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_CYAN_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_PURPLE_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_PURPLE_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_BLUE_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_BLUE_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_BROWN_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_BROWN_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_GREEN_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_GREEN_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_RED_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_RED_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
+    public static final RegistrySupplier<Item> ARMORED_BLACK_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_BLACK_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
 
     public static final RegistrySupplier<Item> STONE_DOOR = registerBlock(SVTPBlocks.STONE_DOOR, DoubleHighBlockItem::new, CreativeModeTabs.REDSTONE_BLOCKS);
 
@@ -114,5 +149,53 @@ public class SVTPItems
 
             return function.apply(block, properties.setId(resourceKey));
         });
+    }
+
+    @Contract(pure = true)
+    public static Item[] getStainedGlassItems()
+    {
+        return new Item[]
+            {
+                ARMORED_WHITE_STAINED_GLASS.get(),
+                ARMORED_ORANGE_STAINED_GLASS.get(),
+                ARMORED_MAGENTA_STAINED_GLASS.get(),
+                ARMORED_LIGHT_BLUE_STAINED_GLASS.get(),
+                ARMORED_YELLOW_STAINED_GLASS.get(),
+                ARMORED_LIME_STAINED_GLASS.get(),
+                ARMORED_PINK_STAINED_GLASS.get(),
+                ARMORED_GRAY_STAINED_GLASS.get(),
+                ARMORED_LIGHT_GRAY_STAINED_GLASS.get(),
+                ARMORED_CYAN_STAINED_GLASS.get(),
+                ARMORED_PURPLE_STAINED_GLASS.get(),
+                ARMORED_BLUE_STAINED_GLASS.get(),
+                ARMORED_BROWN_STAINED_GLASS.get(),
+                ARMORED_GREEN_STAINED_GLASS.get(),
+                ARMORED_RED_STAINED_GLASS.get(),
+                ARMORED_BLACK_STAINED_GLASS.get(),
+            };
+    }
+
+    @Contract(pure = true)
+    public static Item[] getStainedGlassPaneItems()
+    {
+        return new Item[]
+            {
+                ARMORED_WHITE_STAINED_GLASS_PANE.get(),
+                ARMORED_ORANGE_STAINED_GLASS_PANE.get(),
+                ARMORED_MAGENTA_STAINED_GLASS_PANE.get(),
+                ARMORED_LIGHT_BLUE_STAINED_GLASS_PANE.get(),
+                ARMORED_YELLOW_STAINED_GLASS_PANE.get(),
+                ARMORED_LIME_STAINED_GLASS_PANE.get(),
+                ARMORED_PINK_STAINED_GLASS_PANE.get(),
+                ARMORED_GRAY_STAINED_GLASS_PANE.get(),
+                ARMORED_LIGHT_GRAY_STAINED_GLASS_PANE.get(),
+                ARMORED_CYAN_STAINED_GLASS_PANE.get(),
+                ARMORED_PURPLE_STAINED_GLASS_PANE.get(),
+                ARMORED_BLUE_STAINED_GLASS_PANE.get(),
+                ARMORED_BROWN_STAINED_GLASS_PANE.get(),
+                ARMORED_GREEN_STAINED_GLASS_PANE.get(),
+                ARMORED_RED_STAINED_GLASS_PANE.get(),
+                ARMORED_BLACK_STAINED_GLASS_PANE.get(),
+            };
     }
 }

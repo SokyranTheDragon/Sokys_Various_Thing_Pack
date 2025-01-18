@@ -28,5 +28,9 @@ public final class SVTPModFabricClient implements ClientModInitializer
             SVTPBlocks.DEAD_FLOWER.get(),
             SVTPBlocks.POTTED_DEAD_FLOWER.get()
         );
+
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.translucent(), SVTPBlocks.ARMORED_TINTED_GLASS.get());
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.translucent(), SVTPBlocks.getStainedGlassBlocks());
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.translucent(), SVTPBlocks.getStainedGlassPaneBlocks());
     }
 }

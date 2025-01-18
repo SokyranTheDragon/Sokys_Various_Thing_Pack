@@ -9,6 +9,7 @@ import net.minecraft.client.data.models.model.TexturedModel;
 class SVTPTexturedModels
 {
     public static final TexturedModel.Provider CUBE_TRANSPARENT = TexturedModel.createDefault(TextureMapping::cube, SVTPModelTemplates.CUBE_ALL_TRANSPARENT);
+    public static final TexturedModel.Provider CUBE_TRANSLUCENT = TexturedModel.createDefault(TextureMapping::cube, SVTPModelTemplates.CUBE_ALL_TRANSLUCENT);
 
     private SVTPTexturedModels()
     {

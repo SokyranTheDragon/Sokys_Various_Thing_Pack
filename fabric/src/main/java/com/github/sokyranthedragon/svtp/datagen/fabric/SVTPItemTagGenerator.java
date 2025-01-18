@@ -39,6 +39,15 @@ public class SVTPItemTagGenerator extends FabricTagProvider.ItemTagProvider
         getOrCreateTagBuilder(ConventionalItemTags.GLASS_PANES_COLORLESS)
             .add(SVTPItems.ARMORED_GLASS_PANE.get());
 
+        getOrCreateTagBuilder(ConventionalItemTags.GLASS_BLOCKS_TINTED)
+            .add(SVTPItems.ARMORED_TINTED_GLASS.get());
+
+        getOrCreateTagBuilder(ConventionalItemTags.GLASS_BLOCKS)
+            .add(SVTPItems.getStainedGlassItems());
+
+        getOrCreateTagBuilder(ConventionalItemTags.GLASS_PANES)
+            .add(SVTPItems.getStainedGlassPaneItems());
+
         // SVTP conventional tags
         copy(SVTPConventionalBlockTags.STORAGE_BLOCKS_PAPER, SVTPConventionalItemTags.STORAGE_BLOCKS_PAPER);
     }

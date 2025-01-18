@@ -8,8 +8,10 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.blockstates.*;
+import net.minecraft.client.data.models.model.ModelLocationUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
@@ -24,7 +26,6 @@ class SVTPModelGenerator extends FabricModelProvider
     public void generateBlockStateModels(BlockModelGenerators generator)
     {
         // Other
-        createGlassBlocks(generator, SVTPBlocks.ARMORED_GLASS, SVTPBlocks.ARMORED_GLASS_PANE);
         createDoor(generator, SVTPBlocks.STONE_DOOR);
         createRedstoneLantern(generator, SVTPBlocks.REDSTONE_LANTERN);
         createPlantWithDefaultItem(generator, SVTPBlocks.DEAD_FLOWER, SVTPBlocks.POTTED_DEAD_FLOWER);
@@ -47,6 +48,15 @@ class SVTPModelGenerator extends FabricModelProvider
         PaperModelGenerator.create(generator, SVTPBlocks.PAPER_BUNDLE_3)
             .setTop(SVTPBlocks.PAPER_BUNDLE_0)
             .createModel();
+
+        // Glass
+        createArmoredGlassBlocks(generator, SVTPBlocks.ARMORED_GLASS, SVTPBlocks.ARMORED_GLASS_PANE);
+        generator.createTrivialBlock(SVTPBlocks.ARMORED_TINTED_GLASS.get(), SVTPTexturedModels.CUBE_TRANSLUCENT);
+
+        var stainedGlassBlocks = SVTPBlocks.getStainedGlassBlocks();
+        var stainedGlassPaneBlocks = SVTPBlocks.getStainedGlassPaneBlocks();
+        for (var i = 0; i < stainedGlassBlocks.length; i++)
+            createStainedArmoredGlassBlock(generator, stainedGlassBlocks[i], stainedGlassPaneBlocks[i]);
     }
 
     @Override
@@ -54,7 +64,7 @@ class SVTPModelGenerator extends FabricModelProvider
     {
     }
 
-    private static void createGlassBlocks(BlockModelGenerators generator, RegistrySupplier<Block> blockSupplier, RegistrySupplier<Block> paneSupplier)
+    private static void createArmoredGlassBlocks(BlockModelGenerators generator, RegistrySupplier<Block> blockSupplier, RegistrySupplier<Block> paneSupplier)
     {
         var block = blockSupplier.get();
         var pane = paneSupplier.get();
@@ -63,7 +73,7 @@ class SVTPModelGenerator extends FabricModelProvider
         generator.createTrivialBlock(block, SVTPTexturedModels.CUBE_TRANSPARENT);
 
         // Model with texture for each possible pane state
-        var textureMapping = TextureMapping.pane(block, pane);
+        var textureMapping = SVTPTextureMappings.armoredPane(block);
         var post = SVTPModelTemplates.STAINED_GLASS_PANE_POST_TRANSPARENT.create(pane, textureMapping, generator.modelOutput);
         var side = SVTPModelTemplates.STAINED_GLASS_PANE_SIDE_TRANSPARENT.create(pane, textureMapping, generator.modelOutput);
         var sideAlt = SVTPModelTemplates.STAINED_GLASS_PANE_SIDE_ALT_TRANSPARENT.create(pane, textureMapping, generator.modelOutput);
@@ -74,6 +84,32 @@ class SVTPModelGenerator extends FabricModelProvider
         var item = pane.asItem();
         generator.registerSimpleItemModel(item, generator.createFlatItemModelWithBlockTexture(item, block));
 
+        generateArmoredGlassBlock(generator, block, pane, post, side, sideAlt, noSide, noSideAlt);
+    }
+
+    private static void createStainedArmoredGlassBlock(BlockModelGenerators generator, Block block, Block pane)
+    {
+        // Generate the basic glass block
+        generator.createTrivialBlock(block, SVTPTexturedModels.CUBE_TRANSLUCENT);
+
+        // Model with texture for each possible pane state
+        var textureMapping = SVTPTextureMappings.armoredPane(block);
+        var post = SVTPModelTemplates.STAINED_GLASS_PANE_POST_TRANSLUCENT.create(pane, textureMapping, generator.modelOutput);
+        var side = SVTPModelTemplates.STAINED_GLASS_PANE_SIDE_TRANSLUCENT.create(pane, textureMapping, generator.modelOutput);
+        var sideAlt = SVTPModelTemplates.STAINED_GLASS_PANE_SIDE_ALT_TRANSLUCENT.create(pane, textureMapping, generator.modelOutput);
+        var noSide = SVTPModelTemplates.STAINED_GLASS_PANE_NOSIDE_TRANSLUCENT.create(pane, textureMapping, generator.modelOutput);
+        var noSideAlt = SVTPModelTemplates.STAINED_GLASS_PANE_NOSIDE_ALT_TRANSLUCENT.create(pane, textureMapping, generator.modelOutput);
+
+        // Generate pane item model
+        var item = pane.asItem();
+        var flatModel = SVTPModelTemplates.FLAT_ITEM_TRANSLUCENT.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(block), generator.modelOutput);
+        generator.registerSimpleItemModel(item, flatModel);
+
+        generateArmoredGlassBlock(generator, block, pane, post, side, sideAlt, noSide, noSideAlt);
+    }
+
+    private static void generateArmoredGlassBlock(BlockModelGenerators generator, Block block, Block pane, ResourceLocation post, ResourceLocation side, ResourceLocation sideAlt, ResourceLocation noSide, ResourceLocation noSideAlt)
+    {
         // Generate the pane model
         generator.blockStateOutput.accept(MultiPartGenerator
             .multiPart(pane)

@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootTable;
+import org.jetbrains.annotations.Contract;
 
 import java.util.Optional;
 import java.util.function.Function;
@@ -26,19 +27,45 @@ public class SVTPBlocks
 {
     private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(SVTPMod.MOD_ID, Registries.BLOCK);
 
-    public static final RegistrySupplier<Block> ARMORED_GLASS = register("armored_glass", TransparentBlock::new,
-        BlockBehaviour.Properties
-            .ofFullCopy(Blocks.GLASS)
-            // 90% obsidian's strength
-            .strength(Blocks.OBSIDIAN.defaultDestroyTime() * 0.9f, Blocks.OBSIDIAN.getExplosionResistance() * 0.9f)
-    );
-
-    public static final RegistrySupplier<Block> ARMORED_GLASS_PANE = register("armored_glass_pane", IronBarsBlock::new,
-        BlockBehaviour.Properties
-            .ofFullCopy(Blocks.GLASS_PANE)
-            // 90% obsidian's strength
-            .strength(Blocks.OBSIDIAN.defaultDestroyTime() * 0.9f, Blocks.OBSIDIAN.getExplosionResistance() * 0.9f)
-    );
+    // Normal and pane
+    public static final RegistrySupplier<Block> ARMORED_GLASS = register("armored_glass", TransparentBlock::new, armoredGlassProperties(Blocks.GLASS));
+    public static final RegistrySupplier<Block> ARMORED_GLASS_PANE = register("armored_glass_pane", IronBarsBlock::new, armoredGlassProperties(Blocks.GLASS_PANE));
+    // Tinted
+    public static final RegistrySupplier<Block> ARMORED_TINTED_GLASS = register("armored_tinted_glass", TintedGlassBlock::new, armoredGlassProperties(Blocks.TINTED_GLASS));
+    // Stained
+    public static final RegistrySupplier<Block> ARMORED_WHITE_STAINED_GLASS = registerStainedArmoredGlass("armored_white_stained_glass", Blocks.WHITE_STAINED_GLASS);
+    public static final RegistrySupplier<Block> ARMORED_ORANGE_STAINED_GLASS = registerStainedArmoredGlass("armored_orange_stained_glass", Blocks.ORANGE_STAINED_GLASS);
+    public static final RegistrySupplier<Block> ARMORED_MAGENTA_STAINED_GLASS = registerStainedArmoredGlass("armored_magenta_stained_glass", Blocks.MAGENTA_STAINED_GLASS);
+    public static final RegistrySupplier<Block> ARMORED_LIGHT_BLUE_STAINED_GLASS = registerStainedArmoredGlass("armored_light_blue_stained_glass", Blocks.LIGHT_BLUE_STAINED_GLASS);
+    public static final RegistrySupplier<Block> ARMORED_YELLOW_STAINED_GLASS = registerStainedArmoredGlass("armored_yellow_stained_glass", Blocks.YELLOW_STAINED_GLASS);
+    public static final RegistrySupplier<Block> ARMORED_LIME_STAINED_GLASS = registerStainedArmoredGlass("armored_lime_stained_glass", Blocks.LIME_STAINED_GLASS);
+    public static final RegistrySupplier<Block> ARMORED_PINK_STAINED_GLASS = registerStainedArmoredGlass("armored_pink_stained_glass", Blocks.PINK_STAINED_GLASS);
+    public static final RegistrySupplier<Block> ARMORED_GRAY_STAINED_GLASS = registerStainedArmoredGlass("armored_gray_stained_glass", Blocks.GRAY_STAINED_GLASS);
+    public static final RegistrySupplier<Block> ARMORED_LIGHT_GRAY_STAINED_GLASS = registerStainedArmoredGlass("armored_light_gray_stained_glass", Blocks.LIGHT_GRAY_STAINED_GLASS);
+    public static final RegistrySupplier<Block> ARMORED_CYAN_STAINED_GLASS = registerStainedArmoredGlass("armored_cyan_stained_glass", Blocks.CYAN_STAINED_GLASS);
+    public static final RegistrySupplier<Block> ARMORED_PURPLE_STAINED_GLASS = registerStainedArmoredGlass("armored_purple_stained_glass", Blocks.PURPLE_STAINED_GLASS);
+    public static final RegistrySupplier<Block> ARMORED_BLUE_STAINED_GLASS = registerStainedArmoredGlass("armored_blue_stained_glass", Blocks.BLUE_STAINED_GLASS);
+    public static final RegistrySupplier<Block> ARMORED_BROWN_STAINED_GLASS = registerStainedArmoredGlass("armored_brown_stained_glass", Blocks.BROWN_STAINED_GLASS);
+    public static final RegistrySupplier<Block> ARMORED_GREEN_STAINED_GLASS = registerStainedArmoredGlass("armored_green_stained_glass", Blocks.GREEN_STAINED_GLASS);
+    public static final RegistrySupplier<Block> ARMORED_RED_STAINED_GLASS = registerStainedArmoredGlass("armored_red_stained_glass", Blocks.RED_STAINED_GLASS);
+    public static final RegistrySupplier<Block> ARMORED_BLACK_STAINED_GLASS = registerStainedArmoredGlass("armored_black_stained_glass", Blocks.BLACK_STAINED_GLASS);
+    // Stained pane
+    public static final RegistrySupplier<Block> ARMORED_WHITE_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_white_stained_glass_pane", Blocks.WHITE_STAINED_GLASS_PANE);
+    public static final RegistrySupplier<Block> ARMORED_ORANGE_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_orange_stained_glass_pane", Blocks.ORANGE_STAINED_GLASS_PANE);
+    public static final RegistrySupplier<Block> ARMORED_MAGENTA_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_magenta_stained_glass_pane", Blocks.MAGENTA_STAINED_GLASS_PANE);
+    public static final RegistrySupplier<Block> ARMORED_LIGHT_BLUE_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_light_blue_stained_glass_pane", Blocks.LIGHT_BLUE_STAINED_GLASS_PANE);
+    public static final RegistrySupplier<Block> ARMORED_YELLOW_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_yellow_stained_glass_pane", Blocks.YELLOW_STAINED_GLASS_PANE);
+    public static final RegistrySupplier<Block> ARMORED_LIME_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_lime_stained_glass_pane", Blocks.LIME_STAINED_GLASS_PANE);
+    public static final RegistrySupplier<Block> ARMORED_PINK_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_pink_stained_glass_pane", Blocks.PINK_STAINED_GLASS_PANE);
+    public static final RegistrySupplier<Block> ARMORED_GRAY_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_gray_stained_glass_pane", Blocks.GRAY_STAINED_GLASS_PANE);
+    public static final RegistrySupplier<Block> ARMORED_LIGHT_GRAY_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_light_gray_stained_glass_pane", Blocks.LIGHT_GRAY_STAINED_GLASS_PANE);
+    public static final RegistrySupplier<Block> ARMORED_CYAN_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_cyan_stained_glass_pane", Blocks.CYAN_STAINED_GLASS_PANE);
+    public static final RegistrySupplier<Block> ARMORED_PURPLE_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_purple_stained_glass_pane", Blocks.PURPLE_STAINED_GLASS_PANE);
+    public static final RegistrySupplier<Block> ARMORED_BLUE_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_blue_stained_glass_pane", Blocks.BLUE_STAINED_GLASS_PANE);
+    public static final RegistrySupplier<Block> ARMORED_BROWN_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_brown_stained_glass_pane", Blocks.BROWN_STAINED_GLASS_PANE);
+    public static final RegistrySupplier<Block> ARMORED_GREEN_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_green_stained_glass_pane", Blocks.GREEN_STAINED_GLASS_PANE);
+    public static final RegistrySupplier<Block> ARMORED_RED_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_red_stained_glass_pane", Blocks.RED_STAINED_GLASS_PANE);
+    public static final RegistrySupplier<Block> ARMORED_BLACK_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_black_stained_glass_pane", Blocks.BLACK_STAINED_GLASS_PANE);
 
     public static final RegistrySupplier<Block> STONE_DOOR = register("stone_door", (props) -> new DoorBlock(BlockSetType.STONE, props),
         BlockBehaviour.Properties
@@ -191,5 +218,71 @@ public class SVTPBlocks
         // Can't access the block itself at this moment yet, need a workaround.
         var parentId = parent.getId();
         return "block." + parentId.getNamespace() + "." + parentId.getPath();
+    }
+
+    private static BlockBehaviour.Properties armoredGlassProperties(Block base)
+    {
+        return BlockBehaviour.Properties
+            .ofFullCopy(base)
+            // 90% obsidian's strength
+            .strength(Blocks.OBSIDIAN.defaultDestroyTime() * 0.9f, Blocks.OBSIDIAN.getExplosionResistance() * 0.9f);
+    }
+
+    private static RegistrySupplier<Block> registerStainedArmoredGlass(String id, Block base)
+    {
+        return register(id, (props) -> new StainedGlassBlock(((StainedGlassBlock)base).getColor(), props), armoredGlassProperties(base));
+    }
+
+    private static RegistrySupplier<Block> registerStainedArmoredPane(String id, Block base)
+    {
+        return register(id, (props) -> new StainedGlassPaneBlock(((StainedGlassPaneBlock)base).getColor(), props), armoredGlassProperties(base));
+    }
+
+    @Contract(pure = true)
+    public static Block[] getStainedGlassBlocks()
+    {
+        return new Block[]
+            {
+                ARMORED_WHITE_STAINED_GLASS.get(),
+                ARMORED_ORANGE_STAINED_GLASS.get(),
+                ARMORED_MAGENTA_STAINED_GLASS.get(),
+                ARMORED_LIGHT_BLUE_STAINED_GLASS.get(),
+                ARMORED_YELLOW_STAINED_GLASS.get(),
+                ARMORED_LIME_STAINED_GLASS.get(),
+                ARMORED_PINK_STAINED_GLASS.get(),
+                ARMORED_GRAY_STAINED_GLASS.get(),
+                ARMORED_LIGHT_GRAY_STAINED_GLASS.get(),
+                ARMORED_CYAN_STAINED_GLASS.get(),
+                ARMORED_PURPLE_STAINED_GLASS.get(),
+                ARMORED_BLUE_STAINED_GLASS.get(),
+                ARMORED_BROWN_STAINED_GLASS.get(),
+                ARMORED_GREEN_STAINED_GLASS.get(),
+                ARMORED_RED_STAINED_GLASS.get(),
+                ARMORED_BLACK_STAINED_GLASS.get(),
+            };
+    }
+
+    @Contract(pure = true)
+    public static Block[] getStainedGlassPaneBlocks()
+    {
+        return new Block[]
+            {
+                ARMORED_WHITE_STAINED_GLASS_PANE.get(),
+                ARMORED_ORANGE_STAINED_GLASS_PANE.get(),
+                ARMORED_MAGENTA_STAINED_GLASS_PANE.get(),
+                ARMORED_LIGHT_BLUE_STAINED_GLASS_PANE.get(),
+                ARMORED_YELLOW_STAINED_GLASS_PANE.get(),
+                ARMORED_LIME_STAINED_GLASS_PANE.get(),
+                ARMORED_PINK_STAINED_GLASS_PANE.get(),
+                ARMORED_GRAY_STAINED_GLASS_PANE.get(),
+                ARMORED_LIGHT_GRAY_STAINED_GLASS_PANE.get(),
+                ARMORED_CYAN_STAINED_GLASS_PANE.get(),
+                ARMORED_PURPLE_STAINED_GLASS_PANE.get(),
+                ARMORED_BLUE_STAINED_GLASS_PANE.get(),
+                ARMORED_BROWN_STAINED_GLASS_PANE.get(),
+                ARMORED_GREEN_STAINED_GLASS_PANE.get(),
+                ARMORED_RED_STAINED_GLASS_PANE.get(),
+                ARMORED_BLACK_STAINED_GLASS_PANE.get(),
+            };
     }
 }
