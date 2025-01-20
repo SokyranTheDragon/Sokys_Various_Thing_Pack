@@ -1,5 +1,5 @@
 {
-  "parent": "sokys_various_things_pack:block/template_torch_wide",
+  "parent": "sokys_various_things_pack:block/template_svtp_torch_1",
   "render_type": "cutout",
   "textures": {
     "torch": "sokys_various_things_pack:block/golden_soul_torch_1"
