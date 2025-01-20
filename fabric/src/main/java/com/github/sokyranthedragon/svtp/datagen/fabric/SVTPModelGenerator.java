@@ -174,7 +174,7 @@ class SVTPModelGenerator extends FabricModelProvider
         ).with(BlockModelGenerators.createTorchHorizontalDispatch()));
 
         // Generate torch item model
-        generator.registerSimpleFlatItemModel(groundTorch);
+        generator.registerSimpleItemModel(groundTorch, generator.createFlatItemModel(groundTorch.asItem()));
     }
 
     private static void createRedstoneLantern(BlockModelGenerators generator, RegistrySupplier<Block> lanternSupplier)
