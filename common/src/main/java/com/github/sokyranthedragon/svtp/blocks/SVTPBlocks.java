@@ -225,7 +225,7 @@ public class SVTPBlocks
         return BlockBehaviour.Properties
             .ofFullCopy(base)
             // 90% obsidian's strength
-            .strength(Blocks.OBSIDIAN.defaultDestroyTime() * 0.9f, Blocks.OBSIDIAN.getExplosionResistance() * 0.9f);
+            .strength(Blocks.OBSIDIAN.defaultDestroyTime() * 0.75f, Blocks.OBSIDIAN.getExplosionResistance());
     }
 
     private static RegistrySupplier<Block> registerStainedArmoredGlass(String id, Block base)
