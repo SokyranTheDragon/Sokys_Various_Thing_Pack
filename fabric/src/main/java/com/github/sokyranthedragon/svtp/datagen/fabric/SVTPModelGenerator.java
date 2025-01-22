@@ -32,10 +32,10 @@ class SVTPModelGenerator extends FabricModelProvider
         createPlantWithDefaultItem(generator, SVTPBlocks.DEAD_FLOWER, SVTPBlocks.POTTED_DEAD_FLOWER);
 
         // Torches
-        createSvtpTorch0(generator, SVTPBlocks.GOLDEN_TORCH_0, SVTPBlocks.WALL_GOLDEN_TORCH_0);
-        createSvtpTorch1(generator, SVTPBlocks.GOLDEN_TORCH_1, SVTPBlocks.WALL_GOLDEN_TORCH_1);
-        createSvtpTorch0(generator, SVTPBlocks.GOLDEN_SOUL_TORCH_0, SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_0);
-        createSvtpTorch1(generator, SVTPBlocks.GOLDEN_SOUL_TORCH_1, SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_1);
+        createSvtpTorch(generator, SVTPBlocks.GOLDEN_TORCH_0, SVTPBlocks.WALL_GOLDEN_TORCH_0);
+        createSvtpTorch(generator, SVTPBlocks.GOLDEN_TORCH_1, SVTPBlocks.WALL_GOLDEN_TORCH_1);
+        createSvtpTorch(generator, SVTPBlocks.GOLDEN_SOUL_TORCH_0, SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_0);
+        createSvtpTorch(generator, SVTPBlocks.GOLDEN_SOUL_TORCH_1, SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_1);
 
         // Paper
         PaperModelGenerator.create(generator, SVTPBlocks.PAPER_BUNDLE_0)
@@ -148,17 +148,7 @@ class SVTPModelGenerator extends FabricModelProvider
         generator.blockStateOutput.accept(BlockModelGenerators.createDoor(block, bottomLeft, bottomLeftOpen, bottomRight, bottomRightOpen, topLeft, topLeftOpen, topRight, topRightOpen));
     }
 
-    private static void createSvtpTorch0(BlockModelGenerators generator, RegistrySupplier<Block> groundTorchSupplier, RegistrySupplier<Block> wallTorchSupplier)
-    {
-        createSvtpTorch(generator, groundTorchSupplier, wallTorchSupplier, SVTPModelTemplates.SVTP_TORCH_0_TRANSPARENT, SVTPModelTemplates.SVTP_TORCH_WALL_0_TRANSPARENT);
-    }
-
-    private static void createSvtpTorch1(BlockModelGenerators generator, RegistrySupplier<Block> groundTorchSupplier, RegistrySupplier<Block> wallTorchSupplier)
-    {
-        createSvtpTorch(generator, groundTorchSupplier, wallTorchSupplier, SVTPModelTemplates.SVTP_TORCH_1_TRANSPARENT, SVTPModelTemplates.SVTP_TORCH_WALL_1_TRANSPARENT);
-    }
-
-    private static void createSvtpTorch(BlockModelGenerators generator, RegistrySupplier<Block> groundTorchSupplier, RegistrySupplier<Block> wallTorchSupplier, ModelTemplate torchModel, ModelTemplate wallTorchModel)
+    private static void createSvtpTorch(BlockModelGenerators generator, RegistrySupplier<Block> groundTorchSupplier, RegistrySupplier<Block> wallTorchSupplier)
     {
         var groundTorch = groundTorchSupplier.get();
         var wallTorch = wallTorchSupplier.get();
@@ -167,10 +157,10 @@ class SVTPModelGenerator extends FabricModelProvider
 
         // Generate ground torch
         generator.blockStateOutput.accept(BlockModelGenerators
-            .createSimpleBlock(groundTorch, torchModel.create(groundTorch, textureMapping, generator.modelOutput)));
+            .createSimpleBlock(groundTorch, SVTPModelTemplates.SVTP_TORCH_TRANSPARENT.create(groundTorch, textureMapping, generator.modelOutput)));
         // Generate wall torch
         generator.blockStateOutput.accept(MultiVariantGenerator.multiVariant(wallTorch,
-            Variant.variant().with(VariantProperties.MODEL, wallTorchModel.create(wallTorch, textureMapping, generator.modelOutput))
+            Variant.variant().with(VariantProperties.MODEL, SVTPModelTemplates.SVTP_TORCH_WALL_TRANSPARENT.create(wallTorch, textureMapping, generator.modelOutput))
         ).with(BlockModelGenerators.createTorchHorizontalDispatch()));
 
         // Generate torch item model
