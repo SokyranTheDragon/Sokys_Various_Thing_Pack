@@ -35,6 +35,9 @@ class SVTPBlockLootTableGenerator extends FabricBlockLootTableProvider
         // Potted plant
         dropPottedContents(SVTPBlocks.POTTED_DEAD_FLOWER, handledBlocks);
 
+        // Doors
+        createDoorTable(SVTPBlocks.STONE_DOOR, handledBlocks);
+
         // Exclude wall torches, as they share normal torch loot table
         handledBlocks.add(SVTPBlocks.WALL_GOLDEN_TORCH_0.get());
         handledBlocks.add(SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_0.get());
@@ -42,6 +45,7 @@ class SVTPBlockLootTableGenerator extends FabricBlockLootTableProvider
         handledBlocks.add(SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_1.get());
 
         // Other
+        // And yeah, would have been much easier to just do the remaining ones manually.
         BuiltInRegistries.BLOCK.entrySet().forEach(entry ->
         {
             if (entry.getKey().location().getNamespace().equals(SVTPMod.MOD_ID))
@@ -68,6 +72,13 @@ class SVTPBlockLootTableGenerator extends FabricBlockLootTableProvider
     {
         var block = blockSupplier.get();
         dropPottedContents(block);
+        handledBlocks.add(block);
+    }
+
+    private void createDoorTable(RegistrySupplier<Block> blockSupplier, HashSet<Block> handledBlocks)
+    {
+        var block = blockSupplier.get();
+        add(block, createDoorTable(block));
         handledBlocks.add(block);
     }
 }
