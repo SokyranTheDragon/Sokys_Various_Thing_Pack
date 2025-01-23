@@ -2,6 +2,7 @@ package com.github.sokyranthedragon.svtp.datagen.fabric;
 
 import com.github.sokyranthedragon.svtp.blocks.SVTPBlocks;
 import com.github.sokyranthedragon.svtp.items.SVTPItems;
+import com.github.sokyranthedragon.svtp.tags.SVTPBlockTags;
 import com.github.sokyranthedragon.svtp.tags.SVTPConventionalItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
@@ -46,5 +47,6 @@ class SVTPLanguageGenerator extends FabricLanguageProvider
 
         // Tags
         builder.add(SVTPConventionalItemTags.STORAGE_BLOCKS_PAPER, "Paper Storage Blocks");
+        builder.add(SVTPBlockTags.SHEARABLE_PAPER_BLOCKS, "Paper Shearable Blocks");
     }
 }

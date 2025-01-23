@@ -1,6 +1,7 @@
 package com.github.sokyranthedragon.svtp.datagen.fabric;
 
 import com.github.sokyranthedragon.svtp.blocks.SVTPBlocks;
+import com.github.sokyranthedragon.svtp.tags.SVTPBlockTags;
 import com.github.sokyranthedragon.svtp.tags.SVTPConventionalBlockTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -67,6 +68,13 @@ class SVTPBlockTagGenerator extends FabricTagProvider.BlockTagProvider
 
         // SVTP conventional tags
         getOrCreateTagBuilder(SVTPConventionalBlockTags.STORAGE_BLOCKS_PAPER)
+            .add(SVTPBlocks.PAPER_BUNDLE_0.get())
+            .add(SVTPBlocks.PAPER_BUNDLE_1.get())
+            .add(SVTPBlocks.PAPER_BUNDLE_2.get())
+            .add(SVTPBlocks.PAPER_BUNDLE_3.get());
+
+        // SVTP Tags
+        getOrCreateTagBuilder(SVTPBlockTags.SHEARABLE_PAPER_BLOCKS)
             .add(SVTPBlocks.PAPER_BUNDLE_0.get())
             .add(SVTPBlocks.PAPER_BUNDLE_1.get())
             .add(SVTPBlocks.PAPER_BUNDLE_2.get())

@@ -26,6 +26,7 @@
     ]
   },
   "mixins": [
+    "sokys_various_things_pack.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.16.9",
@@ -35,6 +36,5 @@
     "fabric-api": "*"
   },
   "suggests": {
-    "another-mod": "*"
   }
 }
