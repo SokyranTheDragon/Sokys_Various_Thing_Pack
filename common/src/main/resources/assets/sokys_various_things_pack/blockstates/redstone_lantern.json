@@ -1,63 +1,63 @@
 {
   "variants": {
     "facing=east,manual_state=false,redstone_state=false": {
-      "model": "sokys_various_things_pack:block/redstone_lantern_off",
+      "model": "sokys_various_things_pack:block/redstone_lantern",
       "y": 90
     },
     "facing=east,manual_state=false,redstone_state=true": {
-      "model": "sokys_various_things_pack:block/redstone_lantern",
+      "model": "sokys_various_things_pack:block/redstone_lantern_on",
       "y": 90
     },
     "facing=east,manual_state=true,redstone_state=false": {
-      "model": "sokys_various_things_pack:block/redstone_lantern",
+      "model": "sokys_various_things_pack:block/redstone_lantern_on",
       "y": 90
     },
     "facing=east,manual_state=true,redstone_state=true": {
-      "model": "sokys_various_things_pack:block/redstone_lantern_off",
+      "model": "sokys_various_things_pack:block/redstone_lantern",
       "y": 90
     },
     "facing=north,manual_state=false,redstone_state=false": {
-      "model": "sokys_various_things_pack:block/redstone_lantern_off"
+      "model": "sokys_various_things_pack:block/redstone_lantern"
     },
     "facing=north,manual_state=false,redstone_state=true": {
-      "model": "sokys_various_things_pack:block/redstone_lantern"
+      "model": "sokys_various_things_pack:block/redstone_lantern_on"
     },
     "facing=north,manual_state=true,redstone_state=false": {
-      "model": "sokys_various_things_pack:block/redstone_lantern"
+      "model": "sokys_various_things_pack:block/redstone_lantern_on"
     },
     "facing=north,manual_state=true,redstone_state=true": {
-      "model": "sokys_various_things_pack:block/redstone_lantern_off"
+      "model": "sokys_various_things_pack:block/redstone_lantern"
     },
     "facing=south,manual_state=false,redstone_state=false": {
-      "model": "sokys_various_things_pack:block/redstone_lantern_off",
+      "model": "sokys_various_things_pack:block/redstone_lantern",
       "y": 180
     },
     "facing=south,manual_state=false,redstone_state=true": {
-      "model": "sokys_various_things_pack:block/redstone_lantern",
+      "model": "sokys_various_things_pack:block/redstone_lantern_on",
       "y": 180
     },
     "facing=south,manual_state=true,redstone_state=false": {
-      "model": "sokys_various_things_pack:block/redstone_lantern",
+      "model": "sokys_various_things_pack:block/redstone_lantern_on",
       "y": 180
     },
     "facing=south,manual_state=true,redstone_state=true": {
-      "model": "sokys_various_things_pack:block/redstone_lantern_off",
+      "model": "sokys_various_things_pack:block/redstone_lantern",
       "y": 180
     },
     "facing=west,manual_state=false,redstone_state=false": {
-      "model": "sokys_various_things_pack:block/redstone_lantern_off",
+      "model": "sokys_various_things_pack:block/redstone_lantern",
       "y": 270
     },
     "facing=west,manual_state=false,redstone_state=true": {
-      "model": "sokys_various_things_pack:block/redstone_lantern",
+      "model": "sokys_various_things_pack:block/redstone_lantern_on",
       "y": 270
     },
     "facing=west,manual_state=true,redstone_state=false": {
-      "model": "sokys_various_things_pack:block/redstone_lantern",
+      "model": "sokys_various_things_pack:block/redstone_lantern_on",
       "y": 270
     },
     "facing=west,manual_state=true,redstone_state=true": {
-      "model": "sokys_various_things_pack:block/redstone_lantern_off",
+      "model": "sokys_various_things_pack:block/redstone_lantern",
       "y": 270
     }
   }
