@@ -171,11 +171,11 @@ class SVTPModelGenerator extends FabricModelProvider
     {
         var lantern = lanternSupplier.get();
 
-        var litResource = ModelTemplates.CUBE.create(lantern, SVTPTextureMappings.redstoneLantern(lantern, "_on"), generator.modelOutput);
-        var litVariant = Variant.variant().with(VariantProperties.MODEL, litResource);
-
-        var unlitResource = ModelTemplates.CUBE.createWithSuffix(lantern, "_off", SVTPTextureMappings.redstoneLantern(lantern, "_off"), generator.modelOutput);
+        var unlitResource = ModelTemplates.CUBE.create(lantern, SVTPTextureMappings.redstoneLantern(lantern, "_off"), generator.modelOutput);
         var unlitVariant = Variant.variant().with(VariantProperties.MODEL, unlitResource);
+
+        var litResource = ModelTemplates.CUBE.createWithSuffix(lantern, "_on", SVTPTextureMappings.redstoneLantern(lantern, "_on"), generator.modelOutput);
+        var litVariant = Variant.variant().with(VariantProperties.MODEL, litResource);
 
         generator.blockStateOutput.accept(MultiVariantGenerator.multiVariant(lantern)
             .with(PropertyDispatch.properties(RedstoneLanternBlock.REDSTONE_STATE, RedstoneLanternBlock.MANUAL_STATE)
