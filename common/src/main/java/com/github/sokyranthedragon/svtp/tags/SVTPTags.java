@@ -10,11 +10,11 @@ class SVTPTags
 {
     public static <T> TagKey<T> register(ResourceKey<? extends Registry<T>> registry, String tagId)
     {
-        return register(registry, tagId, SVTPMod.MOD_ID);
+        return register(registry, SVTPMod.MOD_ID, tagId);
     }
 
-    public static <T> TagKey<T> register(ResourceKey<? extends Registry<T>> registry, String tagId, String tagNamespace)
+    public static <T> TagKey<T> register(ResourceKey<? extends Registry<T>> registry, String tagNamespace, String tagId)
     {
-        return TagKey.create(registry, ResourceLocation.fromNamespaceAndPath(tagId, tagNamespace));
+        return TagKey.create(registry, ResourceLocation.fromNamespaceAndPath(tagNamespace, tagId));
     }
 }
