@@ -1,6 +1,5 @@
 package com.github.sokyranthedragon.svtp.datagen.fabric;
 
-import com.google.gson.JsonObject;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.MethodsReturnNonnullByDefault;
