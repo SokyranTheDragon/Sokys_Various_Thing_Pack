@@ -145,7 +145,7 @@ public class SVTPBlocks
             .instrument(NoteBlockInstrument.BASEDRUM)
             .sound(SoundType.STONE)
             .lightLevel(state -> state.getValue(RedstoneLanternBlock.REDSTONE_STATE) ^ state.getValue(RedstoneLanternBlock.MANUAL_STATE) ? Level.MAX_BRIGHTNESS : 0)
-            .strength(3.5f)
+            .strength(0.3f, 3.5f)
             .isValidSpawn((state, getter, pos, type) -> true));
 
     public static final RegistrySupplier<Block> DEAD_FLOWER = register("dead_flower", (props) -> new DeadFlowerBlock(MobEffects.DARKNESS, 4f, props),
