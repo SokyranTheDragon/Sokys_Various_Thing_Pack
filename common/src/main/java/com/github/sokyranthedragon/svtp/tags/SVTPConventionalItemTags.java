@@ -1,7 +1,6 @@
 package com.github.sokyranthedragon.svtp.tags;
 
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
@@ -11,6 +10,6 @@ public class SVTPConventionalItemTags
 
     private static TagKey<Item> register(String tagId)
     {
-        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", tagId));
+        return SVTPTags.register(Registries.ITEM, "c", tagId);
     }
 }
