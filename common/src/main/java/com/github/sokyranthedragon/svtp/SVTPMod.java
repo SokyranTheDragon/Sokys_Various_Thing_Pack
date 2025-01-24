@@ -21,6 +21,8 @@ public final class SVTPMod
 
     public static void lateInit()
     {
+        FuelRegistry.register(100, SVTPItems.DEAD_FLOWER.get());
+
         SVTPBlocks.registerFlammableBlocks();
     }
 
