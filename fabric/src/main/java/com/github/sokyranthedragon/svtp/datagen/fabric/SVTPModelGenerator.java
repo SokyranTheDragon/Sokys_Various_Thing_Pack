@@ -84,7 +84,7 @@ class SVTPModelGenerator extends FabricModelProvider
         var item = pane.asItem();
         generator.registerSimpleItemModel(item, generator.createFlatItemModelWithBlockTexture(item, block));
 
-        generateArmoredGlassBlock(generator, block, pane, post, side, sideAlt, noSide, noSideAlt);
+        generateArmoredGlassPane(generator, pane, post, side, sideAlt, noSide, noSideAlt);
     }
 
     private static void createStainedArmoredGlassBlock(BlockModelGenerators generator, Block block, Block pane)
@@ -105,10 +105,10 @@ class SVTPModelGenerator extends FabricModelProvider
         var flatModel = SVTPModelTemplates.FLAT_ITEM_TRANSLUCENT.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(block), generator.modelOutput);
         generator.registerSimpleItemModel(item, flatModel);
 
-        generateArmoredGlassBlock(generator, block, pane, post, side, sideAlt, noSide, noSideAlt);
+        generateArmoredGlassPane(generator, pane, post, side, sideAlt, noSide, noSideAlt);
     }
 
-    private static void generateArmoredGlassBlock(BlockModelGenerators generator, Block block, Block pane, ResourceLocation post, ResourceLocation side, ResourceLocation sideAlt, ResourceLocation noSide, ResourceLocation noSideAlt)
+    private static void generateArmoredGlassPane(BlockModelGenerators generator, Block pane, ResourceLocation post, ResourceLocation side, ResourceLocation sideAlt, ResourceLocation noSide, ResourceLocation noSideAlt)
     {
         // Generate the pane model
         generator.blockStateOutput.accept(MultiPartGenerator
