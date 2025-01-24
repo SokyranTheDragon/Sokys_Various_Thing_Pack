@@ -2,6 +2,7 @@ package com.github.sokyranthedragon.svtp;
 
 import com.github.sokyranthedragon.svtp.blocks.SVTPBlocks;
 import com.github.sokyranthedragon.svtp.items.SVTPItems;
+import dev.architectury.registry.fuel.FuelRegistry;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
@@ -16,6 +17,11 @@ public final class SVTPMod
     {
         SVTPBlocks.init();
         SVTPItems.init();
+    }
+
+    public static void lateInit()
+    {
+        SVTPBlocks.registerFlammableBlocks();
     }
 
     public static ResourceLocation resourceLocation(String id)

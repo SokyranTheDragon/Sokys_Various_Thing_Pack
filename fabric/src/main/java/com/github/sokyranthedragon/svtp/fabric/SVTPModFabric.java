@@ -1,6 +1,5 @@
 package com.github.sokyranthedragon.svtp.fabric;
 
-import com.github.sokyranthedragon.svtp.blocks.SVTPBlocks;
 import com.github.sokyranthedragon.svtp.worldgen.fabric.SVTPFabricWorldGen;
 import net.fabricmc.api.ModInitializer;
 
@@ -18,7 +17,8 @@ public final class SVTPModFabric implements ModInitializer
         // Run our common setup.
         SVTPMod.init();
 
-        SVTPBlocks.registerFlammableBlocks();
+        // Fabric doesn't need to wait to call either of those, but NeoForge does.
+        SVTPMod.lateInit();
 
         SVTPFabricWorldGen.initWorldGen();
     }
