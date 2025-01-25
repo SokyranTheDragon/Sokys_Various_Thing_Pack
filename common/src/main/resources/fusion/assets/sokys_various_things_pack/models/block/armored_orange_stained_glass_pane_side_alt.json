@@ -1,0 +1,29 @@
+{
+  "type": "fusion:connecting",
+  "parent": "minecraft:block/template_glass_pane_side_alt",
+  "connections": {
+    "type": "fusion:or",
+    "predicates": [
+      {
+        "type": "fusion:and",
+        "predicates": [
+          {
+            "type": "fusion:is_same_block"
+          },
+          {
+            "type": "fusion:is_direction",
+            "directions": [
+              "left",
+              "right"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "loader": "fusion:model",
+  "textures": {
+    "edge": "sokys_various_things_pack:block/armored_glass_pane_top",
+    "pane": "sokys_various_things_pack:block/armored_orange_stained_glass"
+  }
+}

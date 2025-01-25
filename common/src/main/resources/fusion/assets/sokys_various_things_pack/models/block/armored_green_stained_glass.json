@@ -1,6 +1,6 @@
 {
   "type": "fusion:connecting",
-  "parent": "sokys_various_things_pack:block/armored_glass",
+  "parent": "minecraft:block/cube_all",
   "connections": {
     "type": "fusion:or",
     "predicates": [
@@ -11,6 +11,6 @@
   },
   "loader": "fusion:model",
   "textures": {
-    "all": "sokys_various_things_pack:block/armored_glass_connected"
+    "all": "sokys_various_things_pack:block/armored_green_stained_glass"
   }
 }
