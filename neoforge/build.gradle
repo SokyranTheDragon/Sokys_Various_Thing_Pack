@@ -38,6 +38,7 @@ dependencies {
     modImplementation "dev.architectury:architectury-neoforge:$rootProject.architectury_api_version"
 
     // Fusion, used by connected textures
+    // Seems to not work in dev environment properly.
     // modRuntimeOnly "maven.modrinth:fusion-connected-textures:$rootProject.fusion_version-neoforge-mc$rootProject.minecraft_version"
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
