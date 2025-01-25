@@ -7,7 +7,7 @@ license = "GPL-3.0-or-later"
 modId = "sokys_various_things_pack"
 version = "${version}"
 displayName = "Soky's Various Things Pack"
-authors = "Me!"
+authors = "Soky"
 description = '''
 This is an example description! Tell everyone what your mod is about!
 '''
