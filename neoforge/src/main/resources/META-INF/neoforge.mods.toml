@@ -36,5 +36,12 @@ versionRange = "[15.0.1,)"
 ordering = "AFTER"
 side = "BOTH"
 
+[[dependencies.sokys_various_things_pack]]
+modId = "fusion"
+type = "optional"
+ordering = "NONE"
+reason = "connected textures support"
+side = "CLIENT"
+
 [[mixins]]
 config = "sokys_various_things_pack.mixins.json"
