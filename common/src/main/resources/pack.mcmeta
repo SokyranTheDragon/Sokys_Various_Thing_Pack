@@ -1,0 +1,9 @@
+{
+  "pack": {
+    "description": "SVTP resources",
+    "pack_format": 61
+  },
+  "fusion": {
+    "overrides_folder": "fusion"
+  }
+}
