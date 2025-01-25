@@ -8,8 +8,9 @@
     "Soky"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/SokyranTheDragon/Sokys_Various_Thing_Pack",
+    "sources": "https://github.com/SokyranTheDragon/Sokys_Various_Thing_Pack",
+    "issues": "https://github.com/SokyranTheDragon/Sokys_Various_Thing_Pack/issues"
   },
   "license": "GPL-3.0-or-later",
   "icon": "assets/sokys_various_things_pack/icon.png",
