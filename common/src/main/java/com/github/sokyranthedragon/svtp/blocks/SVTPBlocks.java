@@ -19,8 +19,10 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootTable;
 import org.jetbrains.annotations.Contract;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 @MethodsReturnNonnullByDefault
 public class SVTPBlocks
@@ -239,50 +241,68 @@ public class SVTPBlocks
     }
 
     @Contract(pure = true)
+    public static RegistrySupplier<Block>[] getStainedGlassBlockProviders()
+    {
+        //noinspection unchecked
+        return new RegistrySupplier[]
+            {
+                ARMORED_WHITE_STAINED_GLASS,
+                ARMORED_ORANGE_STAINED_GLASS,
+                ARMORED_MAGENTA_STAINED_GLASS,
+                ARMORED_LIGHT_BLUE_STAINED_GLASS,
+                ARMORED_YELLOW_STAINED_GLASS,
+                ARMORED_LIME_STAINED_GLASS,
+                ARMORED_PINK_STAINED_GLASS,
+                ARMORED_GRAY_STAINED_GLASS,
+                ARMORED_LIGHT_GRAY_STAINED_GLASS,
+                ARMORED_CYAN_STAINED_GLASS,
+                ARMORED_PURPLE_STAINED_GLASS,
+                ARMORED_BLUE_STAINED_GLASS,
+                ARMORED_BROWN_STAINED_GLASS,
+                ARMORED_GREEN_STAINED_GLASS,
+                ARMORED_RED_STAINED_GLASS,
+                ARMORED_BLACK_STAINED_GLASS,
+            };
+    }
+
+    @Contract(pure = true)
+    public static RegistrySupplier<Block>[] getStainedGlassPaneBlockProviders()
+    {
+        //noinspection unchecked
+        return new RegistrySupplier[]
+            {
+                ARMORED_WHITE_STAINED_GLASS_PANE,
+                ARMORED_ORANGE_STAINED_GLASS_PANE,
+                ARMORED_MAGENTA_STAINED_GLASS_PANE,
+                ARMORED_LIGHT_BLUE_STAINED_GLASS_PANE,
+                ARMORED_YELLOW_STAINED_GLASS_PANE,
+                ARMORED_LIME_STAINED_GLASS_PANE,
+                ARMORED_PINK_STAINED_GLASS_PANE,
+                ARMORED_GRAY_STAINED_GLASS_PANE,
+                ARMORED_LIGHT_GRAY_STAINED_GLASS_PANE,
+                ARMORED_CYAN_STAINED_GLASS_PANE,
+                ARMORED_PURPLE_STAINED_GLASS_PANE,
+                ARMORED_BLUE_STAINED_GLASS_PANE,
+                ARMORED_BROWN_STAINED_GLASS_PANE,
+                ARMORED_GREEN_STAINED_GLASS_PANE,
+                ARMORED_RED_STAINED_GLASS_PANE,
+                ARMORED_BLACK_STAINED_GLASS_PANE,
+            };
+    }
+
+    @Contract(pure = true)
     public static Block[] getStainedGlassBlocks()
     {
-        return new Block[]
-            {
-                ARMORED_WHITE_STAINED_GLASS.get(),
-                ARMORED_ORANGE_STAINED_GLASS.get(),
-                ARMORED_MAGENTA_STAINED_GLASS.get(),
-                ARMORED_LIGHT_BLUE_STAINED_GLASS.get(),
-                ARMORED_YELLOW_STAINED_GLASS.get(),
-                ARMORED_LIME_STAINED_GLASS.get(),
-                ARMORED_PINK_STAINED_GLASS.get(),
-                ARMORED_GRAY_STAINED_GLASS.get(),
-                ARMORED_LIGHT_GRAY_STAINED_GLASS.get(),
-                ARMORED_CYAN_STAINED_GLASS.get(),
-                ARMORED_PURPLE_STAINED_GLASS.get(),
-                ARMORED_BLUE_STAINED_GLASS.get(),
-                ARMORED_BROWN_STAINED_GLASS.get(),
-                ARMORED_GREEN_STAINED_GLASS.get(),
-                ARMORED_RED_STAINED_GLASS.get(),
-                ARMORED_BLACK_STAINED_GLASS.get(),
-            };
+        return Arrays.stream(getStainedGlassBlockProviders())
+            .map(Supplier::get)
+            .toArray(Block[]::new);
     }
 
     @Contract(pure = true)
     public static Block[] getStainedGlassPaneBlocks()
     {
-        return new Block[]
-            {
-                ARMORED_WHITE_STAINED_GLASS_PANE.get(),
-                ARMORED_ORANGE_STAINED_GLASS_PANE.get(),
-                ARMORED_MAGENTA_STAINED_GLASS_PANE.get(),
-                ARMORED_LIGHT_BLUE_STAINED_GLASS_PANE.get(),
-                ARMORED_YELLOW_STAINED_GLASS_PANE.get(),
-                ARMORED_LIME_STAINED_GLASS_PANE.get(),
-                ARMORED_PINK_STAINED_GLASS_PANE.get(),
-                ARMORED_GRAY_STAINED_GLASS_PANE.get(),
-                ARMORED_LIGHT_GRAY_STAINED_GLASS_PANE.get(),
-                ARMORED_CYAN_STAINED_GLASS_PANE.get(),
-                ARMORED_PURPLE_STAINED_GLASS_PANE.get(),
-                ARMORED_BLUE_STAINED_GLASS_PANE.get(),
-                ARMORED_BROWN_STAINED_GLASS_PANE.get(),
-                ARMORED_GREEN_STAINED_GLASS_PANE.get(),
-                ARMORED_RED_STAINED_GLASS_PANE.get(),
-                ARMORED_BLACK_STAINED_GLASS_PANE.get(),
-            };
+        return Arrays.stream(getStainedGlassPaneBlockProviders())
+            .map(Supplier::get)
+            .toArray(Block[]::new);
     }
 }

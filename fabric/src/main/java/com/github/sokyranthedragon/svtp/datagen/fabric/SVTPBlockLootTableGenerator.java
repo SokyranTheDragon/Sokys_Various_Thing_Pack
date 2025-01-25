@@ -27,9 +27,9 @@ class SVTPBlockLootTableGenerator extends FabricBlockLootTableProvider
         // Glass (minus tinted)
         dropWhenSilkTouch(SVTPBlocks.ARMORED_GLASS, handledBlocks);
         dropWhenSilkTouch(SVTPBlocks.ARMORED_GLASS_PANE, handledBlocks);
-        for (var glassBlock : SVTPBlocks.getStainedGlassBlocks())
+        for (var glassBlock : SVTPBlocks.getStainedGlassBlockProviders())
             dropWhenSilkTouch(glassBlock, handledBlocks);
-        for (var glassPane : SVTPBlocks.getStainedGlassPaneBlocks())
+        for (var glassPane : SVTPBlocks.getStainedGlassPaneBlockProviders())
             dropWhenSilkTouch(glassPane, handledBlocks);
 
         // Potted plant
@@ -59,11 +59,7 @@ class SVTPBlockLootTableGenerator extends FabricBlockLootTableProvider
 
     private void dropWhenSilkTouch(RegistrySupplier<Block> blockSupplier, HashSet<Block> handledBlocks)
     {
-        dropWhenSilkTouch(blockSupplier.get(), handledBlocks);
-    }
-
-    private void dropWhenSilkTouch(Block block, HashSet<Block> handledBlocks)
-    {
+        var block = blockSupplier.get();
         dropWhenSilkTouch(block);
         handledBlocks.add(block);
     }
