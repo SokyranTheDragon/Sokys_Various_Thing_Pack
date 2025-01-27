@@ -46,10 +46,15 @@ public class SVTPFusionModelGenerator extends FusionModelProvider
 
     private void generateGlassPaneModel(RegistrySupplier<Block> paneSupplier, RegistrySupplier<Block> blockSupplier)
     {
-        generateGlassPaneModel(paneSupplier, blockSupplier, "_noside", false);
-        generateGlassPaneModel(paneSupplier, blockSupplier, "_noside_alt", false);
-        generateGlassPaneModel(paneSupplier, blockSupplier, "_side", true);
-        generateGlassPaneModel(paneSupplier, blockSupplier, "_side_alt", true);
+        // Currently unused due to buggy pane display, will need more work to fix
+        //noinspection ConstantValue
+        if (false)
+        {
+            generateGlassPaneModel(paneSupplier, blockSupplier, "_noside", false);
+            generateGlassPaneModel(paneSupplier, blockSupplier, "_noside_alt", false);
+            generateGlassPaneModel(paneSupplier, blockSupplier, "_side", true);
+            generateGlassPaneModel(paneSupplier, blockSupplier, "_side_alt", true);
+        }
     }
 
     private void generateGlassPaneModel(RegistrySupplier<Block> pane, RegistrySupplier<Block> block, String side, boolean edge)
