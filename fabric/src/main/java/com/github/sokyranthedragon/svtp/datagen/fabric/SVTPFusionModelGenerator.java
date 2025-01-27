@@ -52,9 +52,9 @@ public class SVTPFusionModelGenerator extends FusionModelProvider
         generateGlassPaneModel(paneSupplier, blockSupplier, "_side_alt", true);
     }
 
-    private void generateGlassPaneModel(RegistrySupplier<Block> pane, RegistrySupplier<Block> blockSupplier, String side, boolean edge)
+    private void generateGlassPaneModel(RegistrySupplier<Block> pane, RegistrySupplier<Block> block, String side, boolean edge)
     {
-        var modelData = edge ? getPaneModelDataBuilderWithEdge(side, blockSupplier) : getPaneModelDataBuilder(side, blockSupplier);
+        var modelData = edge ? getPaneModelDataBuilderWithEdge(side, block) : getPaneModelDataBuilder(side, block);
         var modelInstance = ModelInstance.of(DefaultModelTypes.CONNECTING, modelData.build());
         addModel(SVTPMod.resourceLocation("block/" + pane.getId().getPath() + side), modelInstance);
     }
@@ -65,26 +65,26 @@ public class SVTPFusionModelGenerator extends FusionModelProvider
             .parent(ResourceLocation.withDefaultNamespace("block/" + parent));
     }
 
-    private ConnectingModelDataBuilder getBlockModelDataBuilder(RegistrySupplier<Block> blockSupplier)
+    private ConnectingModelDataBuilder getBlockModelDataBuilder(RegistrySupplier<Block> block)
     {
-        return getBaseModelDataBuilder("cube_all", blockSupplier)
+        return getBaseModelDataBuilder("cube_all", block)
             .connection(DefaultConnectionPredicates.isSameBlock())
-            .texture(TextureSlot.ALL.getId(), SVTPMod.resourceLocation("block/" + blockSupplier.getId().getPath()));
+            .texture(TextureSlot.ALL.getId(), SVTPMod.resourceLocation("block/" + block.getId().getPath()));
     }
 
-    private ConnectingModelDataBuilder getPaneModelDataBuilder(String parent, RegistrySupplier<Block> blockSupplier)
+    private ConnectingModelDataBuilder getPaneModelDataBuilder(String parent, RegistrySupplier<Block> block)
     {
-        return getBaseModelDataBuilder("template_glass_pane" + parent, blockSupplier)
+        return getBaseModelDataBuilder("template_glass_pane" + parent, block)
             .connection(DefaultConnectionPredicates.and(
                 DefaultConnectionPredicates.isSameBlock(),
                 DefaultConnectionPredicates.isDirection(ConnectionDirection.LEFT, ConnectionDirection.RIGHT)
             ))
-            .texture(TextureSlot.PANE.getId(), SVTPMod.resourceLocation("block/" + blockSupplier.getId().getPath()));
+            .texture(TextureSlot.PANE.getId(), SVTPMod.resourceLocation("block/" + block.getId().getPath()));
     }
 
-    private ConnectingModelDataBuilder getPaneModelDataBuilderWithEdge(String parent, RegistrySupplier<Block> blockSupplier)
+    private ConnectingModelDataBuilder getPaneModelDataBuilderWithEdge(String parent, RegistrySupplier<Block> block)
     {
-        return getPaneModelDataBuilder(parent, blockSupplier)
+        return getPaneModelDataBuilder(parent, block)
             .texture(TextureSlot.EDGE.getId(), SVTPMod.resourceLocation("block/armored_glass_pane_top"));
     }
 }
