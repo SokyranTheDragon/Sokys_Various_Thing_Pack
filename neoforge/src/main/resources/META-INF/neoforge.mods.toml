@@ -9,7 +9,7 @@ version = "${version}"
 displayName = "Soky's Various Things Pack"
 authors = "Soky"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+A mod adding a handful of (mostly) decorative blocks to the game.
 '''
 #logoFile = ""
 #updateJSONURL = ""
