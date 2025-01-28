@@ -12,9 +12,9 @@ import net.minecraft.world.level.block.StainedGlassBlock;
 
 import java.util.concurrent.CompletableFuture;
 
-class SVTPLanguageGenerator extends FabricLanguageProvider
+class SVTPLanguageUSGenerator extends FabricLanguageProvider
 {
-    protected SVTPLanguageGenerator(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup)
+    protected SVTPLanguageUSGenerator(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup)
     {
         super(dataOutput, registryLookup);
     }
@@ -40,13 +40,17 @@ class SVTPLanguageGenerator extends FabricLanguageProvider
         var stainedGlassPaneBlocks = SVTPBlocks.getStainedGlassPaneBlocks();
         for (var i = 0; i < stainedGlassBlocks.length; i++)
         {
-            var dyeName = I18n.get("color.minecraft." + ((StainedGlassBlock)stainedGlassBlocks[i]).getColor().getName());
-            builder.add(stainedGlassBlocks[i], "Armored " + dyeName + " Stained Glass");
-            builder.add(stainedGlassPaneBlocks[i], "Armored " + dyeName + " Stained Glass Pane");
+            var colorName = I18n.get("color.minecraft." + ((StainedGlassBlock)stainedGlassBlocks[i]).getColor().getName());
+            builder.add(stainedGlassBlocks[i], "Armored " + colorName + " Stained Glass");
+            builder.add(stainedGlassPaneBlocks[i], "Armored " + colorName + " Stained Glass Pane");
         }
 
         // Tags
         builder.add(SVTPConventionalItemTags.STORAGE_BLOCKS_PAPER, "Paper Storage Blocks");
         builder.add(SVTPBlockTags.SHEARABLE_PAPER_BLOCKS, "Shearable Paper Blocks");
+    }
+
+    public static void generateArmoredGlassTranslations(TranslationBuilder builder, String armoredString, String lang)
+    {
     }
 }
