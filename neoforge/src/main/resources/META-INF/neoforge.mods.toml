@@ -12,7 +12,7 @@ description = '''
 A mod adding a handful of (mostly) decorative blocks to the game.
 '''
 logoFile = "assets/sokys_various_things_pack/icon.png"
-#updateJSONURL = ""
+updateJSONURL = "https://raw.githubusercontent.com/SokyranTheDragon/librush/refs/heads/update_checker/neoforge_update.json"
 displayURL = "https://github.com/SokyranTheDragon/Sokys_Various_Thing_Pack"
 
 [[dependencies.sokys_various_things_pack]]
