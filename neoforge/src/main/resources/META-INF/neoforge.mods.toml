@@ -11,7 +11,7 @@ authors = "Soky"
 description = '''
 A mod adding a handful of (mostly) decorative blocks to the game.
 '''
-#logoFile = ""
+logoFile = "assets/sokys_various_things_pack/icon.png"
 #updateJSONURL = ""
 displayURL = "https://github.com/SokyranTheDragon/Sokys_Various_Thing_Pack"
 
