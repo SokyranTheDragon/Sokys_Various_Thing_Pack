@@ -39,7 +39,6 @@ public class RedstoneLanternBlock extends HorizontalDirectionalBlock
             .setValue(FACING, Direction.NORTH)
             .setValue(REDSTONE_STATE, false)
             .setValue(MANUAL_STATE, false));
-
     }
 
     @Override
