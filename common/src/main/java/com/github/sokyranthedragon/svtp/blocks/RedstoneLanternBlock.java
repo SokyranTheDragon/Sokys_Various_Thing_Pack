@@ -71,9 +71,14 @@ public class RedstoneLanternBlock extends HorizontalDirectionalBlock
         if (!level.isClientSide)
         {
             if (player.isShiftKeyDown())
+            {
                 level.setBlock(pos, state.cycle(FACING), Block.UPDATE_CLIENTS);
+                level.playSound(null, pos, SoundEvents.ITEM_FRAME_ROTATE_ITEM, SoundSource.BLOCKS, 1.0f, 1.0f);
+            }
             else
+            {
                 toggleManualState(state, level, pos);
+            }
         }
 
         return InteractionResult.SUCCESS;
