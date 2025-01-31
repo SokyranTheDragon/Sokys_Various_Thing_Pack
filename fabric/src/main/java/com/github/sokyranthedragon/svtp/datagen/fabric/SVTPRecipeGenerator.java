@@ -9,14 +9,17 @@ import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.StainedGlassBlock;
@@ -119,7 +122,20 @@ class SVTPRecipeGenerator extends RecipeProvider
             return;
 
         var unpackingRecipeName = getSimpleRecipeName(unpackedItem) + "_unpacking";
-        nineBlockStorageRecipes(unpackingCategory, unpackedItem, packingCategory, packedItems[0], getSimpleRecipeName(packedItems[0]), null, unpackingRecipeName + "_0", unpackingGroupName);
+        var baseItem = packedItems[0];
+        // nineBlockStorageRecipes() method, but use correct namespace rather than "minecraft"
+        shapeless(unpackingCategory, unpackedItem, 9)
+            .requires(baseItem)
+            .group(unpackingGroupName)
+            .unlockedBy(getHasName(baseItem), has(baseItem))
+            .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(unpackingRecipeName + "_0")));
+        shaped(packingCategory, baseItem)
+            .define('#', unpackedItem)
+            .pattern("###")
+            .pattern("###")
+            .pattern("###")
+            .unlockedBy(getHasName(unpackedItem), has(unpackedItem))
+            .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(getSimpleRecipeName(baseItem))));
 
         for (var i = 1; i < packedItems.length; i++)
         {
@@ -127,7 +143,7 @@ class SVTPRecipeGenerator extends RecipeProvider
                 .requires(packedItems[i])
                 .group(unpackingGroupName)
                 .unlockedBy(getHasName(packedItems[i]), has(packedItems[i]))
-                .save(output, ResourceKey.create(Registries.RECIPE, ResourceLocation.parse(unpackingRecipeName + "_" + i)));
+                .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(unpackingRecipeName + "_" + i)));
         }
     }
 
@@ -145,7 +161,7 @@ class SVTPRecipeGenerator extends RecipeProvider
                 .requires(items[current])
                 .group(groupName)
                 .unlockedBy(getHasName(items[current]), has(items[current]))
-                .save(output, ResourceKey.create(Registries.RECIPE, ResourceLocation.parse(getSimpleRecipeName(items[next]) + "_convert")));
+                .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(getSimpleRecipeName(items[next]) + "_convert")));
         }
     }
 
@@ -165,7 +181,7 @@ class SVTPRecipeGenerator extends RecipeProvider
                 .pattern("##")
                 .group(groupName)
                 .unlockedBy(getHasName(items[current]), has(MinMaxBounds.Ints.atLeast(4), items[current]))
-                .save(output, ResourceKey.create(Registries.RECIPE, ResourceLocation.parse(getSimpleRecipeName(items[next]) + "_convert")));
+                .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(getSimpleRecipeName(items[next]) + "_convert")));
         }
     }
 
@@ -192,6 +208,24 @@ class SVTPRecipeGenerator extends RecipeProvider
             .pattern("ogo")
             .unlockedBy(getHasName(Items.OBSIDIAN), has(MinMaxBounds.Ints.atLeast(4), Items.OBSIDIAN))
             .save(output);
+    }
+
+    @Override
+    public void suspiciousStew(Item item, SuspiciousEffectHolder suspiciousEffectHolder)
+    {
+        // Vanilla method always unlocks recipe with "minecraft" namespace in its recipe advancement
+
+        @SuppressWarnings("deprecation")
+        var stewStack = new ItemStack(Items.SUSPICIOUS_STEW.builtInRegistryHolder(), 1, DataComponentPatch.builder().set(DataComponents.SUSPICIOUS_STEW_EFFECTS, suspiciousEffectHolder.getSuspiciousEffects()).build());
+
+        shapeless(RecipeCategory.FOOD, stewStack)
+            .requires(Items.BOWL)
+            .requires(Items.BROWN_MUSHROOM)
+            .requires(Items.RED_MUSHROOM)
+            .requires(item)
+            .group("suspicious_stew")
+            .unlockedBy(getHasName(item), this.has(item))
+            .save(output, SVTPMod.resourceKey(Registries.RECIPE, getItemName(stewStack.getItem()) + "_from_" + getItemName(item)));
     }
 
     @MethodsReturnNonnullByDefault
