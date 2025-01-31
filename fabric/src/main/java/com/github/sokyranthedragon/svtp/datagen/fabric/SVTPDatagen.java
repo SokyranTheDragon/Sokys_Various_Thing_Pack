@@ -19,7 +19,7 @@ public class SVTPDatagen implements DataGeneratorEntrypoint
         pack.addProvider(SVTPLanguageUSGenerator::new);
         pack.addProvider(SVTPLanguageUKGenerator::new);
         pack.addProvider(SVTPModelGenerator::new);
-        pack.addProvider(SVTPRecipeGenerator.SVTPRecipeRunner::new);
+        pack.addProvider(SVTPRecipeGenerator::new);
         var blockTags = pack.addProvider(SVTPBlockTagGenerator::new);
         pack.addProvider(((output, future) -> new SVTPItemTagGenerator(output, future, blockTags)));
         pack.addProvider(SVTPBlockLootTableGenerator::new);

@@ -1,8 +1,8 @@
 package com.github.sokyranthedragon.svtp.datagen.fabric;
 
 import com.github.sokyranthedragon.svtp.SVTPMod;
-import net.minecraft.client.data.models.model.ModelTemplate;
-import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.data.models.model.ModelTemplate;
+import net.minecraft.data.models.model.TextureSlot;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringUtil;
 

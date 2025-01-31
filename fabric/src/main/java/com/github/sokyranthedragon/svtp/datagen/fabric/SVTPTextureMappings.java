@@ -3,8 +3,8 @@ package com.github.sokyranthedragon.svtp.datagen.fabric;
 import com.github.sokyranthedragon.svtp.blocks.SVTPBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.data.models.model.TextureMapping;
+import net.minecraft.data.models.model.TextureSlot;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Contract;
 

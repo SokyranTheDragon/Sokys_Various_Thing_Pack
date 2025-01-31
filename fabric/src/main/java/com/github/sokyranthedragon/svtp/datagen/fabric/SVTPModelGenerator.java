@@ -3,14 +3,14 @@ package com.github.sokyranthedragon.svtp.datagen.fabric;
 import com.github.sokyranthedragon.svtp.blocks.RedstoneLanternBlock;
 import com.github.sokyranthedragon.svtp.blocks.SVTPBlocks;
 import dev.architectury.registry.registries.RegistrySupplier;
-import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.minecraft.client.data.models.BlockModelGenerators;
-import net.minecraft.client.data.models.ItemModelGenerators;
-import net.minecraft.client.data.models.blockstates.*;
-import net.minecraft.client.data.models.model.ModelLocationUtils;
-import net.minecraft.client.data.models.model.ModelTemplates;
-import net.minecraft.client.data.models.model.TextureMapping;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
+import net.minecraft.data.models.BlockModelGenerators;
+import net.minecraft.data.models.ItemModelGenerators;
+import net.minecraft.data.models.blockstates.*;
+import net.minecraft.data.models.model.ModelLocationUtils;
+import net.minecraft.data.models.model.ModelTemplates;
+import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -70,7 +70,7 @@ class SVTPModelGenerator extends FabricModelProvider
     }
 
     @Override
-    public void generateItemModels(ItemModelGenerators generator)
+    public void generateItemModels(ItemModelGenerators itemModelGenerators)
     {
     }
 
@@ -92,7 +92,8 @@ class SVTPModelGenerator extends FabricModelProvider
 
         // Generate pane item model
         var item = pane.asItem();
-        generator.registerSimpleItemModel(item, generator.createFlatItemModelWithBlockTexture(item, block));
+//        generator.registerSimpleItemModel(item, generator.createFlatItemModelWithBlockTexture(item, block));
+        ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(block), generator.modelOutput);
 
         generateArmoredGlassPane(generator, pane, post, side, sideAlt, noSide, noSideAlt);
     }
@@ -112,8 +113,8 @@ class SVTPModelGenerator extends FabricModelProvider
 
         // Generate pane item model
         var item = pane.asItem();
-        var flatModel = SVTPModelTemplates.FLAT_ITEM_TRANSLUCENT.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(block), generator.modelOutput);
-        generator.registerSimpleItemModel(item, flatModel);
+        SVTPModelTemplates.FLAT_ITEM_TRANSLUCENT.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(block), generator.modelOutput);
+//        generator.registerSimpleItemModel(item, flatModel);
 
         generateArmoredGlassPane(generator, pane, post, side, sideAlt, noSide, noSideAlt);
     }
@@ -151,7 +152,7 @@ class SVTPModelGenerator extends FabricModelProvider
         var topRightOpen = SVTPModelTemplates.DOOR_TOP_RIGHT_OPEN_TRANSPARENT.create(block, textureMapping, generator.modelOutput);
 
         // Generate door item model
-        generator.registerSimpleFlatItemModel(block.asItem());
+        generator.createSimpleFlatItemModel(block.asItem());
 
         // Generate the door model
         generator.blockStateOutput.accept(BlockModelGenerators.createDoor(block, bottomLeft, bottomLeftOpen, bottomRight, bottomRightOpen, topLeft, topLeftOpen, topRight, topRightOpen));
@@ -173,7 +174,10 @@ class SVTPModelGenerator extends FabricModelProvider
         ).with(BlockModelGenerators.createTorchHorizontalDispatch()));
 
         // Generate torch item model
-        generator.registerSimpleItemModel(groundTorch, generator.createFlatItemModel(groundTorch.asItem()));
+//        generator.registerSimpleItemModel(groundTorch, generator.createFlatItemModel(groundTorch.asItem()));
+        var groundTorchItem = groundTorch.asItem();
+        ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(groundTorchItem), TextureMapping.layer0(TextureMapping.getItemTexture(groundTorchItem)), generator.modelOutput);
+        generator.skipAutoItemBlock(wallTorch);
     }
 
     private static void createRedstoneLantern(BlockModelGenerators generator, RegistrySupplier<Block> lanternSupplier)
@@ -201,7 +205,8 @@ class SVTPModelGenerator extends FabricModelProvider
         var pottedFlower = pottedFlowerSupplier.get();
 
         // Plant item model
-        generator.registerSimpleItemModel(flower.asItem(), BlockModelGenerators.PlantType.NOT_TINTED.createItemModel(generator, flower));
+        generator.createSimpleFlatItemModel(flower);
+//        generator.registerSimpleItemModel(flower.asItem(), BlockModelGenerators.PlantType.NOT_TINTED.createItemModel(generator, flower));
 
         // Plant
         var plantMapping = TextureMapping.cross(flower);

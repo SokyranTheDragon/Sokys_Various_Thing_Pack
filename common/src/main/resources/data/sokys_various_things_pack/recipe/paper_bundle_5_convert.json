@@ -3,7 +3,9 @@
   "category": "misc",
   "group": "paper_bundle_0_conversion",
   "key": {
-    "#": "sokys_various_things_pack:paper_bundle_4"
+    "#": {
+      "item": "sokys_various_things_pack:paper_bundle_4"
+    }
   },
   "pattern": [
     "##",

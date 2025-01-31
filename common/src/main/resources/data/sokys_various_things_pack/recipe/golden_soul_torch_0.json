@@ -2,9 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "c": "#minecraft:coals",
-    "g": "#c:ingots/gold",
-    "s": "#minecraft:soul_fire_base_blocks"
+    "c": {
+      "tag": "minecraft:coals"
+    },
+    "g": {
+      "tag": "c:ingots/gold"
+    },
+    "s": {
+      "tag": "minecraft:soul_fire_base_blocks"
+    }
   },
   "pattern": [
     "c",

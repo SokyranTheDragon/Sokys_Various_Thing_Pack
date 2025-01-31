@@ -65,17 +65,17 @@ public class SVTPItems
     public static final RegistrySupplier<Item> STONE_DOOR = registerBlock(SVTPBlocks.STONE_DOOR, DoubleHighBlockItem::new, CreativeModeTabs.BUILDING_BLOCKS);
 
     public static final RegistrySupplier<Item> GOLDEN_TORCH_0 = registerBlock(SVTPBlocks.GOLDEN_TORCH_0,
-        (block, properties) -> new StandingAndWallBlockItem(block, SVTPBlocks.WALL_GOLDEN_TORCH_0.get(), Direction.DOWN, properties),
+        (block, properties) -> new StandingAndWallBlockItem(block, SVTPBlocks.WALL_GOLDEN_TORCH_0.get(), properties, Direction.DOWN),
         CreativeModeTabs.FUNCTIONAL_BLOCKS);
     public static final RegistrySupplier<Item> GOLDEN_TORCH_1 = registerBlock(SVTPBlocks.GOLDEN_TORCH_1,
-        (block, properties) -> new StandingAndWallBlockItem(block, SVTPBlocks.WALL_GOLDEN_TORCH_1.get(), Direction.DOWN, properties),
+        (block, properties) -> new StandingAndWallBlockItem(block, SVTPBlocks.WALL_GOLDEN_TORCH_1.get(), properties, Direction.DOWN),
         CreativeModeTabs.FUNCTIONAL_BLOCKS);
 
     public static final RegistrySupplier<Item> GOLDEN_SOUL_TORCH_0 = registerBlock(SVTPBlocks.GOLDEN_SOUL_TORCH_0,
-        (block, properties) -> new StandingAndWallBlockItem(block, SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_0.get(), Direction.DOWN, properties),
+        (block, properties) -> new StandingAndWallBlockItem(block, SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_0.get(), properties, Direction.DOWN),
         CreativeModeTabs.FUNCTIONAL_BLOCKS);
     public static final RegistrySupplier<Item> GOLDEN_SOUL_TORCH_1 = registerBlock(SVTPBlocks.GOLDEN_SOUL_TORCH_1,
-        (block, properties) -> new StandingAndWallBlockItem(block, SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_1.get(), Direction.DOWN, properties),
+        (block, properties) -> new StandingAndWallBlockItem(block, SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_1.get(), properties, Direction.DOWN),
         CreativeModeTabs.FUNCTIONAL_BLOCKS);
 
     public static final RegistrySupplier<Item> PAPER_BUNDLE_0 = registerBlock(SVTPBlocks.PAPER_BUNDLE_0, CreativeModeTabs.BUILDING_BLOCKS);
@@ -127,7 +127,7 @@ public class SVTPItems
     private static RegistrySupplier<Item> registerBlock(RegistrySupplier<Block> registry, BiFunction<Block, Item.Properties, Item> function, Supplier<Item.Properties> properties)
     {
         return ITEMS.register(registry.getId().getPath(),
-            () -> function.apply(registry.get(), properties.get().setId(blockIdToItemId(registry.getId())).useBlockDescriptionPrefix()));
+            () -> function.apply(registry.get(), properties.get()));
     }
 
     @Contract(pure = true)

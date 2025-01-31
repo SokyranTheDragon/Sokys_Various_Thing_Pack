@@ -2,8 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "c": "#minecraft:coals",
-    "g": "#c:ingots/gold"
+    "c": {
+      "tag": "minecraft:coals"
+    },
+    "g": {
+      "tag": "c:ingots/gold"
+    }
   },
   "pattern": [
     "c",

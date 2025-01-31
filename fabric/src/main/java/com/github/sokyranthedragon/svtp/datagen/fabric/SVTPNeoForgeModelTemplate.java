@@ -1,16 +1,15 @@
 package com.github.sokyranthedragon.svtp.datagen.fabric;
 
+import com.google.gson.JsonObject;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.client.data.models.model.ModelInstance;
-import net.minecraft.client.data.models.model.ModelTemplate;
-import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.data.models.model.ModelTemplate;
+import net.minecraft.data.models.model.TextureSlot;
 import net.minecraft.resources.ResourceLocation;
 
+import java.util.Map;
 import java.util.Optional;
-import java.util.function.BiConsumer;
 
 @MethodsReturnNonnullByDefault
 @Environment(EnvType.CLIENT)
@@ -33,16 +32,11 @@ class SVTPNeoForgeModelTemplate extends ModelTemplate
     }
 
     @Override
-    public ResourceLocation create(ResourceLocation resourceLocation, TextureMapping textureMapping, BiConsumer<ResourceLocation, ModelInstance> biConsumer)
+    public JsonObject createBaseTemplate(ResourceLocation resourceLocation, Map<TextureSlot, ResourceLocation> map)
     {
-        BiConsumer<ResourceLocation, ModelInstance> newConsumer = (path, instance) ->
-            biConsumer.accept(path, () ->
-            {
-                var json = instance.get().getAsJsonObject();
-                renderType.ifPresent(type -> json.addProperty("render_type", type));
-                return json;
-            });
+        var json = super.createBaseTemplate(resourceLocation, map);
+        renderType.ifPresent(type -> json.addProperty("render_type", type));
 
-        return super.create(resourceLocation, textureMapping, newConsumer);
+        return json;
     }
 }

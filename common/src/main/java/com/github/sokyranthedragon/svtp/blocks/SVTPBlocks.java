@@ -6,7 +6,6 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -88,8 +87,7 @@ public class SVTPBlocks
             .ofFullCopy(Blocks.WALL_TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
             .sound(SoundType.METAL)
-            .overrideDescription(GOLDEN_TORCH_0.get().getDescriptionId())
-            .overrideLootTable(GOLDEN_TORCH_0.get().getLootTable()));
+            .dropsLike(GOLDEN_TORCH_0.get()));
 
     public static final RegistrySupplier<Block> GOLDEN_TORCH_1 = register("golden_torch_1", (props) -> new GoldenTorchBlock(ParticleTypes.FLAME, props),
         () -> BlockBehaviour.Properties
@@ -101,8 +99,7 @@ public class SVTPBlocks
             .ofFullCopy(Blocks.WALL_TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
             .sound(SoundType.METAL)
-            .overrideDescription(GOLDEN_TORCH_1.get().getDescriptionId())
-            .overrideLootTable(GOLDEN_TORCH_1.get().getLootTable()));
+            .dropsLike(GOLDEN_TORCH_1.get()));
 
     public static final RegistrySupplier<Block> GOLDEN_SOUL_TORCH_0 = register("golden_soul_torch_0", (props) -> new GoldenTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, props),
         () -> BlockBehaviour.Properties
@@ -114,8 +111,7 @@ public class SVTPBlocks
             .ofFullCopy(Blocks.WALL_TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
             .sound(SoundType.METAL)
-            .overrideDescription(GOLDEN_SOUL_TORCH_0.get().getDescriptionId())
-            .overrideLootTable(GOLDEN_SOUL_TORCH_0.get().getLootTable()));
+            .dropsLike(GOLDEN_SOUL_TORCH_0.get()));
 
     public static final RegistrySupplier<Block> GOLDEN_SOUL_TORCH_1 = register("golden_soul_torch_1", (props) -> new GoldenTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, props),
         () -> BlockBehaviour.Properties
@@ -127,8 +123,7 @@ public class SVTPBlocks
             .ofFullCopy(Blocks.WALL_TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
             .sound(SoundType.METAL)
-            .overrideDescription(GOLDEN_SOUL_TORCH_1.get().getDescriptionId())
-            .overrideLootTable(GOLDEN_SOUL_TORCH_1.get().getLootTable()));
+            .dropsLike(GOLDEN_SOUL_TORCH_1.get()));
 
     public static final RegistrySupplier<Block> PAPER_BUNDLE_0 = register("paper_bundle_0", PaperBundleBlock::new, paperProperties());
     public static final RegistrySupplier<Block> PAPER_BUNDLE_1 = register("paper_bundle_1", PaperBundleBlock::new, paperProperties());
@@ -187,12 +182,7 @@ public class SVTPBlocks
 
     private static RegistrySupplier<Block> register(String id, Function<BlockBehaviour.Properties, Block> function, Supplier<BlockBehaviour.Properties> properties)
     {
-        return BLOCKS.register(id, () -> function.apply(properties.get().setId(createId(id))));
-    }
-
-    private static ResourceKey<Block> createId(String id)
-    {
-        return ResourceKey.create(Registries.BLOCK, SVTPMod.resourceLocation(id));
+        return BLOCKS.register(id, () -> function.apply(properties.get()));
     }
 
     private static Supplier<BlockBehaviour.Properties> paperProperties()

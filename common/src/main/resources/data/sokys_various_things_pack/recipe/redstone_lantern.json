@@ -2,10 +2,18 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "c": "minecraft:cobblestone",
-    "g": "minecraft:glowstone",
-    "l": "minecraft:lever",
-    "r": "#c:dusts/redstone"
+    "c": {
+      "item": "minecraft:cobblestone"
+    },
+    "g": {
+      "item": "minecraft:glowstone"
+    },
+    "l": {
+      "item": "minecraft:lever"
+    },
+    "r": {
+      "tag": "c:dusts/redstone"
+    }
   },
   "pattern": [
     "crl",

@@ -11,7 +11,7 @@ import com.supermartijn642.fusion.api.predicate.DefaultConnectionPredicates;
 import com.supermartijn642.fusion.api.provider.FusionModelProvider;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.data.models.model.TextureSlot;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
@@ -64,7 +64,7 @@ public class SVTPFusionModelGenerator extends FusionModelProvider
         addModel(SVTPMod.resourceLocation("block/" + pane.getId().getPath() + side), modelInstance);
     }
 
-    private ConnectingModelDataBuilder getBaseModelDataBuilder(String parent, RegistrySupplier<Block> blockSupplier)
+    private ConnectingModelDataBuilder getBaseModelDataBuilder(String parent)
     {
         return ConnectingModelData.builder()
             .parent(ResourceLocation.withDefaultNamespace("block/" + parent));
@@ -72,14 +72,14 @@ public class SVTPFusionModelGenerator extends FusionModelProvider
 
     private ConnectingModelDataBuilder getBlockModelDataBuilder(RegistrySupplier<Block> block)
     {
-        return getBaseModelDataBuilder("cube_all", block)
+        return getBaseModelDataBuilder("cube_all")
             .connection(DefaultConnectionPredicates.isSameBlock())
             .texture(TextureSlot.ALL.getId(), SVTPMod.resourceLocation("block/" + block.getId().getPath()));
     }
 
     private ConnectingModelDataBuilder getPaneModelDataBuilder(String parent, RegistrySupplier<Block> block)
     {
-        return getBaseModelDataBuilder("template_glass_pane" + parent, block)
+        return getBaseModelDataBuilder("template_glass_pane" + parent)
             .connection(DefaultConnectionPredicates.and(
                 DefaultConnectionPredicates.isSameBlock(),
                 DefaultConnectionPredicates.isDirection(ConnectionDirection.LEFT, ConnectionDirection.RIGHT)

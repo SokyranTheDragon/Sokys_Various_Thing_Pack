@@ -1,6 +1,7 @@
 package com.github.sokyranthedragon.svtp;
 
 import com.github.sokyranthedragon.svtp.blocks.SVTPBlocks;
+import com.github.sokyranthedragon.svtp.crafting.SVTPRecipeSerializers;
 import com.github.sokyranthedragon.svtp.items.SVTPItems;
 import dev.architectury.registry.fuel.FuelRegistry;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -17,6 +18,7 @@ public final class SVTPMod
     {
         SVTPBlocks.init();
         SVTPItems.init();
+        SVTPRecipeSerializers.init();
     }
 
     public static void lateInit()

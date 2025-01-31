@@ -2,43 +2,39 @@ package com.github.sokyranthedragon.svtp.datagen.fabric;
 
 import com.github.sokyranthedragon.svtp.SVTPMod;
 import com.github.sokyranthedragon.svtp.blocks.SVTPBlocks;
+import com.github.sokyranthedragon.svtp.crafting.SVTPSuspiciousStewRecipe;
 import com.github.sokyranthedragon.svtp.items.SVTPItems;
 import com.github.sokyranthedragon.svtp.tags.SVTPItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.component.DataComponentPatch;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.StainedGlassBlock;
-import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
-class SVTPRecipeGenerator extends RecipeProvider
+import static net.minecraft.data.recipes.ShapedRecipeBuilder.*;
+import static net.minecraft.data.recipes.ShapelessRecipeBuilder.shapeless;
+import static net.minecraft.data.recipes.SpecialRecipeBuilder.special;
+
+class SVTPRecipeGenerator extends FabricRecipeProvider
 {
-    protected SVTPRecipeGenerator(HolderLookup.Provider provider, RecipeOutput recipeOutput)
+    public SVTPRecipeGenerator(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture)
     {
-        super(provider, recipeOutput);
+        super(output, registriesFuture);
     }
 
     @Override
-    public void buildRecipes()
+    public void buildRecipes(RecipeOutput output)
     {
         shaped(RecipeCategory.REDSTONE, SVTPItems.STONE_DOOR.get(), 3)
             .define('s', Items.STONE)
@@ -67,7 +63,7 @@ class SVTPRecipeGenerator extends RecipeProvider
             .pattern("g")
             .unlockedBy(getHasName(Items.GOLD_INGOT), has(ConventionalItemTags.GOLD_INGOTS))
             .save(output);
-        conversionRecipe(RecipeCategory.DECORATIONS, SVTPItems.GOLDEN_TORCH_0.get(), SVTPItems.GOLDEN_TORCH_1.get());
+        conversionRecipe(output, RecipeCategory.DECORATIONS, SVTPItems.GOLDEN_TORCH_0.get(), SVTPItems.GOLDEN_TORCH_1.get());
 
         shaped(RecipeCategory.DECORATIONS, SVTPItems.GOLDEN_SOUL_TORCH_0.get(), 4)
             .define('c', ItemTags.COALS)
@@ -78,33 +74,22 @@ class SVTPRecipeGenerator extends RecipeProvider
             .pattern("s")
             .unlockedBy(getHasName(Items.SOUL_SAND), has(ItemTags.SOUL_FIRE_BASE_BLOCKS))
             .save(output);
-        conversionRecipe(RecipeCategory.DECORATIONS, SVTPItems.GOLDEN_SOUL_TORCH_0.get(), SVTPItems.GOLDEN_SOUL_TORCH_1.get());
+        conversionRecipe(output, RecipeCategory.DECORATIONS, SVTPItems.GOLDEN_SOUL_TORCH_0.get(), SVTPItems.GOLDEN_SOUL_TORCH_1.get());
 
         // Paper bundle recipes
-        nineBlockStorageRecipesWithExtraVariants(RecipeCategory.MISC, Items.PAPER, "paper", RecipeCategory.DECORATIONS,
+        nineBlockStorageRecipesWithExtraVariants(output, RecipeCategory.MISC, Items.PAPER, "paper", RecipeCategory.DECORATIONS,
             SVTPItems.PAPER_BUNDLE_0.get(), SVTPItemTags.PAPER_BUNDLES);
-        twoByTwoConversionRecipe(RecipeCategory.MISC,
+        twoByTwoConversionRecipe(output, RecipeCategory.MISC,
             SVTPItems.PAPER_BUNDLE_0.get(), SVTPItems.PAPER_BUNDLE_1.get(), SVTPItems.PAPER_BUNDLE_2.get(),
             SVTPItems.PAPER_BUNDLE_3.get(), SVTPItems.PAPER_BUNDLE_4.get(), SVTPItems.PAPER_BUNDLE_5.get());
 
         // Suspicious stew
-        // Probably an overkill, as there likely won't be more.
-        // Still, why not I guess?
-        BuiltInRegistries.ITEM.entrySet().forEach((entry) ->
-        {
-            if (entry.getKey().location().getNamespace().equals(SVTPMod.MOD_ID))
-            {
-                var item = entry.getValue();
-
-                var suspiciousEffectHolder = SuspiciousEffectHolder.tryGet(item);
-                if (suspiciousEffectHolder != null)
-                    suspiciousStew(item, suspiciousEffectHolder);
-            }
-        });
+        // Could just add SMALL_FLOWERS tag to the dead flower since it's a SuspiciousEffectHolder, but we don't want this tag there.
+        special(SVTPSuspiciousStewRecipe::new).save(output, SVTPMod.resourceLocation("suspicious_stew"));
 
         // Glass
-        armoredGlassAndPaneRecipe(Items.GLASS, SVTPItems.ARMORED_GLASS.get(), SVTPItems.ARMORED_GLASS_PANE.get());
-        armoredGlassRecipe(Items.TINTED_GLASS, SVTPItems.ARMORED_TINTED_GLASS.get());
+        armoredGlassAndPaneRecipe(output, Items.GLASS, SVTPItems.ARMORED_GLASS.get(), SVTPItems.ARMORED_GLASS_PANE.get());
+        armoredGlassRecipe(output, Items.TINTED_GLASS, SVTPItems.ARMORED_TINTED_GLASS.get());
 
         var stainedGlassBlocks = SVTPBlocks.getStainedGlassBlocks();
         var stainedGlassPanes = SVTPBlocks.getStainedGlassPaneBlocks();
@@ -116,11 +101,11 @@ class SVTPRecipeGenerator extends RecipeProvider
                     set.getValue() instanceof StainedGlassBlock glass &&
                     glass.getColor() == targetColor)
                 .findFirst().orElseThrow().getValue();
-            armoredGlassAndPaneRecipe(targetBlock, stainedGlassBlocks[i], stainedGlassPanes[i]);
+            armoredGlassAndPaneRecipe(output, targetBlock, stainedGlassBlocks[i], stainedGlassPanes[i]);
         }
     }
 
-    private void nineBlockStorageRecipesWithExtraVariants(RecipeCategory unpackingCategory, ItemLike unpackedItem, @Nullable String unpackingGroupName, RecipeCategory packingCategory, ItemLike... packedItems)
+    private void nineBlockStorageRecipesWithExtraVariants(RecipeOutput output, RecipeCategory unpackingCategory, ItemLike unpackedItem, @Nullable String unpackingGroupName, RecipeCategory packingCategory, ItemLike... packedItems)
     {
         if (packedItems == null || packedItems.length == 0)
             return;
@@ -132,8 +117,8 @@ class SVTPRecipeGenerator extends RecipeProvider
             .pattern("###")
             .pattern("###")
             .pattern("###")
-            .unlockedBy(getHasName(unpackedItem), has(MinMaxBounds.Ints.atLeast(9), unpackedItem))
-            .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(getSimpleRecipeName(packedItems[0]))));
+            .unlockedBy(getHasName(unpackedItem), has(unpackedItem))
+            .save(output, SVTPMod.resourceLocation(getSimpleRecipeName(packedItems[0])));
 
         var unpackingRecipeName = getSimpleRecipeName(unpackedItem) + "_unpacking";
 
@@ -143,11 +128,11 @@ class SVTPRecipeGenerator extends RecipeProvider
                 .requires(packedItems[i])
                 .group(unpackingGroupName)
                 .unlockedBy(getHasName(packedItems[i]), has(packedItems[i]))
-                .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(unpackingRecipeName + "_" + i)));
+                .save(output, SVTPMod.resourceLocation(unpackingRecipeName + "_" + i));
         }
     }
 
-    private void nineBlockStorageRecipesWithExtraVariants(RecipeCategory unpackingCategory, ItemLike unpackedItem, @Nullable String unpackingGroupName, RecipeCategory packingCategory, ItemLike firstPackedItem, TagKey<Item> packedItemsTag)
+    private void nineBlockStorageRecipesWithExtraVariants(RecipeOutput output, RecipeCategory unpackingCategory, ItemLike unpackedItem, @Nullable String unpackingGroupName, RecipeCategory packingCategory, ItemLike firstPackedItem, TagKey<Item> packedItemsTag)
     {
         // nineBlockStorageRecipes() method, but use correct namespace rather than "minecraft".
         // Only the shaped part, as shapeless is handled by the loop.
@@ -157,16 +142,16 @@ class SVTPRecipeGenerator extends RecipeProvider
             .pattern("###")
             .pattern("###")
             .unlockedBy(getHasName(unpackedItem), has(MinMaxBounds.Ints.atLeast(9), unpackedItem))
-            .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(getSimpleRecipeName(firstPackedItem))));
+            .save(output, SVTPMod.resourceLocation(getSimpleRecipeName(firstPackedItem)));
 
         shapeless(unpackingCategory, unpackedItem, 9)
             .requires(packedItemsTag)
             .group(unpackingGroupName)
             .unlockedBy(getHasName(firstPackedItem), has(packedItemsTag))
-            .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(getSimpleRecipeName(unpackedItem) + "_unpacking")));
+            .save(output, SVTPMod.resourceLocation(getSimpleRecipeName(unpackedItem) + "_unpacking"));
     }
 
-    private void conversionRecipe(RecipeCategory category, ItemLike... items)
+    private void conversionRecipe(RecipeOutput output, RecipeCategory category, ItemLike... items)
     {
         if (items == null || items.length <= 1)
             throw new RuntimeException("Expected items to have at least 2 items, but it " + (items == null ? "is null." : "has only 1 element."));
@@ -180,11 +165,11 @@ class SVTPRecipeGenerator extends RecipeProvider
                 .requires(items[current])
                 .group(groupName)
                 .unlockedBy(getHasName(items[current]), has(items[current]))
-                .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(getSimpleRecipeName(items[next]) + "_convert")));
+                .save(output, SVTPMod.resourceLocation(getSimpleRecipeName(items[next]) + "_convert"));
         }
     }
 
-    private void twoByTwoConversionRecipe(RecipeCategory category, ItemLike... items)
+    private void twoByTwoConversionRecipe(RecipeOutput output, RecipeCategory category, ItemLike... items)
     {
         if (items == null || items.length <= 1)
             throw new RuntimeException("Expected items to have at least 2 items, but it " + (items == null ? "is null." : "has only 1 element."));
@@ -200,13 +185,13 @@ class SVTPRecipeGenerator extends RecipeProvider
                 .pattern("##")
                 .group(groupName)
                 .unlockedBy(getHasName(items[current]), has(MinMaxBounds.Ints.atLeast(4), items[current]))
-                .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(getSimpleRecipeName(items[next]) + "_convert")));
+                .save(output, SVTPMod.resourceLocation(getSimpleRecipeName(items[next]) + "_convert"));
         }
     }
 
-    private void armoredGlassAndPaneRecipe(ItemLike baseGlass, ItemLike targetGlass, ItemLike targetPane)
+    private void armoredGlassAndPaneRecipe(RecipeOutput output, ItemLike baseGlass, ItemLike targetGlass, ItemLike targetPane)
     {
-        armoredGlassRecipe(baseGlass, targetGlass);
+        armoredGlassRecipe(output, baseGlass, targetGlass);
 
         shaped(RecipeCategory.DECORATIONS, targetPane, 16)
             .define('a', targetGlass)
@@ -217,7 +202,7 @@ class SVTPRecipeGenerator extends RecipeProvider
     }
 
     // Separate recipe for tinted glass, since there's no pane
-    private void armoredGlassRecipe(ItemLike baseGlass, ItemLike targetGlass)
+    private void armoredGlassRecipe(RecipeOutput output, ItemLike baseGlass, ItemLike targetGlass)
     {
         shaped(RecipeCategory.DECORATIONS, targetGlass, 4)
             .define('g', baseGlass)
@@ -227,44 +212,5 @@ class SVTPRecipeGenerator extends RecipeProvider
             .pattern("ogo")
             .unlockedBy(getHasName(Items.OBSIDIAN), has(MinMaxBounds.Ints.atLeast(4), Items.OBSIDIAN))
             .save(output);
-    }
-
-    @Override
-    public void suspiciousStew(Item item, SuspiciousEffectHolder suspiciousEffectHolder)
-    {
-        // Vanilla method always unlocks recipe with "minecraft" namespace in its recipe advancement
-
-        @SuppressWarnings("deprecation")
-        var stewStack = new ItemStack(Items.SUSPICIOUS_STEW.builtInRegistryHolder(), 1, DataComponentPatch.builder().set(DataComponents.SUSPICIOUS_STEW_EFFECTS, suspiciousEffectHolder.getSuspiciousEffects()).build());
-
-        shapeless(RecipeCategory.FOOD, stewStack)
-            .requires(Items.BOWL)
-            .requires(Items.BROWN_MUSHROOM)
-            .requires(Items.RED_MUSHROOM)
-            .requires(item)
-            .group("suspicious_stew")
-            .unlockedBy(getHasName(item), has(item))
-            .save(output, SVTPMod.resourceKey(Registries.RECIPE, getItemName(stewStack.getItem()) + "_from_" + getItemName(item)));
-    }
-
-    @MethodsReturnNonnullByDefault
-    public static class SVTPRecipeRunner extends FabricRecipeProvider
-    {
-        public SVTPRecipeRunner(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture)
-        {
-            super(output, registriesFuture);
-        }
-
-        @Override
-        protected RecipeProvider createRecipeProvider(HolderLookup.Provider provider, RecipeOutput recipeOutput)
-        {
-            return new SVTPRecipeGenerator(provider, recipeOutput);
-        }
-
-        @Override
-        public String getName()
-        {
-            return "Recipe Generator";
-        }
     }
 }

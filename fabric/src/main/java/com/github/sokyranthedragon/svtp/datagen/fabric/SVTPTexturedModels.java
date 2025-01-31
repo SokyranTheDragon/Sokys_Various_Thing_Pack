@@ -2,8 +2,8 @@ package com.github.sokyranthedragon.svtp.datagen.fabric;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.data.models.model.TexturedModel;
+import net.minecraft.data.models.model.TextureMapping;
+import net.minecraft.data.models.model.TexturedModel;
 
 @Environment(EnvType.CLIENT)
 class SVTPTexturedModels

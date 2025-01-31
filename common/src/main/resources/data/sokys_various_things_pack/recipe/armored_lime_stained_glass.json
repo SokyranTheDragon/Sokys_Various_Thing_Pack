@@ -2,8 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "g": "minecraft:lime_stained_glass",
-    "o": "minecraft:obsidian"
+    "g": {
+      "item": "minecraft:lime_stained_glass"
+    },
+    "o": {
+      "item": "minecraft:obsidian"
+    }
   },
   "pattern": [
     "ogo",

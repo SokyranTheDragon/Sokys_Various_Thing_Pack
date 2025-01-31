@@ -2,7 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "a": "sokys_various_things_pack:armored_black_stained_glass"
+    "a": {
+      "item": "sokys_various_things_pack:armored_black_stained_glass"
+    }
   },
   "pattern": [
     "aaa",

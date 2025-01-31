@@ -19,7 +19,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
@@ -49,7 +48,7 @@ public class RedstoneLanternBlock extends HorizontalDirectionalBlock
     }
 
     @Override
-    protected void neighborChanged(BlockState blockState, Level level, BlockPos blockPos, Block block, @Nullable Orientation orientation, boolean bl)
+    protected void neighborChanged(BlockState blockState, Level level, BlockPos blockPos, Block block, BlockPos otherPos, boolean bl)
     {
         if (!level.isClientSide)
         {
@@ -84,7 +83,7 @@ public class RedstoneLanternBlock extends HorizontalDirectionalBlock
     }
 
     @Override
-    protected void onExplosionHit(BlockState state, ServerLevel level, BlockPos pos, Explosion explosion, BiConsumer<ItemStack, BlockPos> biConsumer)
+    protected void onExplosionHit(BlockState state, Level level, BlockPos pos, Explosion explosion, BiConsumer<ItemStack, BlockPos> biConsumer)
     {
         if (explosion.canTriggerBlocks())
             toggleManualState(state, level, pos);

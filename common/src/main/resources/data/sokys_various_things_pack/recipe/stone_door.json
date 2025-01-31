@@ -2,7 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "s": "minecraft:stone"
+    "s": {
+      "item": "minecraft:stone"
+    }
   },
   "pattern": [
     "ss",

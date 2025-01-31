@@ -3,7 +3,6 @@ package com.github.sokyranthedragon.svtp.mixin;
 import com.github.sokyranthedragon.svtp.tags.SVTPBlockTags;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShearsItem;
@@ -24,12 +23,10 @@ public class MixinShearsItem
     @ModifyReturnValue(method = "createToolProperties", at = @At("RETURN"))
     private static Tool modifyShearProperties(Tool original)
     {
-        var holderGetter = BuiltInRegistries.acquireBootstrapRegistrationLookup(BuiltInRegistries.BLOCK);
-
         // Get a copy of the original rules list
         var originalList = new ArrayList<>(original.rules());
         // Insert our own rule
-        originalList.add(Tool.Rule.overrideSpeed(holderGetter.getOrThrow(SVTPBlockTags.PAPER_BUNDLES), 5f));
+        originalList.add(Tool.Rule.overrideSpeed(SVTPBlockTags.PAPER_BUNDLES, 5f));
         // Make a new immutable list
         var newList = List.copyOf(originalList);
 
