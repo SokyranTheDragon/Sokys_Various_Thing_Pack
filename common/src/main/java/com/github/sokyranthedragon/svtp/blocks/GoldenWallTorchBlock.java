@@ -45,7 +45,7 @@ public class GoldenWallTorchBlock extends WallTorchBlock
         var z = ((double)blockPos.getZ() + 0.5) + (0.27 * direction.getStepZ());
 
         level.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0, 0.0, 0.0);
-        level.addParticle(this.flameParticle, x, y, z, 0.0, 0.0, 0.0);
+        level.addParticle(flameParticle, x, y, z, 0.0, 0.0, 0.0);
     }
 
     @Override

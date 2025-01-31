@@ -126,8 +126,8 @@ class SVTPRecipeGenerator extends RecipeProvider
             shapeless(unpackingCategory, unpackedItem, 9)
                 .requires(packedItems[i])
                 .group(unpackingGroupName)
-                .unlockedBy(getHasName(packedItems[i]), this.has(packedItems[i]))
-                .save(this.output, ResourceKey.create(Registries.RECIPE, ResourceLocation.parse(unpackingRecipeName + "_" + i)));
+                .unlockedBy(getHasName(packedItems[i]), has(packedItems[i]))
+                .save(output, ResourceKey.create(Registries.RECIPE, ResourceLocation.parse(unpackingRecipeName + "_" + i)));
         }
     }
 
