@@ -3,8 +3,13 @@
   "1.21.4": {
     "1.0.0": "Initial mod release."
   },
+  "1.21.1": {
+    "1.0.0": "Initial mod release."
+  },
   "promos": {
     "1.21.4-latest": "1.0.0",
-    "1.21.4-recommended": "1.0.0"
+    "1.21.4-recommended": "1.0.0",
+    "1.21.1-latest": "1.0.0",
+    "1.21.1-recommended": "1.0.0"
   }
 }
