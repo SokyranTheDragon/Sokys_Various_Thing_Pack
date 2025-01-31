@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:paper_unpacking_3"
+        "recipe": "sokys_various_things_pack:paper_unpacking_3"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:paper_unpacking_3"
+      "sokys_various_things_pack:paper_unpacking_3"
     ]
   }
 }

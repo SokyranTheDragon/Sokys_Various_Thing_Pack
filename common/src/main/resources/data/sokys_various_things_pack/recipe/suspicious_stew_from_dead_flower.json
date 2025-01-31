@@ -12,8 +12,8 @@
     "components": {
       "minecraft:suspicious_stew_effects": [
         {
-          "duration": 80,
-          "id": "minecraft:darkness"
+          "duration": 140,
+          "id": "minecraft:slowness"
         }
       ]
     },

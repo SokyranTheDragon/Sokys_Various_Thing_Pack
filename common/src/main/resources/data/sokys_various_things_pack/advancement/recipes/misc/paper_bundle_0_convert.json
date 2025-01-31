@@ -16,7 +16,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:paper_bundle_0_convert"
+        "recipe": "sokys_various_things_pack:paper_bundle_0_convert"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:paper_bundle_0_convert"
+      "sokys_various_things_pack:paper_bundle_0_convert"
     ]
   }
 }

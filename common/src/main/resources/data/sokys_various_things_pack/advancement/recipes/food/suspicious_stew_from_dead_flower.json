@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:suspicious_stew_from_dead_flower"
+        "recipe": "sokys_various_things_pack:suspicious_stew_from_dead_flower"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:suspicious_stew_from_dead_flower"
+      "sokys_various_things_pack:suspicious_stew_from_dead_flower"
     ]
   }
 }
