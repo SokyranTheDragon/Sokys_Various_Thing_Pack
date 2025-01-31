@@ -19,7 +19,7 @@ import java.util.function.BiFunction;
 @MethodsReturnNonnullByDefault
 public class SVTPItems
 {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(SVTPMod.MOD_ID, Registries.ITEM);
+    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(SVTPMod.MOD_ID, Registries.ITEM);
 
     // Normal and pane
     public static final RegistrySupplier<Item> ARMORED_GLASS = registerBlock(SVTPBlocks.ARMORED_GLASS, CreativeModeTabs.COLORED_BLOCKS);
