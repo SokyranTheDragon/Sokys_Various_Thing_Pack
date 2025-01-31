@@ -150,7 +150,7 @@ public class SVTPBlocks
             .strength(0.3f, 3.5f)
             .isValidSpawn((state, getter, pos, type) -> true));
 
-    public static final RegistrySupplier<Block> DEAD_FLOWER = register("dead_flower", (props) -> new DeadFlowerBlock(MobEffects.DARKNESS, 4f, props),
+    public static final RegistrySupplier<Block> DEAD_FLOWER = register("dead_flower", (props) -> new DeadFlowerBlock(MobEffects.MOVEMENT_SLOWDOWN, 7f, props),
         BlockBehaviour.Properties
             .of()
             .mapColor(MapColor.WOOD)
