@@ -122,22 +122,17 @@ class SVTPRecipeGenerator extends RecipeProvider
             return;
 
         var unpackingRecipeName = getSimpleRecipeName(unpackedItem) + "_unpacking";
-        var baseItem = packedItems[0];
-        // nineBlockStorageRecipes() method, but use correct namespace rather than "minecraft"
-        shapeless(unpackingCategory, unpackedItem, 9)
-            .requires(baseItem)
-            .group(unpackingGroupName)
-            .unlockedBy(getHasName(baseItem), has(baseItem))
-            .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(unpackingRecipeName + "_0")));
-        shaped(packingCategory, baseItem)
+        // nineBlockStorageRecipes() method, but use correct namespace rather than "minecraft".
+        // Only the shaped part, as shapeless is handled by the loop.
+        shaped(packingCategory, packedItems[0])
             .define('#', unpackedItem)
             .pattern("###")
             .pattern("###")
             .pattern("###")
             .unlockedBy(getHasName(unpackedItem), has(unpackedItem))
-            .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(getSimpleRecipeName(baseItem))));
+            .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(getSimpleRecipeName(packedItems[0]))));
 
-        for (var i = 1; i < packedItems.length; i++)
+        for (var i = 0; i < packedItems.length; i++)
         {
             shapeless(unpackingCategory, unpackedItem, 9)
                 .requires(packedItems[i])
