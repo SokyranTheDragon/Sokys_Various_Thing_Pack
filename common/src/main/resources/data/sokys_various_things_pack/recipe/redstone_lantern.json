@@ -8,8 +8,8 @@
     "r": "#c:dusts/redstone"
   },
   "pattern": [
-    "crc",
-    "rgl",
+    "crl",
+    "rgr",
     "crc"
   ],
   "result": {
