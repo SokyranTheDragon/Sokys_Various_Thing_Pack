@@ -219,7 +219,7 @@ class SVTPRecipeGenerator extends RecipeProvider
             .requires(Items.RED_MUSHROOM)
             .requires(item)
             .group("suspicious_stew")
-            .unlockedBy(getHasName(item), this.has(item))
+            .unlockedBy(getHasName(item), has(item))
             .save(output, SVTPMod.resourceKey(Registries.RECIPE, getItemName(stewStack.getItem()) + "_from_" + getItemName(item)));
     }
 
