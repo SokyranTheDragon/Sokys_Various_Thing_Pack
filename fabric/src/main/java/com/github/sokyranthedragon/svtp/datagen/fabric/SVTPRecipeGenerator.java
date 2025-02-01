@@ -51,8 +51,8 @@ class SVTPRecipeGenerator extends RecipeProvider
             .define('r', ConventionalItemTags.REDSTONE_DUSTS)
             .define('g', Items.GLOWSTONE)
             .define('l', Items.LEVER)
-            .pattern("crc")
-            .pattern("rgl")
+            .pattern("crl")
+            .pattern("rgr")
             .pattern("crc")
             .unlockedBy(getHasName(Items.GLOWSTONE), has(Items.GLOWSTONE))
             .save(output);
