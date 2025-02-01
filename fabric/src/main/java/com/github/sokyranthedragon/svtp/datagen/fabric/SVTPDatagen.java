@@ -25,7 +25,7 @@ public class SVTPDatagen implements DataGeneratorEntrypoint
         pack.addProvider(SVTPBlockLootTableGenerator::new);
 
         // Fusion, with a workaround to generate in custom path
-        var fusionPath = getFabricDataOutput(generator, pack).resolve("fusion");
+        var fusionPath = getFabricDataOutput(pack).resolve("fusion");
         //noinspection UnstableApiUsage
         var fusionOutput = new FabricDataOutput(generator.getModContainer(), fusionPath, generator.isStrictValidationEnabled());
         pack.addProvider((output, future) -> new SVTPFusionModelGenerator(fusionOutput));
@@ -33,7 +33,7 @@ public class SVTPDatagen implements DataGeneratorEntrypoint
     }
 
     @NotNull
-    private static Path getFabricDataOutput(FabricDataGenerator generator, FabricDataGenerator.Pack pack)
+    private static Path getFabricDataOutput(FabricDataGenerator.Pack pack)
     {
         try
         {
