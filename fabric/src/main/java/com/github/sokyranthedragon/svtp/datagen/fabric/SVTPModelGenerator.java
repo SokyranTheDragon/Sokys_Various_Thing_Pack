@@ -40,13 +40,14 @@ class SVTPModelGenerator extends FabricModelProvider
         PaperModelGenerator.create(generator, SVTPBlocks.PAPER_BUNDLE_0)
             .createModel();
         PaperModelGenerator.create(generator, SVTPBlocks.PAPER_BUNDLE_1)
+            .setTop(SVTPBlocks.PAPER_BUNDLE_0)
             .createModel();
         PaperModelGenerator.create(generator, SVTPBlocks.PAPER_BUNDLE_2)
-            .setAll(SVTPBlocks.PAPER_BUNDLE_0)
+            .setAll(SVTPBlocks.PAPER_BUNDLE_1)
+            .setTop(SVTPBlocks.PAPER_BUNDLE_0)
             .setBottom(SVTPBlocks.PAPER_BUNDLE_2)
             .createModel();
         PaperModelGenerator.create(generator, SVTPBlocks.PAPER_BUNDLE_3)
-            .setTop(SVTPBlocks.PAPER_BUNDLE_0)
             .createModel();
 
         // Glass
