@@ -116,11 +116,6 @@ public class SVTPItems
         return registerBlock(registry, function, new Item.Properties());
     }
 
-    private static RegistrySupplier<Item> registerBlock(RegistrySupplier<Block> registry, ResourceKey<CreativeModeTab> tab, RegistrySupplier<Block> descriptionIdBlock)
-    {
-        return registerBlock(registry, BlockItem::new, new Item.Properties().arch$tab(tab), descriptionIdBlock);
-    }
-
     private static RegistrySupplier<Item> registerBlock(RegistrySupplier<Block> registry, BiFunction<Block, Item.Properties, Item> function, ResourceKey<CreativeModeTab> tab)
     {
         return registerBlock(registry, function, new Item.Properties().arch$tab(tab));
@@ -128,27 +123,8 @@ public class SVTPItems
 
     private static RegistrySupplier<Item> registerBlock(RegistrySupplier<Block> registry, BiFunction<Block, Item.Properties, Item> function, Item.Properties properties)
     {
-        return registerBlock(registry, function, properties, null);
-    }
-
-    private static RegistrySupplier<Item> registerBlock(RegistrySupplier<Block> registry, BiFunction<Block, Item.Properties, Item> function, ResourceKey<CreativeModeTab> tab, RegistrySupplier<Block> descriptionIdBlock)
-    {
-        return registerBlock(registry, function, new Item.Properties().arch$tab(tab), descriptionIdBlock);
-    }
-
-    private static RegistrySupplier<Item> registerBlock(RegistrySupplier<Block> registry, BiFunction<Block, Item.Properties, Item> function, Item.Properties properties, RegistrySupplier<Block> descriptionIdBlock)
-    {
-        return ITEMS.register(registry.getId().getPath(), () ->
-        {
-            var block = registry.get();
-            var resourceKey = blockIdToItemId(block.arch$registryName());
-            if (descriptionIdBlock == null)
-                properties.useBlockDescriptionPrefix();
-            else
-                properties.overrideDescription(descriptionIdBlock.get().getDescriptionId());
-
-            return function.apply(block, properties.setId(resourceKey));
-        });
+        return ITEMS.register(registry.getId().getPath(),
+            () -> function.apply(registry.get(), properties.setId(blockIdToItemId(registry.getId())).useBlockDescriptionPrefix()));
     }
 
     @Contract(pure = true)
