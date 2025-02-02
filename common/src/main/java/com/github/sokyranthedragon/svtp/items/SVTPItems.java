@@ -61,28 +61,28 @@ public class SVTPItems
     public static final RegistrySupplier<Item> ARMORED_RED_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_RED_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
     public static final RegistrySupplier<Item> ARMORED_BLACK_STAINED_GLASS_PANE = registerBlock(SVTPBlocks.ARMORED_BLACK_STAINED_GLASS_PANE, CreativeModeTabs.COLORED_BLOCKS);
 
-    public static final RegistrySupplier<Item> STONE_DOOR = registerBlock(SVTPBlocks.STONE_DOOR, DoubleHighBlockItem::new, CreativeModeTabs.REDSTONE_BLOCKS);
+    public static final RegistrySupplier<Item> STONE_DOOR = registerBlock(SVTPBlocks.STONE_DOOR, DoubleHighBlockItem::new, CreativeModeTabs.BUILDING_BLOCKS);
 
     public static final RegistrySupplier<Item> GOLDEN_TORCH_0 = registerBlock(SVTPBlocks.GOLDEN_TORCH_0,
         (block, properties) -> new StandingAndWallBlockItem(block, SVTPBlocks.WALL_GOLDEN_TORCH_0.get(), Direction.DOWN, properties),
-        CreativeModeTabs.BUILDING_BLOCKS);
+        CreativeModeTabs.FUNCTIONAL_BLOCKS);
     public static final RegistrySupplier<Item> GOLDEN_TORCH_1 = registerBlock(SVTPBlocks.GOLDEN_TORCH_1,
         (block, properties) -> new StandingAndWallBlockItem(block, SVTPBlocks.WALL_GOLDEN_TORCH_1.get(), Direction.DOWN, properties),
-        CreativeModeTabs.BUILDING_BLOCKS);
+        CreativeModeTabs.FUNCTIONAL_BLOCKS);
 
     public static final RegistrySupplier<Item> GOLDEN_SOUL_TORCH_0 = registerBlock(SVTPBlocks.GOLDEN_SOUL_TORCH_0,
         (block, properties) -> new StandingAndWallBlockItem(block, SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_0.get(), Direction.DOWN, properties),
-        CreativeModeTabs.BUILDING_BLOCKS);
+        CreativeModeTabs.FUNCTIONAL_BLOCKS);
     public static final RegistrySupplier<Item> GOLDEN_SOUL_TORCH_1 = registerBlock(SVTPBlocks.GOLDEN_SOUL_TORCH_1,
         (block, properties) -> new StandingAndWallBlockItem(block, SVTPBlocks.WALL_GOLDEN_SOUL_TORCH_1.get(), Direction.DOWN, properties),
-        CreativeModeTabs.BUILDING_BLOCKS);
+        CreativeModeTabs.FUNCTIONAL_BLOCKS);
 
     public static final RegistrySupplier<Item> PAPER_BUNDLE_0 = registerBlock(SVTPBlocks.PAPER_BUNDLE_0, CreativeModeTabs.BUILDING_BLOCKS);
-    public static final RegistrySupplier<Item> PAPER_BUNDLE_1 = registerBlock(SVTPBlocks.PAPER_BUNDLE_1, CreativeModeTabs.BUILDING_BLOCKS, SVTPBlocks.PAPER_BUNDLE_0);
-    public static final RegistrySupplier<Item> PAPER_BUNDLE_2 = registerBlock(SVTPBlocks.PAPER_BUNDLE_2, CreativeModeTabs.BUILDING_BLOCKS, SVTPBlocks.PAPER_BUNDLE_0);
-    public static final RegistrySupplier<Item> PAPER_BUNDLE_3 = registerBlock(SVTPBlocks.PAPER_BUNDLE_3, CreativeModeTabs.BUILDING_BLOCKS, SVTPBlocks.PAPER_BUNDLE_0);
+    public static final RegistrySupplier<Item> PAPER_BUNDLE_1 = registerBlock(SVTPBlocks.PAPER_BUNDLE_1, CreativeModeTabs.BUILDING_BLOCKS);
+    public static final RegistrySupplier<Item> PAPER_BUNDLE_2 = registerBlock(SVTPBlocks.PAPER_BUNDLE_2, CreativeModeTabs.BUILDING_BLOCKS);
+    public static final RegistrySupplier<Item> PAPER_BUNDLE_3 = registerBlock(SVTPBlocks.PAPER_BUNDLE_3, CreativeModeTabs.BUILDING_BLOCKS);
 
-    public static final RegistrySupplier<Item> REDSTONE_LANTERN = registerBlock(SVTPBlocks.REDSTONE_LANTERN, CreativeModeTabs.REDSTONE_BLOCKS);
+    public static final RegistrySupplier<Item> REDSTONE_LANTERN = registerBlock(SVTPBlocks.REDSTONE_LANTERN, CreativeModeTabs.FUNCTIONAL_BLOCKS);
 
     public static final RegistrySupplier<Item> DEAD_FLOWER = registerBlock(SVTPBlocks.DEAD_FLOWER, CreativeModeTabs.NATURAL_BLOCKS);
 
