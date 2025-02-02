@@ -44,6 +44,14 @@ class SVTPTextureMappings
             .put(TextureSlot.EDGE, TextureMapping.getBlockTexture(SVTPBlocks.ARMORED_GLASS_PANE.get(), "_top"));
     }
 
+    public static TextureMapping svtpTorch(Block block)
+    {
+        // Use block texture for model, item texture for particle
+        return new TextureMapping()
+            .put(TextureSlot.TORCH, TextureMapping.getBlockTexture(block))
+            .put(TextureSlot.PARTICLE, TextureMapping.getItemTexture(block.asItem()));
+    }
+
     private SVTPTextureMappings()
     {
         // No initialization

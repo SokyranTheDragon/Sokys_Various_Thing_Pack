@@ -62,9 +62,9 @@ class SVTPModelTemplates
 
     // Torch
     public static final ModelTemplate SVTP_TORCH_TRANSPARENT = createModdedBlock("template_svtp_torch",
-        SVTPNeoForgeModelTemplate.RENDER_TYPE_CUTOUT, TextureSlot.TORCH);
+        SVTPNeoForgeModelTemplate.RENDER_TYPE_CUTOUT, TextureSlot.TORCH, TextureSlot.PARTICLE);
     public static final ModelTemplate SVTP_TORCH_WALL_TRANSPARENT = createModdedBlock("template_svtp_torch_wall",
-        SVTPNeoForgeModelTemplate.RENDER_TYPE_CUTOUT, TextureSlot.TORCH);
+        SVTPNeoForgeModelTemplate.RENDER_TYPE_CUTOUT, TextureSlot.TORCH, TextureSlot.PARTICLE);
 
     // Flowers
     public static final ModelTemplate CROSS_TRANSPARENT = createBlock("cross",

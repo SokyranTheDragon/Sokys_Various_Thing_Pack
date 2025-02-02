@@ -153,7 +153,7 @@ class SVTPModelGenerator extends FabricModelProvider
         var groundTorch = groundTorchSupplier.get();
         var wallTorch = wallTorchSupplier.get();
 
-        var textureMapping = TextureMapping.torch(groundTorch);
+        var textureMapping = SVTPTextureMappings.svtpTorch(groundTorch);
 
         // Generate ground torch
         generator.blockStateOutput.accept(BlockModelGenerators
