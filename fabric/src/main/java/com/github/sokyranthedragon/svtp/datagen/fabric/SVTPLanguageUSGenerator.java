@@ -23,13 +23,25 @@ class SVTPLanguageUSGenerator extends FabricLanguageProvider
     public void generateTranslations(HolderLookup.Provider provider, TranslationBuilder builder)
     {
         // Blocks
+        // Other
         builder.add(SVTPItems.STONE_DOOR.get(), "Stone Door");
-        builder.add(SVTPItems.GOLDEN_TORCH_0.get(), "Golden Torch");
-        builder.add(SVTPItems.GOLDEN_SOUL_TORCH_0.get(), "Golden Soul Torch");
-        builder.add(SVTPItems.PAPER_BUNDLE_0.get(), "Paper Bundle");
         builder.add(SVTPItems.REDSTONE_LANTERN.get(), "Redstone Lantern");
+
+        // Dead flower
         builder.add(SVTPItems.DEAD_FLOWER.get(), "Dead Flower");
         builder.add(SVTPBlocks.POTTED_DEAD_FLOWER.get(), "Potted Dead Flower");
+
+        // Golden torch
+        builder.add(SVTPItems.GOLDEN_TORCH_0.get(), "Golden Torch");
+        builder.add(SVTPItems.GOLDEN_SOUL_TORCH_0.get(), "Golden Soul Torch");
+        builder.add(SVTPItems.GOLDEN_TORCH_1.get(), "Dark Golden Torch");
+        builder.add(SVTPItems.GOLDEN_SOUL_TORCH_1.get(), "Dark Golden Soul Torch");
+
+        // Paper bundles
+        builder.add(SVTPItems.PAPER_BUNDLE_0.get(), "Paper Bundle");
+        builder.add(SVTPItems.PAPER_BUNDLE_1.get(), "Paper Bundle on a Pallet");
+        builder.add(SVTPItems.PAPER_BUNDLE_2.get(), "Paper Bundle on a Pallet with Warning Sign");
+        builder.add(SVTPItems.PAPER_BUNDLE_3.get(), "Yellowed Paper Bundle");
 
         // Armored glass blocks
         builder.add(SVTPItems.ARMORED_GLASS.get(), "Armored Glass");
