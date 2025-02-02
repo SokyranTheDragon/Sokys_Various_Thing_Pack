@@ -17,7 +17,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class GoldenTorchBlock extends TorchBlock
 {
     // Slightly higher than vanilla
-    public static final VoxelShape AABB_GOLDEN_TORCH = Block.box(6.0, 0.0, 6.0, 10.0, 11.0, 10.0);
+    public static final VoxelShape AABB_GOLDEN_TORCH = Block.box(5.0, 0.0, 5.0, 11.0, 11.0, 11.0);
 
     public GoldenTorchBlock(SimpleParticleType simpleParticleType, Properties properties)
     {

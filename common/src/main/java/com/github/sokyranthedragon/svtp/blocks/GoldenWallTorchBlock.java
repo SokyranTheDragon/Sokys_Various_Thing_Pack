@@ -23,10 +23,10 @@ public class GoldenWallTorchBlock extends WallTorchBlock
 {
     // Slightly higher than vanilla
     public static final Map<Direction, VoxelShape> AABBS_GOLDEN_TORCH = Maps.newEnumMap(ImmutableMap.of(
-        Direction.NORTH, Block.box(5.5, 3.0, 11.0, 10.5, 14.0, 16.0),
-        Direction.SOUTH, Block.box(5.5, 3.0, 0.0, 10.5, 14.0, 5.0),
-        Direction.WEST, Block.box(11.0, 3.0, 5.5, 16.0, 14.0, 10.5),
-        Direction.EAST, Block.box(0.0, 3.0, 5.5, 5.0, 14.0, 10.5)
+        Direction.NORTH, Block.box(4.5, 3.0, 9.0, 11.5, 14.0, 16.0),
+        Direction.SOUTH, Block.box(4.5, 3.0, 0.0, 11.5, 14.0, 7.0),
+        Direction.WEST, Block.box(9.0, 3.0, 4.5, 16.0, 14.0, 11.5),
+        Direction.EAST, Block.box(0.0, 3.0, 4.5, 7.0, 14.0, 11.5)
     ));
 
     public GoldenWallTorchBlock(SimpleParticleType simpleParticleType, Properties properties)
