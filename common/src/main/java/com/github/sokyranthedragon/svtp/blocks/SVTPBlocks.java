@@ -98,14 +98,13 @@ public class SVTPBlocks
         BlockBehaviour.Properties
             .ofFullCopy(Blocks.TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
-            .sound(SoundType.METAL)
-            .overrideDescription(descriptionIdFrom(GOLDEN_TORCH_0)));
+            .sound(SoundType.METAL));
     public static final RegistrySupplier<Block> WALL_GOLDEN_TORCH_1 = register("wall_golden_torch_1", (props) -> new GoldenWallTorchBlock(ParticleTypes.FLAME, props),
         BlockBehaviour.Properties
             .ofFullCopy(Blocks.WALL_TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
             .sound(SoundType.METAL)
-            .overrideDescription(descriptionIdFrom(GOLDEN_TORCH_0))
+            .overrideDescription(descriptionIdFrom(GOLDEN_TORCH_1))
             .overrideLootTable(lootTableFrom(GOLDEN_TORCH_1)));
 
     public static final RegistrySupplier<Block> GOLDEN_SOUL_TORCH_0 = register("golden_soul_torch_0", (props) -> new GoldenTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, props),
@@ -125,14 +124,13 @@ public class SVTPBlocks
         BlockBehaviour.Properties
             .ofFullCopy(Blocks.TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
-            .sound(SoundType.METAL)
-            .overrideDescription(descriptionIdFrom(GOLDEN_SOUL_TORCH_0)));
+            .sound(SoundType.METAL));
     public static final RegistrySupplier<Block> WALL_GOLDEN_SOUL_TORCH_1 = register("wall_golden_soul_torch_1", (props) -> new GoldenWallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, props),
         BlockBehaviour.Properties
             .ofFullCopy(Blocks.WALL_TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
             .sound(SoundType.METAL)
-            .overrideDescription(descriptionIdFrom(GOLDEN_SOUL_TORCH_0))
+            .overrideDescription(descriptionIdFrom(GOLDEN_SOUL_TORCH_1))
             .overrideLootTable(lootTableFrom(GOLDEN_SOUL_TORCH_1)));
 
     public static final RegistrySupplier<Block> PAPER_BUNDLE_0 = register("paper_bundle_0", PaperBundleBlock::new, paperProperties());
