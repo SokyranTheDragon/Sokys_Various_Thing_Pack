@@ -129,7 +129,7 @@ class SVTPRecipeGenerator extends RecipeProvider
             .pattern("###")
             .pattern("###")
             .pattern("###")
-            .unlockedBy(getHasName(unpackedItem), has(unpackedItem))
+            .unlockedBy(getHasName(unpackedItem), has(MinMaxBounds.Ints.atLeast(9), unpackedItem))
             .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(getSimpleRecipeName(packedItems[0]))));
 
         for (var i = 0; i < packedItems.length; i++)
@@ -137,7 +137,7 @@ class SVTPRecipeGenerator extends RecipeProvider
             shapeless(unpackingCategory, unpackedItem, 9)
                 .requires(packedItems[i])
                 .group(unpackingGroupName)
-                .unlockedBy(getHasName(packedItems[i]), has(MinMaxBounds.Ints.atLeast(9), packedItems[i]))
+                .unlockedBy(getHasName(packedItems[i]), has(packedItems[i]))
                 .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(unpackingRecipeName + "_" + i)));
         }
     }
