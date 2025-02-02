@@ -1,9 +1,6 @@
 {
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
-	"textures": {
-		"particle": "#torch"
-	},
 	"elements": [
 		{
 			"name": "torch",

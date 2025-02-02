@@ -4,9 +4,9 @@
     "down": "sokys_various_things_pack:block/paper_bundle_3_bottom",
     "east": "sokys_various_things_pack:block/paper_bundle_3_south_east",
     "north": "sokys_various_things_pack:block/paper_bundle_3_north_west",
-    "particle": "sokys_various_things_pack:block/paper_bundle_0_top",
+    "particle": "sokys_various_things_pack:block/paper_bundle_3_top",
     "south": "sokys_various_things_pack:block/paper_bundle_3_south_east",
-    "up": "sokys_various_things_pack:block/paper_bundle_0_top",
+    "up": "sokys_various_things_pack:block/paper_bundle_3_top",
     "west": "sokys_various_things_pack:block/paper_bundle_3_north_west"
   }
 }

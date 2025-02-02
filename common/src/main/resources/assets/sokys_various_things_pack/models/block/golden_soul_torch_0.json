@@ -2,6 +2,7 @@
   "parent": "sokys_various_things_pack:block/template_svtp_torch",
   "render_type": "cutout",
   "textures": {
+    "particle": "sokys_various_things_pack:item/golden_soul_torch_0",
     "torch": "sokys_various_things_pack:block/golden_soul_torch_0"
   }
 }
