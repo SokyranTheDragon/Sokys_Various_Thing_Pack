@@ -61,8 +61,4 @@ class SVTPLanguageUSGenerator extends FabricLanguageProvider
         builder.add(SVTPConventionalItemTags.STORAGE_BLOCKS_PAPER, "Paper Storage Blocks");
         builder.add(SVTPBlockTags.SHEARABLE_PAPER_BLOCKS, "Shearable Paper Blocks");
     }
-
-    public static void generateArmoredGlassTranslations(TranslationBuilder builder, String armoredString, String lang)
-    {
-    }
 }
