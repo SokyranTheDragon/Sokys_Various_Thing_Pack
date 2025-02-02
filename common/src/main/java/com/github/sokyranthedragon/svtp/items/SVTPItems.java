@@ -103,7 +103,7 @@ public class SVTPItems
 
     private static RegistrySupplier<Item> registerBlock(RegistrySupplier<Block> registry, ResourceKey<CreativeModeTab> tab)
     {
-        return registerBlock(registry, BlockItem::new, new Item.Properties().arch$tab(tab));
+        return registerBlock(registry, BlockItem::new, tab);
     }
 
     private static RegistrySupplier<Item> registerBlock(RegistrySupplier<Block> registry, Item.Properties properties)
