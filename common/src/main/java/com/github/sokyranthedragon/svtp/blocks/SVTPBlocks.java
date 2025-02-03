@@ -134,9 +134,9 @@ public class SVTPBlocks
             .overrideLootTable(lootTableFrom(GOLDEN_SOUL_TORCH_1)));
 
     public static final RegistrySupplier<Block> PAPER_BUNDLE_0 = register("paper_bundle_0", PaperBundleBlock::new, paperProperties());
-    public static final RegistrySupplier<Block> PAPER_BUNDLE_1 = register("paper_bundle_1", PaperBundleBlock::new, paperProperties().overrideDescription(descriptionIdFrom(PAPER_BUNDLE_0)));
-    public static final RegistrySupplier<Block> PAPER_BUNDLE_2 = register("paper_bundle_2", PaperBundleBlock::new, paperProperties().overrideDescription(descriptionIdFrom(PAPER_BUNDLE_0)));
-    public static final RegistrySupplier<Block> PAPER_BUNDLE_3 = register("paper_bundle_3", PaperBundleBlock::new, paperProperties().overrideDescription(descriptionIdFrom(PAPER_BUNDLE_0)));
+    public static final RegistrySupplier<Block> PAPER_BUNDLE_1 = register("paper_bundle_1", PaperBundleBlock::new, paperProperties());
+    public static final RegistrySupplier<Block> PAPER_BUNDLE_2 = register("paper_bundle_2", PaperBundleBlock::new, paperProperties());
+    public static final RegistrySupplier<Block> PAPER_BUNDLE_3 = register("paper_bundle_3", PaperBundleBlock::new, paperProperties());
 
     public static final RegistrySupplier<Block> REDSTONE_LANTERN = register("redstone_lantern", RedstoneLanternBlock::new,
         BlockBehaviour.Properties
