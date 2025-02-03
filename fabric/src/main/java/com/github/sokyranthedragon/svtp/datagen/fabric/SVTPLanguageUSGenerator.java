@@ -61,6 +61,6 @@ class SVTPLanguageUSGenerator extends FabricLanguageProvider
 
         // Tags
         builder.add(SVTPConventionalItemTags.STORAGE_BLOCKS_PAPER, "Paper Storage Blocks");
-        builder.add(SVTPBlockTags.SHEARABLE_PAPER_BLOCKS, "Shearable Paper Blocks");
+        builder.add(SVTPBlockTags.PAPER_BUNDLES, "Paper Bundles");
     }
 }

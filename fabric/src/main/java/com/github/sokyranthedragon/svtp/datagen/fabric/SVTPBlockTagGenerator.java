@@ -76,7 +76,7 @@ class SVTPBlockTagGenerator extends FabricTagProvider.BlockTagProvider
             .add(SVTPBlocks.PAPER_BUNDLE_5.get());
 
         // SVTP Tags
-        getOrCreateTagBuilder(SVTPBlockTags.SHEARABLE_PAPER_BLOCKS)
+        getOrCreateTagBuilder(SVTPBlockTags.PAPER_BUNDLES)
             .add(SVTPBlocks.PAPER_BUNDLE_0.get())
             .add(SVTPBlocks.PAPER_BUNDLE_1.get())
             .add(SVTPBlocks.PAPER_BUNDLE_2.get())

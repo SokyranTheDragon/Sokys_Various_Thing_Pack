@@ -29,7 +29,7 @@ public class MixinShearsItem
         // Get a copy of the original rules list
         var originalList = new ArrayList<>(original.rules());
         // Insert our own rule
-        originalList.add(Tool.Rule.overrideSpeed(holderGetter.getOrThrow(SVTPBlockTags.SHEARABLE_PAPER_BLOCKS), 5f));
+        originalList.add(Tool.Rule.overrideSpeed(holderGetter.getOrThrow(SVTPBlockTags.PAPER_BUNDLES), 5f));
         // Make a new immutable list
         var newList = List.copyOf(originalList);
 
@@ -40,7 +40,7 @@ public class MixinShearsItem
     @Inject(method = "mineBlock", at = @At(value = "RETURN"), cancellable = true)
     private void injectMineBlock(ItemStack itemStack, Level level, BlockState blockState, BlockPos blockPos, LivingEntity livingEntity, CallbackInfoReturnable<Boolean> cir)
     {
-        if (!cir.getReturnValueZ() && blockState.is(SVTPBlockTags.SHEARABLE_PAPER_BLOCKS))
+        if (!cir.getReturnValueZ() && blockState.is(SVTPBlockTags.PAPER_BUNDLES))
             cir.setReturnValue(true);
     }
 }

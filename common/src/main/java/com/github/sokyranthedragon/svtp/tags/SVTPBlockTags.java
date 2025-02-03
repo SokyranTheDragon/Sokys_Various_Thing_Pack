@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.Block;
 
 public class SVTPBlockTags
 {
-    public static TagKey<Block> SHEARABLE_PAPER_BLOCKS = register("shearable_paper_blocks");
+    public static TagKey<Block> PAPER_BUNDLES = register("paper_bundles");
 
     private static TagKey<Block> register(String tagId)
     {
