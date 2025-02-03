@@ -34,8 +34,8 @@ class SVTPLanguageUSGenerator extends FabricLanguageProvider
         // Golden torch
         builder.add(SVTPItems.GOLDEN_TORCH_0.get(), "Golden Torch");
         builder.add(SVTPItems.GOLDEN_SOUL_TORCH_0.get(), "Golden Soul Torch");
-        builder.add(SVTPItems.GOLDEN_TORCH_1.get(), "Dark Golden Torch");
-        builder.add(SVTPItems.GOLDEN_SOUL_TORCH_1.get(), "Dark Golden Soul Torch");
+        builder.add(SVTPItems.GOLDEN_TORCH_1.get(), "Annealed Golden Torch");
+        builder.add(SVTPItems.GOLDEN_SOUL_TORCH_1.get(), "Annealed Golden Soul Torch");
 
         // Paper bundles
         builder.add(SVTPItems.PAPER_BUNDLE_0.get(), "Paper Bundle");
