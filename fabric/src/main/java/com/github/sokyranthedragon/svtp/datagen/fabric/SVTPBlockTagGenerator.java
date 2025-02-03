@@ -71,13 +71,17 @@ class SVTPBlockTagGenerator extends FabricTagProvider.BlockTagProvider
             .add(SVTPBlocks.PAPER_BUNDLE_0.get())
             .add(SVTPBlocks.PAPER_BUNDLE_1.get())
             .add(SVTPBlocks.PAPER_BUNDLE_2.get())
-            .add(SVTPBlocks.PAPER_BUNDLE_3.get());
+            .add(SVTPBlocks.PAPER_BUNDLE_3.get())
+            .add(SVTPBlocks.PAPER_BUNDLE_4.get())
+            .add(SVTPBlocks.PAPER_BUNDLE_5.get());
 
         // SVTP Tags
         getOrCreateTagBuilder(SVTPBlockTags.SHEARABLE_PAPER_BLOCKS)
             .add(SVTPBlocks.PAPER_BUNDLE_0.get())
             .add(SVTPBlocks.PAPER_BUNDLE_1.get())
             .add(SVTPBlocks.PAPER_BUNDLE_2.get())
-            .add(SVTPBlocks.PAPER_BUNDLE_3.get());
+            .add(SVTPBlocks.PAPER_BUNDLE_3.get())
+            .add(SVTPBlocks.PAPER_BUNDLE_4.get())
+            .add(SVTPBlocks.PAPER_BUNDLE_5.get());
     }
 }

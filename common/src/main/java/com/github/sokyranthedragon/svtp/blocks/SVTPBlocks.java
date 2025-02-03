@@ -137,6 +137,8 @@ public class SVTPBlocks
     public static final RegistrySupplier<Block> PAPER_BUNDLE_1 = register("paper_bundle_1", PaperBundleBlock::new, paperProperties());
     public static final RegistrySupplier<Block> PAPER_BUNDLE_2 = register("paper_bundle_2", PaperBundleBlock::new, paperProperties());
     public static final RegistrySupplier<Block> PAPER_BUNDLE_3 = register("paper_bundle_3", PaperBundleBlock::new, paperProperties());
+    public static final RegistrySupplier<Block> PAPER_BUNDLE_4 = register("paper_bundle_4", PaperBundleBlock::new, paperProperties());
+    public static final RegistrySupplier<Block> PAPER_BUNDLE_5 = register("paper_bundle_5", PaperBundleBlock::new, paperProperties());
 
     public static final RegistrySupplier<Block> REDSTONE_LANTERN = register("redstone_lantern", RedstoneLanternBlock::new,
         BlockBehaviour.Properties
@@ -179,6 +181,8 @@ public class SVTPBlocks
         fire.setFlammable(PAPER_BUNDLE_1.get(), 30, 60);
         fire.setFlammable(PAPER_BUNDLE_2.get(), 30, 60);
         fire.setFlammable(PAPER_BUNDLE_3.get(), 30, 60);
+        fire.setFlammable(PAPER_BUNDLE_4.get(), 30, 60);
+        fire.setFlammable(PAPER_BUNDLE_5.get(), 30, 60);
 
         // Match dead bush
         fire.setFlammable(DEAD_FLOWER.get(), 60, 100);

@@ -80,8 +80,11 @@ class SVTPRecipeGenerator extends RecipeProvider
 
         // Paper bundle recipes
         nineBlockStorageRecipesWithExtraVariants(RecipeCategory.MISC, Items.PAPER, "paper", RecipeCategory.DECORATIONS,
-            SVTPItems.PAPER_BUNDLE_0.get(), SVTPItems.PAPER_BUNDLE_1.get(), SVTPItems.PAPER_BUNDLE_2.get(), SVTPItems.PAPER_BUNDLE_3.get());
-        twoByTwoConversionRecipe(RecipeCategory.MISC, SVTPItems.PAPER_BUNDLE_0.get(), SVTPItems.PAPER_BUNDLE_1.get(), SVTPItems.PAPER_BUNDLE_2.get(), SVTPItems.PAPER_BUNDLE_3.get());
+            SVTPItems.PAPER_BUNDLE_0.get(), SVTPItems.PAPER_BUNDLE_1.get(), SVTPItems.PAPER_BUNDLE_2.get(),
+            SVTPItems.PAPER_BUNDLE_3.get(), SVTPItems.PAPER_BUNDLE_4.get(), SVTPItems.PAPER_BUNDLE_5.get());
+        twoByTwoConversionRecipe(RecipeCategory.MISC,
+            SVTPItems.PAPER_BUNDLE_0.get(), SVTPItems.PAPER_BUNDLE_1.get(), SVTPItems.PAPER_BUNDLE_2.get(),
+            SVTPItems.PAPER_BUNDLE_3.get(), SVTPItems.PAPER_BUNDLE_4.get(), SVTPItems.PAPER_BUNDLE_5.get());
 
         // Suspicious stew
         // Probably an overkill, as there likely won't be more.

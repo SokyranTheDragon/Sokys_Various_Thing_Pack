@@ -81,6 +81,8 @@ public class SVTPItems
     public static final RegistrySupplier<Item> PAPER_BUNDLE_1 = registerBlock(SVTPBlocks.PAPER_BUNDLE_1, CreativeModeTabs.BUILDING_BLOCKS);
     public static final RegistrySupplier<Item> PAPER_BUNDLE_2 = registerBlock(SVTPBlocks.PAPER_BUNDLE_2, CreativeModeTabs.BUILDING_BLOCKS);
     public static final RegistrySupplier<Item> PAPER_BUNDLE_3 = registerBlock(SVTPBlocks.PAPER_BUNDLE_3, CreativeModeTabs.BUILDING_BLOCKS);
+    public static final RegistrySupplier<Item> PAPER_BUNDLE_4 = registerBlock(SVTPBlocks.PAPER_BUNDLE_4, CreativeModeTabs.BUILDING_BLOCKS);
+    public static final RegistrySupplier<Item> PAPER_BUNDLE_5 = registerBlock(SVTPBlocks.PAPER_BUNDLE_5, CreativeModeTabs.BUILDING_BLOCKS);
 
     public static final RegistrySupplier<Item> REDSTONE_LANTERN = registerBlock(SVTPBlocks.REDSTONE_LANTERN, CreativeModeTabs.FUNCTIONAL_BLOCKS);
 

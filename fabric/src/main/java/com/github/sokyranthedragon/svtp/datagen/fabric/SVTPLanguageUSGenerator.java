@@ -42,6 +42,8 @@ class SVTPLanguageUSGenerator extends FabricLanguageProvider
         builder.add(SVTPItems.PAPER_BUNDLE_1.get(), "Paper Bundle on a Pallet");
         builder.add(SVTPItems.PAPER_BUNDLE_2.get(), "Paper Bundle on a Pallet with Warning Sign");
         builder.add(SVTPItems.PAPER_BUNDLE_3.get(), "Yellowed Paper Bundle");
+        builder.add(SVTPItems.PAPER_BUNDLE_4.get(), "Yellowed Paper Bundle on a Pallet");
+        builder.add(SVTPItems.PAPER_BUNDLE_5.get(), "Yellowed Paper Bundle on a Pallet with Warning Sign");
 
         // Armored glass blocks
         builder.add(SVTPItems.ARMORED_GLASS.get(), "Armored Glass");
