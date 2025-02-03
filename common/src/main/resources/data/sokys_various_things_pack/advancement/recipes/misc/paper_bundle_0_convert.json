@@ -1,14 +1,14 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_paper_bundle_3": {
+    "has_paper_bundle_5": {
       "conditions": {
         "items": [
           {
             "count": {
               "min": 4
             },
-            "items": "sokys_various_things_pack:paper_bundle_3"
+            "items": "sokys_various_things_pack:paper_bundle_5"
           }
         ]
       },
@@ -24,7 +24,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_paper_bundle_3"
+      "has_paper_bundle_5"
     ]
   ],
   "rewards": {

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "sokys_various_things_pack:block/paper_bundle_2_bottom",
+    "east": "sokys_various_things_pack:block/paper_bundle_4_south_east",
+    "north": "sokys_various_things_pack:block/paper_bundle_4_north_west",
+    "particle": "sokys_various_things_pack:block/paper_bundle_3_top",
+    "south": "sokys_various_things_pack:block/paper_bundle_4_south_east",
+    "up": "sokys_various_things_pack:block/paper_bundle_3_top",
+    "west": "sokys_various_things_pack:block/paper_bundle_4_north_west"
+  }
+}

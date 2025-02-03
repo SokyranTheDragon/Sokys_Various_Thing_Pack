@@ -3,7 +3,7 @@
   "category": "misc",
   "group": "paper",
   "ingredients": [
-    "sokys_various_things_pack:paper_bundle_3"
+    "#sokys_various_things_pack:paper_bundles"
   ],
   "result": {
     "count": 9,

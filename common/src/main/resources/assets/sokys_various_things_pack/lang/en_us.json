@@ -43,9 +43,11 @@
   "block.sokys_various_things_pack.paper_bundle_1": "Paper Bundle on a Pallet",
   "block.sokys_various_things_pack.paper_bundle_2": "Paper Bundle on a Pallet with Warning Sign",
   "block.sokys_various_things_pack.paper_bundle_3": "Yellowed Paper Bundle",
+  "block.sokys_various_things_pack.paper_bundle_4": "Yellowed Paper Bundle on a Pallet",
+  "block.sokys_various_things_pack.paper_bundle_5": "Yellowed Paper Bundle on a Pallet with Warning Sign",
   "block.sokys_various_things_pack.potted_dead_flower": "Potted Dead Flower",
   "block.sokys_various_things_pack.redstone_lantern": "Redstone Lantern",
   "block.sokys_various_things_pack.stone_door": "Stone Door",
-  "tag.block.sokys_various_things_pack.shearable_paper_blocks": "Shearable Paper Blocks",
+  "tag.block.sokys_various_things_pack.paper_bundles": "Paper Bundles",
   "tag.item.c.storage_blocks.paper": "Paper Storage Blocks"
 }

@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_paper_bundle_2": {
+    "has_paper_bundle_0": {
       "conditions": {
         "items": [
           {
-            "items": "sokys_various_things_pack:paper_bundle_2"
+            "items": "#sokys_various_things_pack:paper_bundles"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "sokys_various_things_pack:paper_unpacking_2"
+        "recipe": "sokys_various_things_pack:paper_unpacking"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_paper_bundle_2"
+      "has_paper_bundle_0"
     ]
   ],
   "rewards": {
     "recipes": [
-      "sokys_various_things_pack:paper_unpacking_2"
+      "sokys_various_things_pack:paper_unpacking"
     ]
   }
 }
