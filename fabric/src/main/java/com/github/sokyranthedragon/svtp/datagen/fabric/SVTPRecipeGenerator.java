@@ -3,6 +3,7 @@ package com.github.sokyranthedragon.svtp.datagen.fabric;
 import com.github.sokyranthedragon.svtp.SVTPMod;
 import com.github.sokyranthedragon.svtp.blocks.SVTPBlocks;
 import com.github.sokyranthedragon.svtp.items.SVTPItems;
+import com.github.sokyranthedragon.svtp.tags.SVTPItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
@@ -18,6 +19,7 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -80,8 +82,7 @@ class SVTPRecipeGenerator extends RecipeProvider
 
         // Paper bundle recipes
         nineBlockStorageRecipesWithExtraVariants(RecipeCategory.MISC, Items.PAPER, "paper", RecipeCategory.DECORATIONS,
-            SVTPItems.PAPER_BUNDLE_0.get(), SVTPItems.PAPER_BUNDLE_1.get(), SVTPItems.PAPER_BUNDLE_2.get(),
-            SVTPItems.PAPER_BUNDLE_3.get(), SVTPItems.PAPER_BUNDLE_4.get(), SVTPItems.PAPER_BUNDLE_5.get());
+            SVTPItems.PAPER_BUNDLE_0.get(), SVTPItemTags.PAPER_BUNDLES);
         twoByTwoConversionRecipe(RecipeCategory.MISC,
             SVTPItems.PAPER_BUNDLE_0.get(), SVTPItems.PAPER_BUNDLE_1.get(), SVTPItems.PAPER_BUNDLE_2.get(),
             SVTPItems.PAPER_BUNDLE_3.get(), SVTPItems.PAPER_BUNDLE_4.get(), SVTPItems.PAPER_BUNDLE_5.get());
@@ -124,7 +125,6 @@ class SVTPRecipeGenerator extends RecipeProvider
         if (packedItems == null || packedItems.length == 0)
             return;
 
-        var unpackingRecipeName = getSimpleRecipeName(unpackedItem) + "_unpacking";
         // nineBlockStorageRecipes() method, but use correct namespace rather than "minecraft".
         // Only the shaped part, as shapeless is handled by the loop.
         shaped(packingCategory, packedItems[0])
@@ -135,6 +135,8 @@ class SVTPRecipeGenerator extends RecipeProvider
             .unlockedBy(getHasName(unpackedItem), has(MinMaxBounds.Ints.atLeast(9), unpackedItem))
             .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(getSimpleRecipeName(packedItems[0]))));
 
+        var unpackingRecipeName = getSimpleRecipeName(unpackedItem) + "_unpacking";
+
         for (var i = 0; i < packedItems.length; i++)
         {
             shapeless(unpackingCategory, unpackedItem, 9)
@@ -143,6 +145,25 @@ class SVTPRecipeGenerator extends RecipeProvider
                 .unlockedBy(getHasName(packedItems[i]), has(packedItems[i]))
                 .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(unpackingRecipeName + "_" + i)));
         }
+    }
+
+    private void nineBlockStorageRecipesWithExtraVariants(RecipeCategory unpackingCategory, ItemLike unpackedItem, @Nullable String unpackingGroupName, RecipeCategory packingCategory, ItemLike firstPackedItem, TagKey<Item> packedItemsTag)
+    {
+        // nineBlockStorageRecipes() method, but use correct namespace rather than "minecraft".
+        // Only the shaped part, as shapeless is handled by the loop.
+        shaped(packingCategory, firstPackedItem)
+            .define('#', unpackedItem)
+            .pattern("###")
+            .pattern("###")
+            .pattern("###")
+            .unlockedBy(getHasName(unpackedItem), has(MinMaxBounds.Ints.atLeast(9), unpackedItem))
+            .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(getSimpleRecipeName(firstPackedItem))));
+
+        shapeless(unpackingCategory, unpackedItem, 9)
+            .requires(packedItemsTag)
+            .group(unpackingGroupName)
+            .unlockedBy(getHasName(firstPackedItem), has(packedItemsTag))
+            .save(output, ResourceKey.create(Registries.RECIPE, SVTPMod.resourceLocation(getSimpleRecipeName(unpackedItem) + "_unpacking")));
     }
 
     private void conversionRecipe(RecipeCategory category, ItemLike... items)
