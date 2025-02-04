@@ -7,7 +7,6 @@ import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -16,11 +15,9 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.level.storage.loot.LootTable;
 import org.jetbrains.annotations.Contract;
 
 import java.util.Arrays;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -70,7 +67,7 @@ public class SVTPBlocks
     public static final RegistrySupplier<Block> ARMORED_BLACK_STAINED_GLASS_PANE = registerStainedArmoredPane("armored_black_stained_glass_pane", Blocks.BLACK_STAINED_GLASS_PANE);
 
     public static final RegistrySupplier<Block> STONE_DOOR = register("stone_door", (props) -> new DoorBlock(BlockSetType.STONE, props),
-        BlockBehaviour.Properties
+        () -> BlockBehaviour.Properties
             .of()
             .mapColor(MapColor.STONE)
             // Same as stone
@@ -82,56 +79,56 @@ public class SVTPBlocks
     );
 
     public static final RegistrySupplier<Block> GOLDEN_TORCH_0 = register("golden_torch_0", (props) -> new GoldenTorchBlock(ParticleTypes.FLAME, props),
-        BlockBehaviour.Properties
+        () -> BlockBehaviour.Properties
             .ofFullCopy(Blocks.TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
             .sound(SoundType.METAL));
     public static final RegistrySupplier<Block> WALL_GOLDEN_TORCH_0 = register("wall_golden_torch_0", (props) -> new GoldenWallTorchBlock(ParticleTypes.FLAME, props),
-        BlockBehaviour.Properties
+        () -> BlockBehaviour.Properties
             .ofFullCopy(Blocks.WALL_TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
             .sound(SoundType.METAL)
-            .overrideDescription(descriptionIdFrom(GOLDEN_TORCH_0))
-            .overrideLootTable(lootTableFrom(GOLDEN_TORCH_0)));
+            .overrideDescription(GOLDEN_TORCH_0.get().getDescriptionId())
+            .overrideLootTable(GOLDEN_TORCH_0.get().getLootTable()));
 
     public static final RegistrySupplier<Block> GOLDEN_TORCH_1 = register("golden_torch_1", (props) -> new GoldenTorchBlock(ParticleTypes.FLAME, props),
-        BlockBehaviour.Properties
+        () -> BlockBehaviour.Properties
             .ofFullCopy(Blocks.TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
             .sound(SoundType.METAL));
     public static final RegistrySupplier<Block> WALL_GOLDEN_TORCH_1 = register("wall_golden_torch_1", (props) -> new GoldenWallTorchBlock(ParticleTypes.FLAME, props),
-        BlockBehaviour.Properties
+        () -> BlockBehaviour.Properties
             .ofFullCopy(Blocks.WALL_TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
             .sound(SoundType.METAL)
-            .overrideDescription(descriptionIdFrom(GOLDEN_TORCH_1))
-            .overrideLootTable(lootTableFrom(GOLDEN_TORCH_1)));
+            .overrideDescription(GOLDEN_TORCH_1.get().getDescriptionId())
+            .overrideLootTable(GOLDEN_TORCH_1.get().getLootTable()));
 
     public static final RegistrySupplier<Block> GOLDEN_SOUL_TORCH_0 = register("golden_soul_torch_0", (props) -> new GoldenTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, props),
-        BlockBehaviour.Properties
+        () -> BlockBehaviour.Properties
             .ofFullCopy(Blocks.TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
             .sound(SoundType.METAL));
     public static final RegistrySupplier<Block> WALL_GOLDEN_SOUL_TORCH_0 = register("wall_golden_soul_torch_0", (props) -> new GoldenWallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, props),
-        BlockBehaviour.Properties
+        () -> BlockBehaviour.Properties
             .ofFullCopy(Blocks.WALL_TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
             .sound(SoundType.METAL)
-            .overrideDescription(descriptionIdFrom(GOLDEN_SOUL_TORCH_0))
-            .overrideLootTable(lootTableFrom(GOLDEN_SOUL_TORCH_0)));
+            .overrideDescription(GOLDEN_SOUL_TORCH_0.get().getDescriptionId())
+            .overrideLootTable(GOLDEN_SOUL_TORCH_0.get().getLootTable()));
 
     public static final RegistrySupplier<Block> GOLDEN_SOUL_TORCH_1 = register("golden_soul_torch_1", (props) -> new GoldenTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, props),
-        BlockBehaviour.Properties
+        () -> BlockBehaviour.Properties
             .ofFullCopy(Blocks.TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
             .sound(SoundType.METAL));
     public static final RegistrySupplier<Block> WALL_GOLDEN_SOUL_TORCH_1 = register("wall_golden_soul_torch_1", (props) -> new GoldenWallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, props),
-        BlockBehaviour.Properties
+        () -> BlockBehaviour.Properties
             .ofFullCopy(Blocks.WALL_TORCH)
             .lightLevel((state) -> Level.MAX_BRIGHTNESS)
             .sound(SoundType.METAL)
-            .overrideDescription(descriptionIdFrom(GOLDEN_SOUL_TORCH_1))
-            .overrideLootTable(lootTableFrom(GOLDEN_SOUL_TORCH_1)));
+            .overrideDescription(GOLDEN_SOUL_TORCH_1.get().getDescriptionId())
+            .overrideLootTable(GOLDEN_SOUL_TORCH_1.get().getLootTable()));
 
     public static final RegistrySupplier<Block> PAPER_BUNDLE_0 = register("paper_bundle_0", PaperBundleBlock::new, paperProperties());
     public static final RegistrySupplier<Block> PAPER_BUNDLE_1 = register("paper_bundle_1", PaperBundleBlock::new, paperProperties());
@@ -141,7 +138,7 @@ public class SVTPBlocks
     public static final RegistrySupplier<Block> PAPER_BUNDLE_5 = register("paper_bundle_5", PaperBundleBlock::new, paperProperties());
 
     public static final RegistrySupplier<Block> REDSTONE_LANTERN = register("redstone_lantern", RedstoneLanternBlock::new,
-        BlockBehaviour.Properties
+        () -> BlockBehaviour.Properties
             .of()
             .mapColor(MapColor.STONE)
             .instrument(NoteBlockInstrument.BASEDRUM)
@@ -151,7 +148,7 @@ public class SVTPBlocks
             .isValidSpawn((state, getter, pos, type) -> true));
 
     public static final RegistrySupplier<Block> DEAD_FLOWER = register("dead_flower", (props) -> new DeadFlowerBlock(MobEffects.MOVEMENT_SLOWDOWN, 7f, props),
-        BlockBehaviour.Properties
+        () -> BlockBehaviour.Properties
             .of()
             .mapColor(MapColor.WOOD)
             .replaceable()
@@ -161,7 +158,7 @@ public class SVTPBlocks
             .ignitedByLava()
             .pushReaction(PushReaction.DESTROY));
     public static final RegistrySupplier<Block> POTTED_DEAD_FLOWER = register("potted_dead_flower", (props) -> new FlowerPotBlock(DEAD_FLOWER.get(), props),
-        BlockBehaviour.Properties
+        () -> BlockBehaviour.Properties
             .of()
             .instabreak()
             .noOcclusion()
@@ -188,10 +185,9 @@ public class SVTPBlocks
         fire.setFlammable(DEAD_FLOWER.get(), 60, 100);
     }
 
-    private static RegistrySupplier<Block> register(String id, Function<BlockBehaviour.Properties, Block> function, BlockBehaviour.Properties properties)
+    private static RegistrySupplier<Block> register(String id, Function<BlockBehaviour.Properties, Block> function, Supplier<BlockBehaviour.Properties> properties)
     {
-        properties.setId(createId(id));
-        return BLOCKS.register(id, () -> function.apply(properties));
+        return BLOCKS.register(id, () -> function.apply(properties.get().setId(createId(id))));
     }
 
     private static ResourceKey<Block> createId(String id)
@@ -199,9 +195,9 @@ public class SVTPBlocks
         return ResourceKey.create(Registries.BLOCK, SVTPMod.resourceLocation(id));
     }
 
-    private static BlockBehaviour.Properties paperProperties()
+    private static Supplier<BlockBehaviour.Properties> paperProperties()
     {
-        return BlockBehaviour.Properties
+        return () -> BlockBehaviour.Properties
             .of()
             .mapColor(MapColor.SNOW)
             .sound(SoundType.WOOL)
@@ -210,23 +206,9 @@ public class SVTPBlocks
             .ignitedByLava();
     }
 
-    private static Optional<ResourceKey<LootTable>> lootTableFrom(RegistrySupplier<Block> parent)
+    private static Supplier<BlockBehaviour.Properties> armoredGlassProperties(Block base)
     {
-        // Can't access the block itself at this moment yet, need a workaround.
-        var parentId = parent.getId();
-        return Optional.of(ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath(parentId.getNamespace(), "blocks/" + parentId.getPath())));
-    }
-
-    private static String descriptionIdFrom(RegistrySupplier<Block> parent)
-    {
-        // Can't access the block itself at this moment yet, need a workaround.
-        var parentId = parent.getId();
-        return "block." + parentId.getNamespace() + "." + parentId.getPath();
-    }
-
-    private static BlockBehaviour.Properties armoredGlassProperties(Block base)
-    {
-        return BlockBehaviour.Properties
+        return () -> BlockBehaviour.Properties
             .ofFullCopy(base)
             // 90% obsidian's strength
             .strength(Blocks.OBSIDIAN.defaultDestroyTime() * 0.75f, Blocks.OBSIDIAN.getExplosionResistance());

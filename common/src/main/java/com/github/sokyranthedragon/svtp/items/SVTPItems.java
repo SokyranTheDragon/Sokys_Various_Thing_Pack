@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Contract;
 
 import java.util.function.BiFunction;
+import java.util.function.Supplier;
 
 @SuppressWarnings({"UnstableApiUsage"})
 @MethodsReturnNonnullByDefault
@@ -100,7 +101,7 @@ public class SVTPItems
 
     private static RegistrySupplier<Item> registerBlock(RegistrySupplier<Block> registry)
     {
-        return registerBlock(registry, BlockItem::new, new Item.Properties());
+        return registerBlock(registry, BlockItem::new, Item.Properties::new);
     }
 
     private static RegistrySupplier<Item> registerBlock(RegistrySupplier<Block> registry, ResourceKey<CreativeModeTab> tab)
@@ -108,25 +109,25 @@ public class SVTPItems
         return registerBlock(registry, BlockItem::new, tab);
     }
 
-    private static RegistrySupplier<Item> registerBlock(RegistrySupplier<Block> registry, Item.Properties properties)
+    private static RegistrySupplier<Item> registerBlock(RegistrySupplier<Block> registry, Supplier<Item.Properties> properties)
     {
         return registerBlock(registry, BlockItem::new, properties);
     }
 
     private static RegistrySupplier<Item> registerBlock(RegistrySupplier<Block> registry, BiFunction<Block, Item.Properties, Item> function)
     {
-        return registerBlock(registry, function, new Item.Properties());
+        return registerBlock(registry, function, Item.Properties::new);
     }
 
     private static RegistrySupplier<Item> registerBlock(RegistrySupplier<Block> registry, BiFunction<Block, Item.Properties, Item> function, ResourceKey<CreativeModeTab> tab)
     {
-        return registerBlock(registry, function, new Item.Properties().arch$tab(tab));
+        return registerBlock(registry, function, () -> new Item.Properties().arch$tab(tab));
     }
 
-    private static RegistrySupplier<Item> registerBlock(RegistrySupplier<Block> registry, BiFunction<Block, Item.Properties, Item> function, Item.Properties properties)
+    private static RegistrySupplier<Item> registerBlock(RegistrySupplier<Block> registry, BiFunction<Block, Item.Properties, Item> function, Supplier<Item.Properties> properties)
     {
         return ITEMS.register(registry.getId().getPath(),
-            () -> function.apply(registry.get(), properties.setId(blockIdToItemId(registry.getId())).useBlockDescriptionPrefix()));
+            () -> function.apply(registry.get(), properties.get().setId(blockIdToItemId(registry.getId())).useBlockDescriptionPrefix()));
     }
 
     @Contract(pure = true)
