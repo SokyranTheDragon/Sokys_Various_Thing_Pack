@@ -13,6 +13,7 @@ libs/
 .project
 .settings/org.eclipse.core.resources.prefs
 .idea/
+.architectury-transformer/
 classes/
 
 logs/
