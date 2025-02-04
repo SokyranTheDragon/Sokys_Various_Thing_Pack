@@ -1,5 +1,0 @@
-accessWidener v2 named
-# Entries generated with https://linkie.shedaniel.dev
-
-# Workaround for registering blocks and items
-accessible field net/minecraft/world/level/block/state/BlockBehaviour$Properties drops Lnet/minecraft/resources/ResourceKey;
