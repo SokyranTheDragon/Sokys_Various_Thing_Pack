@@ -3,6 +3,3 @@ accessWidener v2 named
 
 # Workaround for registering blocks and items
 accessible field net/minecraft/world/level/block/state/BlockBehaviour$Properties drops Lnet/minecraft/resources/ResourceKey;
-
-# Datagen only
-accessible method net/minecraft/client/data/models/model/TexturedModel createDefault (Ljava/util/function/Function;Lnet/minecraft/client/data/models/model/ModelTemplate;)Lnet/minecraft/client/data/models/model/TexturedModel$Provider;
