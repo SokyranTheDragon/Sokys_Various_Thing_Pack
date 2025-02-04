@@ -210,7 +210,7 @@ public class SVTPBlocks
     {
         return () -> BlockBehaviour.Properties
             .ofFullCopy(base)
-            // 90% obsidian's strength
+            // 75% obsidian's mining time, 100% explosion resistance
             .strength(Blocks.OBSIDIAN.defaultDestroyTime() * 0.75f, Blocks.OBSIDIAN.getExplosionResistance());
     }
 
